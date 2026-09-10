@@ -11,14 +11,14 @@ export default function HeroSection() {
 
           {/* Left — text */}
           <div className="relative z-10">
-            <div className="label mb-4 text-black">TRADITION MEETS TECHNOLOGY</div>
-            <h1 className="serif max-w-[630px] text-[48px] font-semibold leading-[.96] tracking-[-0.045em] sm:text-[60px] lg:text-[70px]">
+            <div className="label mb-4 text-black hero-label">TRADITION MEETS TECHNOLOGY</div>
+            <h1 className="serif max-w-[630px] text-[48px] font-semibold leading-[.96] tracking-[-0.045em] sm:text-[60px] lg:text-[70px] hero-h1">
               Experience<br /><span className="red">Durga Puja</span><br />Like Never Before
             </h1>
-            <p className="mt-5 max-w-md text-[14px] font-medium leading-6 text-black text-shadow-2xs">
+            <p className="mt-5 max-w-md text-[14px] font-medium leading-6 text-black hero-desc">
               Immersive experiences. Powerful digital solutions.<br />A brighter tomorrow.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3 hero-btns">
               <Link href="#pandals" className="rounded-full px-6 py-3 text-[11px] font-bold text-white" style={{ background: "#df151b" }}>
                 Explore Pandals &nbsp;→
               </Link>
@@ -41,7 +41,7 @@ export default function HeroSection() {
 
             {/* Floating service cards — top right overlay */}
             <div className="relative z-10 w-[330px] space-y-3 pt-10 pr-4 lg:pt-12">
-              <div className="rounded-2xl border border-red-200 p-4 shadow-xl backdrop-blur" style={{ background: "rgba(255,255,255,0.92)" }}>
+              <div className="hero-card-1 rounded-2xl border border-red-200 p-4 shadow-xl backdrop-blur" style={{ background: "rgba(255,255,255,0.92)" }}>
                 <div className="flex items-center gap-3">
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-red-50 text-xl red">
                     <Monitor size={20} />
@@ -53,7 +53,7 @@ export default function HeroSection() {
                   <b className="red">→</b>
                 </div>
               </div>
-              <div className="rounded-2xl border border-blue-200 p-4 shadow-xl backdrop-blur" style={{ background: "rgba(255,255,255,0.92)" }}>
+              <div className="hero-card-2 rounded-2xl border border-blue-200 p-4 shadow-xl backdrop-blur" style={{ background: "rgba(255,255,255,0.92)" }}>
                 <div className="flex items-center gap-3">
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-blue-50 text-xl text-blue-600">
                     <Smartphone size={20} />
@@ -65,7 +65,7 @@ export default function HeroSection() {
                   <b className="text-blue-600">→</b>
                 </div>
               </div>
-              <div className="rounded-2xl border border-emerald-200 p-4 shadow-xl backdrop-blur" style={{ background: "rgba(255,255,255,0.92)" }}>
+              <div className="hero-card-3 rounded-2xl border border-emerald-200 p-4 shadow-xl backdrop-blur" style={{ background: "rgba(255,255,255,0.92)" }}>
                 <div className="flex items-center gap-3">
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-xl text-emerald-600">
                     <ShieldLock size={20} />

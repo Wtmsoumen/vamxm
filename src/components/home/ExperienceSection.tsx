@@ -1,3 +1,5 @@
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
+
 export default function ExperienceSection() {
   return (
     <section id="tours" className="relative overflow-hidden" style={{ minHeight: "340px" }}>
@@ -16,7 +18,7 @@ export default function ExperienceSection() {
       <div className="relative mx-auto grid max-w-[1450px] h-full items-center gap-6 px-6 py-14 lg:grid-cols-[1fr_auto_auto] lg:px-10">
 
         {/* Left — text */}
-        <div>
+        <AnimateOnScroll anim="left">
           <p className="label" style={{ color: "#ffffff" }}>IMMERSIVE 360° EXPERIENCE</p>
           <h2 className="serif mt-2 text-4xl font-semibold text-white leading-tight lg:text-5xl">
             Step Inside<br />the Magic
@@ -31,10 +33,10 @@ export default function ExperienceSection() {
           >
             Start 360° Tour &nbsp;→
           </a>
-        </div>
+        </AnimateOnScroll>
 
         {/* Center — 360° icon */}
-        <div className="hidden lg:flex flex-col items-center gap-2 text-white px-10">
+        <AnimateOnScroll anim="scale" delay={200} className="hidden lg:flex flex-col items-center gap-2 text-white px-10">
           <div
             className="flex h-24 w-24 flex-col items-center justify-center rounded-full border-4 border-white/60"
             style={{ background: "rgba(255,255,255,0.12)", backdropFilter: "blur(4px)" }}
@@ -42,10 +44,10 @@ export default function ExperienceSection() {
             <span className="text-2xl font-bold">360°</span>
           </div>
           <span className="text-[11px] font-semibold text-white/70">↔ &nbsp;Drag to Explore</span>
-        </div>
+        </AnimateOnScroll>
 
         {/* Right — thumbnail strip */}
-        <div className="hidden lg:flex flex-col gap-1.5">
+        <AnimateOnScroll anim="right" delay={300} className="hidden lg:flex flex-col gap-1.5">
           {["/pandals/pandal1.jpg", "/pandals/pandal2.jpg", "/pandals/pandal3.jpg", "/pandals/pandal-1.jpg"].map((src, i) => (
             <img
               key={i}
@@ -54,7 +56,7 @@ export default function ExperienceSection() {
               className="w-24 h-16 object-cover rounded-lg opacity-80 hover:opacity-100 transition-opacity"
             />
           ))}
-        </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );

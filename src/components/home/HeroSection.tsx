@@ -6,7 +6,7 @@ export default function HeroSection() {
   return (
     <section>
       <div className="relative" style={{ backgroundImage: "linear-gradient(115deg,#fff 0%,#fff 47%,#fff4e8 100%)", overflow: "hidden" }}>
-        <Image src="/pandals/maa-aschen.png" alt="Background" fill className="object-cover absolute top-0 left-0 w-full h-full" />
+        <img src="/pandals/maa-aschen.png" alt="maa-aschen" className="object-cover absolute top-0 left-0 w-full h-full" />
         <div className="mx-auto grid max-w-[1450px] items-center gap-5 px-6 py-10 lg:grid-cols-[.88fr_1.12fr] lg:px-10 lg:py-12">
 
           {/* Left — text */}

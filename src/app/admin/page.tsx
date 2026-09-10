@@ -78,7 +78,7 @@ export default function AdminDashboard() {
         ].map((action) => (
           <Link key={action.label} href={action.href} className="bg-zinc-900 border border-white/10 hover:border-saffron/30 rounded-xl p-4 flex items-center gap-3 transition-all group">
             <div className="w-9 h-9 bg-saffron/10 group-hover:bg-saffron/20 rounded-lg flex items-center justify-center transition-colors">
-              <action.icon className="w-4 h-4 text-saffron" />
+              <Linkction.icon className="w-4 h-4 text-saffron" />
             </div>
             <span className="text-white/70 group-hover:text-white text-sm font-medium transition-colors">
               {action.label}

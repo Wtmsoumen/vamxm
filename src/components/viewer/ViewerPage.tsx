@@ -72,9 +72,9 @@ export default function ViewerPage({ pandal }: { pandal: Pandal }) {
 
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch(() => {});
+      document.documentElement.requestFullscreen().catch(() => { });
     } else {
-      document.exitFullscreen().catch(() => {});
+      document.exitFullscreen().catch(() => { });
     }
   };
 
@@ -104,18 +104,16 @@ export default function ViewerPage({ pandal }: { pandal: Pandal }) {
           <div className="flex bg-black/60 border border-white/20 rounded-xl p-1 gap-1">
             <button
               onClick={() => setActiveView("pandal")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                activeView === "pandal" ? "bg-saffron text-white" : "text-white/60 hover:text-white"
-              }`}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${activeView === "pandal" ? "bg-saffron text-white" : "text-white/60 hover:text-white"
+                }`}
             >
               <Eye className="w-3 h-3" /> Pandal
             </button>
             {pandal.idolPanoramaUrl && (
               <button
                 onClick={() => setActiveView("idol")}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                  activeView === "idol" ? "bg-saffron text-white" : "text-white/60 hover:text-white"
-                }`}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${activeView === "idol" ? "bg-saffron text-white" : "text-white/60 hover:text-white"
+                  }`}
               >
                 <ImageIcon className="w-3 h-3" /> Idol
               </button>
@@ -177,7 +175,7 @@ export default function ViewerPage({ pandal }: { pandal: Pandal }) {
         {pandal.sponsors.length > 0 && (
           <div className="absolute top-20 right-4 flex flex-col gap-2">
             {pandal.sponsors.map((s) => (
-              <a
+              <Link
                 key={s.id}
                 href={s.website}
                 target="_blank"
@@ -190,7 +188,7 @@ export default function ViewerPage({ pandal }: { pandal: Pandal }) {
                 </div>
                 <span>{s.name}</span>
                 <ExternalLink className="w-3 h-3 opacity-60" />
-              </a>
+              </Link>
             ))}
           </div>
         )}

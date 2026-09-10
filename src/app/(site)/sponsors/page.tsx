@@ -37,9 +37,9 @@ export default function SponsorsPage() {
               </span>
               <h3 className="text-white font-semibold mb-2">{s.name}</h3>
               <p className="text-white/50 text-sm mb-4">{s.desc}</p>
-              <a href="#" className="flex items-center gap-1 text-saffron text-sm hover:underline">
+              <Link href="#" className="flex items-center gap-1 text-saffron text-sm hover:underline">
                 Visit website <ExternalLink className="w-3 h-3" />
-              </a>
+              </Link>
             </div>
           ))}
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, Send } from "lucide-react";
+import { Link, MapPin, Send } from "lucide-react";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
@@ -131,9 +131,9 @@ export default function ContactPage() {
             </div>
             <div className="flex items-start gap-4">
               <Send className="w-5 h-5 text-white mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-              <a href="mailto:info.vamxm@gmail.com" className="text-white text-sm hover:text-white transition-colors">
+              <Link href="mailto:info.vamxm@gmail.com" className="text-white text-sm hover:text-white transition-colors">
                 info.vamxm@gmail.com
-              </a>
+              </Link>
             </div>
           </div>
 

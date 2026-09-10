@@ -31,9 +31,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="min-h-screen bg-zinc-950 flex">
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-zinc-900 border-r border-white/10 transform transition-transform lg:translate-x-0 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:static lg:flex flex-col`}
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-zinc-900 border-r border-white/10 transform transition-transform lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } lg:static lg:flex flex-col`}
       >
         <div className="p-5 border-b border-white/10">
           <Link href="/" className="flex items-center gap-2">
@@ -55,11 +54,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 key={item.href}
                 href={item.href}
                 onClick={() => setSidebarOpen(false)}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                  active
-                    ? "bg-saffron/20 text-saffron"
-                    : "text-white/50 hover:text-white hover:bg-white/5"
-                }`}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${active
+                  ? "bg-saffron/20 text-saffron"
+                  : "text-white/50 hover:text-white hover:bg-white/5"
+                  }`}
               >
                 <item.icon className="w-4 h-4" />
                 {item.label}

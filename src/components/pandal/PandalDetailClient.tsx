@@ -113,7 +113,7 @@ export default function PandalDetailClient({ pandal }: { pandal: Pandal }) {
                 </h3>
                 <div className="space-y-2">
                   {pandal.sponsors.map((s) => (
-                    <a
+                    <Link
                       key={s.id}
                       href={s.website}
                       target="_blank"
@@ -126,7 +126,7 @@ export default function PandalDetailClient({ pandal }: { pandal: Pandal }) {
                       <span className="text-white/60 group-hover:text-white text-sm transition-colors">
                         {s.name}
                       </span>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>

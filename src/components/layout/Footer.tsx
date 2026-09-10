@@ -1,60 +1,57 @@
 import Link from "next/link";
-import { Mail, MapPin } from "lucide-react";
-
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Work", href: "/pandals" },
-  { label: "Durga Puja", href: "/pandals" },
-  { label: "Contact", href: "/contact" },
-];
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900">
-      <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
+    <footer id="about" className="bg-white">
+      <div className="mx-auto grid max-w-[1450px] gap-10 px-6 py-11 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-10 relative">
+        <hr className="w-full border-2 border-[#df151b] absolute top-0" />
         <div>
-          <img src="/logo/vamxm-horizontal.png" alt="VAMXM" width={1920} height={1080} className="h-40 w-auto mb-4 brightness-0 invert opacity-80" />
-          <p className="text-white text-sm leading-relaxed">
-            Crafting immersive virtual reality experiences.<br />Bringing Durga Puja to the world.
+          <img src="/pandals/vamxm-horizontal.png" className="w-[160px]" alt="VAMXM" />
+          <p className="mt-3 max-w-sm text-[12px] leading-5 text-black">
+            Building immersive experiences for a smarter, connected tomorrow. Proud to power UtsavVerse and many more.
           </p>
+          <div className="mt-5 flex gap-4 text-sm text-black">●　◎　◉　in　𝕏</div>
         </div>
-
         <div>
-          <p className="text-gray-500 text-xs uppercase tracking-widest font-semibold mb-4">Navigate</p>
-          <nav className="flex flex-col gap-2.5">
-            {navLinks.map((l) => (
-              <Link key={l.label} href={l.href} className="text-white hover:text-saffron text-sm transition-colors">
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-
-        <div>
-          <p className="text-gray-500 text-xs uppercase tracking-widest font-semibold mb-4">Contact</p>
-          <div className="flex flex-col gap-3">
-            <div className="flex items-start gap-3">
-              <MapPin className="w-4 h-4 text-saffron flex-shrink-0 mt-0.5" />
-              <p className="text-white text-sm leading-relaxed">
-                10, Sitanath Banerjee Lane, Nirmala Garden,<br />
-                Block C, 3rd Floor, Flat No. 301 & 302,<br />
-                Howrah 711103
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <Mail className="w-4 h-4 text-saffron flex-shrink-0" />
-              <a href="mailto:info.vamxm@gmail.com" className="text-white hover:text-saffron text-sm transition-colors">
-                info.vamxm@gmail.com
-              </a>
-            </div>
+          <h4 className="text-xs font-bold">Quick Links</h4>
+          <div className="mt-4 space-y-2 text-[12px] text-black">
+            <Link className="block" href="#">Home</Link>
+            <Link className="block" href="#pandals">Pandals</Link>
+            <Link className="block" href="#tours">360° Tours</Link>
+            <Link className="block" href="#countdown">Post Puja</Link>
+            <Link className="block" href="#about">About</Link>
+            <Link className="block" href="#services">Services</Link>
+            <Link className="block" href="#contact">Contact</Link>
           </div>
         </div>
+        <div>
+          <h4 className="text-xs font-bold">Our Services</h4>
+          <div className="mt-4 space-y-2 text-[12px] text-black">
+            <p>Website Development</p>
+            <p>Mobile App Development</p>
+            <p>Cyber Security</p>
+            <p>Digital Marketing</p>
+            <p>Metaverse Solutions</p>
+            <p>Consulting</p>
+          </div>
+        </div>
+        <div>
+          <h4 className="text-xs font-bold">Contact Us</h4>
+          <div className="mt-4 space-y-2 text-[12px] text-black">
+            <p>⌖ Kolkata, West Bengal, India</p>
+            <p>✉ info@vamxm.com</p>
+            <p>☎ +91 98765 43210</p>
+          </div>
+          <button className="mt-5 w-full rounded-lg py-3 text-[12px] font-bold text-white" style={{ background: "#df151b" }}>
+            ▣ &nbsp; Download App &nbsp; &nbsp; ▶
+          </button>
+        </div>
       </div>
-
-      <div className="border-t border-white/5 px-6 py-4 flex items-center justify-between">
-        <p className="text-gray-600 text-xs">© 2025 VAMXM. All rights reserved</p>
-        <p className="text-gray-700 text-xs">VAMXM.com</p>
+      <div className="border-t px-6 py-5 text-[9px] text-slate-400">
+        <div className="mx-auto flex max-w-[1450px] justify-between">
+          <span>© 2026 VAMXM. All rights reserved.</span>
+          <span>Tradition &nbsp;|&nbsp; Technology &nbsp;|&nbsp; Together</span>
+        </div>
       </div>
     </footer>
   );

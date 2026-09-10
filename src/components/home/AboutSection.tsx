@@ -58,7 +58,7 @@ export default function AboutSection() {
                 <img src="/logo/vamxm-stacked.png" alt="VAMXM" className="h-32 w-auto mx-auto mb-6 object-contain" />
                 <div className="flex items-center justify-center gap-3 mb-6">
                   <span className="h-px w-6 bg-saffron/40" />
-                  <span className="text-saffron text-[10px] font-black uppercase tracking-[0.4em]">Est. 2022</span>
+                  <span className="text-saffron text-[12px] font-black uppercase tracking-[0.4em]">Est. 2022</span>
                   <span className="h-px w-6 bg-saffron/40" />
                 </div>
                 {/* Mini stats */}
@@ -66,7 +66,7 @@ export default function AboutSection() {
                   {[["10+", "Clients"], ["20+", "Projects"], ["1000+", "Resources"]].map(([num, label]) => (
                     <div key={label} className="text-center">
                       <p className="text-xl font-black text-gray-900">{num}</p>
-                      <p className="text-gray-400 text-[10px] uppercase tracking-wider mt-0.5">{label}</p>
+                      <p className="text-gray-400 text-[12px] uppercase tracking-wider mt-0.5">{label}</p>
                     </div>
                   ))}
                 </div>

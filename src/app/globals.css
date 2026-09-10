@@ -9,12 +9,72 @@
   --color-teal: #00AEEF;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
+  margin: 0;
   background: #ffffff;
-  color: #111111;
+  color: #10151b;
+  font-family: var(--font-dm-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+.serif {
+  font-family: var(--font-playfair), serif;
+}
+
+.red {
+  color: #df151b;
+}
+
+.bg-red {
+  background: #df151b;
+}
+
+.label {
+  font-size: 14px;
+  letter-spacing: .34em;
+  font-weight: 800;
+  color: #e0191f;
+}
+
+.soft {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .07);
+}
+
+.service-card {
+  transition: .25s;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .1);
+}
+
+.pandal {
+  transition: .25s;
+}
+
+.pandal:hover {
+  transform: translateY(-4px);
+}
+
+.pandal img {
+  transition: .45s;
+}
+
+.pandal:hover img {
+  transform: scale(1.05);
+}
+
+.count-active {
+  background: linear-gradient(150deg, #e81920, #c80a10);
 }
 
 .text-gradient {
@@ -31,8 +91,24 @@ body {
   overflow: hidden;
   cursor: grab;
 }
-.viewer-container:active { cursor: grabbing; }
 
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: #f5f5f5; }
-::-webkit-scrollbar-thumb { background: #FF6B00; border-radius: 2px; }
+.viewer-container:active {
+  cursor: grabbing;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF6B00;
+  border-radius: 2px;
+}
+
+button {
+  cursor: pointer;
+}

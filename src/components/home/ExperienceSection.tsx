@@ -1,46 +1,61 @@
 export default function ExperienceSection() {
   return (
-    <>
-      {/* Value proposition — 3 color blocks */}
-      {/* Stats */}
-      <section className="py-20 px-6 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-gray-200">
-            {/* Left — text + stats */}
-            <div className="p-10 sm:p-14 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-gray-200">
-              <p className="text-saffron text-xs font-black uppercase tracking-[0.25em] mb-3">Numbers speak</p>
-              <h2 className="text-4xl font-black text-gray-900 mb-4">Let us show you some stats</h2>
-              <p className="text-gray-500 text-sm leading-relaxed mb-10">
-                We have done great stuff over the past few years. As each &amp; every product of VR is based upon some storyline &amp; there are thousands of variations of resources used in building such products, &amp; also we just not build to serve our client, but to also add value to their products &amp; services &amp; even to serve our society at the best possible means.
-              </p>
-              <div className="grid grid-cols-3 gap-0 border border-gray-200">
-                {[
-                  { num: "10+", label: "Happy Clients" },
-                  { num: "1000+", label: "Resources" },
-                  { num: "20+", label: "Project Completed" },
-                ].map((s, i) => (
-                  <div key={i} className="p-6 text-center border-r border-gray-200 last:border-r-0">
-                    <p className="text-3xl sm:text-4xl font-black text-saffron mb-1">{s.num}</p>
-                    <p className="text-black text-[11px] uppercase tracking-widest font-semibold leading-tight">{s.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+    <section id="tours" className="relative overflow-hidden" style={{ minHeight: "340px" }}>
+      {/* Background panoramic image */}
+      <img
+        src="/pandals/pandal4.jpg"
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      {/* Dark left gradient overlay */}
+      <div
+        className="absolute inset-0"
+        style={{ background: "linear-gradient(90deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.75) 40%, rgba(10,10,10,0.2) 70%, rgba(10,10,10,0) 100%)" }}
+      />
 
-            {/* Right — VR headset image */}
-            <div className="relative bg-gray-950 flex items-center justify-center p-10 min-h-[360px] overflow-hidden">
-              <div className="absolute inset-0 opacity-20" style={{
-                backgroundImage: "radial-gradient(circle at 60% 50%, #0066ff 0%, transparent 60%)"
-              }} />
-              <img
-                src="/vr-headset2.png"
-                alt="VR Headset"
-                className="relative z-10 w-full max-w-sm object-contain drop-shadow-2xl"
-              />
-            </div>
-          </div>
+      <div className="relative mx-auto grid max-w-[1450px] h-full items-center gap-6 px-6 py-14 lg:grid-cols-[1fr_auto_auto] lg:px-10">
+
+        {/* Left — text */}
+        <div>
+          <p className="label" style={{ color: "#ffffff" }}>IMMERSIVE 360° EXPERIENCE</p>
+          <h2 className="serif mt-2 text-4xl font-semibold text-white leading-tight lg:text-5xl">
+            Step Inside<br />the Magic
+          </h2>
+          <p className="mt-3 max-w-sm text-sm leading-5 text-white">
+            Experience Kolkata&apos;s iconic pandals in stunning 360° virtual tours. Feel the details, the artistry, and the devotion — from anywhere in the world.
+          </p>
+          <a
+            href="#"
+            className="mt-5 inline-block rounded-full px-6 py-3 text-[11px] font-bold text-white"
+            style={{ background: "#df151b" }}
+          >
+            Start 360° Tour &nbsp;→
+          </a>
         </div>
-      </section>
-    </>
+
+        {/* Center — 360° icon */}
+        <div className="hidden lg:flex flex-col items-center gap-2 text-white px-10">
+          <div
+            className="flex h-24 w-24 flex-col items-center justify-center rounded-full border-4 border-white/60"
+            style={{ background: "rgba(255,255,255,0.12)", backdropFilter: "blur(4px)" }}
+          >
+            <span className="text-2xl font-bold">360°</span>
+          </div>
+          <span className="text-[11px] font-semibold text-white/70">↔ &nbsp;Drag to Explore</span>
+        </div>
+
+        {/* Right — thumbnail strip */}
+        <div className="hidden lg:flex flex-col gap-1.5">
+          {["/pandals/pandal1.jpg", "/pandals/pandal2.jpg", "/pandals/pandal3.jpg", "/pandals/pandal-1.jpg"].map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt=""
+              className="w-24 h-16 object-cover rounded-lg opacity-80 hover:opacity-100 transition-opacity"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import Link from "next/link";
 
 const sponsors = [
   { name: "Bengal Heritage", color: "#FF6B00" },
@@ -24,7 +25,7 @@ export default function SponsorsSection() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {sponsors.map((sponsor) => (
-            <a
+            <Link
               key={sponsor.name}
               href="#"
               target="_blank"
@@ -41,15 +42,15 @@ export default function SponsorsSection() {
                 {sponsor.name}
               </span>
               <ExternalLink className="w-3 h-3 text-white/20 group-hover:text-saffron transition-colors" />
-            </a>
+            </Link>
           ))}
         </div>
 
         <p className="text-center text-white/30 text-sm mt-8">
           Interested in sponsoring?{" "}
-          <a href="/contact" className="text-saffron hover:underline">
+          <Link href="/contact" className="text-saffron hover:underline">
             Get in touch
-          </a>
+          </Link>
         </p>
       </div>
     </section>

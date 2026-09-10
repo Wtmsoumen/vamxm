@@ -1,19 +1,19 @@
 import HeroSection from "@/components/home/HeroSection";
-import AboutSection from "@/components/home/AboutSection";
-import ExperienceSection from "@/components/home/ExperienceSection";
 import FeaturedPandals from "@/components/home/FeaturedPandals";
+import CountdownSection from "@/components/home/CountdownSection";
+import ExperienceSection from "@/components/home/ExperienceSection";
 import ServicesSection from "@/components/home/ServicesSection";
-import CreativeWork from "@/components/home/CreativeWork";
+import ContactSection from "@/components/home/ContactSection";
 
 export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <AboutSection />
-      {/* <CreativeWork /> */}
       <FeaturedPandals />
+      <CountdownSection />
       <ExperienceSection />
       <ServicesSection />
+      <ContactSection />
     </>
   );
 }

@@ -13,7 +13,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-t from-[#f5a623]/20 via-[#f5a623]/80 to-[#f5a623] relative overflow-hidden">
       {/* Teal accent bar — right edge */}
       <div className="fixed right-0 top-0 bottom-0 w-1.5 bg-teal z-50" />
 
@@ -28,8 +28,8 @@ export default function ContactPage() {
         {/* ── LEFT — form + footer ── */}
         <div className="flex-1 px-10 sm:px-16 py-16 flex flex-col">
           <div className="mb-12">
-            <p className="text-gray-400 text-xs font-bold uppercase tracking-[0.3em] mb-2">Questions?</p>
-            <h1 className="text-4xl sm:text-5xl font-black text-gray-900 leading-tight">
+            <p className="text-white text-xs font-bold uppercase tracking-[0.3em] mb-2">Questions?</p>
+            <h1 className="text-4xl sm:text-5xl font-black text-white leading-tight">
               Let's Get In Touch
             </h1>
           </div>
@@ -42,15 +42,15 @@ export default function ContactPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-0">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {/* Left column — stacked inputs */}
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-2">
                   <input
                     type="text"
                     required
                     value={form.name}
                     onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                    className="border border-gray-200 px-5 py-4 text-gray-900 placeholder:text-gray-400 text-sm focus:outline-none focus:border-lime transition-colors"
+                    className="border rounded border-white px-5 py-4 text-gray-900 placeholder:text-white text-sm focus:outline-none focus:border-white transition-colors"
                     placeholder="Your Name"
                   />
                   <input
@@ -58,14 +58,14 @@ export default function ContactPage() {
                     required
                     value={form.email}
                     onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                    className="border border-gray-200 border-t-0 px-5 py-4 text-gray-900 placeholder:text-gray-400 text-sm focus:outline-none focus:border-lime transition-colors"
+                    className="border rounded border-white px-5 py-4 text-gray-900 placeholder:text-white text-sm focus:outline-none focus:border-white transition-colors"
                     placeholder="Email Address *"
                   />
                   <input
                     type="text"
                     value={form.subject}
                     onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
-                    className="border border-gray-200 border-t-0 px-5 py-4 text-gray-900 placeholder:text-gray-400 text-sm focus:outline-none focus:border-lime transition-colors"
+                    className="border rounded border-white px-5 py-4 text-gray-900 placeholder:text-white text-sm focus:outline-none focus:border-white transition-colors"
                     placeholder="Subject"
                   />
                 </div>
@@ -76,7 +76,7 @@ export default function ContactPage() {
                   rows={6}
                   value={form.message}
                   onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                  className="border border-gray-200 sm:border-l-0 px-5 py-4 text-gray-900 placeholder:text-gray-400 text-sm focus:outline-none focus:border-lime transition-colors resize-none"
+                  className="border rounded border-white px-5 py-4 text-gray-900 placeholder:text-white text-sm focus:outline-none focus:border-white transition-colors resize-none"
                   placeholder="Your Message"
                 />
               </div>
@@ -121,8 +121,8 @@ export default function ContactPage() {
           {/* Contact info */}
           <div className="mt-32 lg:mt-40 flex flex-col gap-8">
             <div className="flex items-start gap-4">
-              <MapPin className="w-5 h-5 text-lime mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <MapPin className="w-5 h-5 text-white mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+              <p className="text-white text-sm leading-relaxed">
                 10, Sitanath Banerjee Lane,<br />
                 Nirmala Garden, Block C, 3rd<br />
                 Floor, Flat No- 301 &amp; 302,<br />
@@ -130,8 +130,8 @@ export default function ContactPage() {
               </p>
             </div>
             <div className="flex items-start gap-4">
-              <Send className="w-5 h-5 text-lime mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-              <a href="mailto:info.vamxm@gmail.com" className="text-gray-600 text-sm hover:text-lime transition-colors">
+              <Send className="w-5 h-5 text-white mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+              <a href="mailto:info.vamxm@gmail.com" className="text-white text-sm hover:text-white transition-colors">
                 info.vamxm@gmail.com
               </a>
             </div>

@@ -100,7 +100,7 @@ export default function ServicesSection() {
             <div className="absolute inset-0 bg-gradient-to-t from-saffron/70 via-saffron/10 to-transparent" />
             <div className="absolute bottom-8 left-8 right-8">
               <p className="text-white font-black text-lg leading-snug drop-shadow">Crafting pixel-perfect web experiences</p>
-              <p className="text-white/60 text-xs mt-1 uppercase tracking-widest">Design · Development · Deployment</p>
+              <p className="text-white text-xs mt-1 uppercase tracking-widest">Design · Development · Deployment</p>
             </div>
           </div>
 

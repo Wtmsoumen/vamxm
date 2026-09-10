@@ -27,7 +27,7 @@ export default function FeaturedPandals() {
           </div>
 
 
-          <div className="bg-deep-red pb-4">
+          <div className="bg-deep-red pb-4 rounded-2xl">
             <img src="/logo/utsavverse-logo.png" alt="VAMXM" className="h-40 w-auto" />
           </div>
         </div>
@@ -37,7 +37,7 @@ export default function FeaturedPandals() {
           <div className="sm:block hidden w-[80%] h-px bg-gradient-to-r from-saffron via-orange-200 to-transparent" />
           <Link
             href="/pandals"
-            className="group inline-flex items-center gap-3 border border-saffron text-saffron hover:bg-saffron hover:text-white px-6 py-3.5 transition-all text-xs font-black uppercase tracking-widest w-fit"
+            className="rounded group inline-flex items-center gap-3 border border-saffron text-saffron hover:bg-saffron hover:text-white px-6 py-3.5 transition-all text-xs font-black uppercase tracking-widest w-fit"
           >
             View All {pandals.length}
             <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -49,7 +49,7 @@ export default function FeaturedPandals() {
       <div className="max-w-7xl mx-auto px-6 pb-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: "2px" }}>
           {sorted.slice(0, 6).map((p, i) => (
-            <div key={p.id} className="group relative overflow-hidden bg-white">
+            <div key={p.id} className="group relative overflow-hidden bg-white rounded-xl">
 
               {/* Image — tall */}
               <div className="relative aspect-[3/4] overflow-hidden">
@@ -64,13 +64,13 @@ export default function FeaturedPandals() {
 
                 {/* Rank badge */}
                 {i < 3 && (
-                  <div className={`absolute top-5 left-5 ${rankColors[i]} text-white text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5`}>
+                  <div className={`absolute top-5 left-5 ${rankColors[i]} text-white text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full`}>
                     #{i + 1} Trending
                   </div>
                 )}
 
                 {/* View count — top right */}
-                <div className="absolute top-5 right-5 flex items-center gap-1.5 bg-black/40 text-white text-[10px] font-black px-3 py-1.5 backdrop-blur-sm">
+                <div className="absolute top-5 right-5 flex items-center gap-1.5 bg-black/40 text-white text-[10px] font-black px-3 py-1.5 backdrop-blur-sm rounded-full">
                   <Eye className="w-3 h-3" />
                   {(p.views ?? 0).toLocaleString()}
                 </div>
@@ -91,7 +91,7 @@ export default function FeaturedPandals() {
                   {/* View button */}
                   <Link
                     href={`/pandals/${p.id}`}
-                    className="inline-flex items-center gap-2.5 bg-white text-gray-900 font-black text-xs uppercase tracking-widest px-5 py-3 hover:bg-saffron hover:text-white transition-colors"
+                    className="inline-flex items-center gap-2.5 bg-white text-gray-900 font-black text-xs uppercase tracking-widest px-5 py-3 hover:bg-saffron hover:text-white transition-colors rounded-md"
                   >
                     <Eye className="w-3.5 h-3.5" />
                     View 360°

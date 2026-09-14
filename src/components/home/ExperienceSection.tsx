@@ -1,62 +1,82 @@
+import Link from "next/link";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 export default function ExperienceSection() {
   return (
-    <section id="tours" className="relative overflow-hidden" style={{ minHeight: "340px" }}>
-      {/* Background panoramic image */}
-      <img
-        src="/pandals/pandal4.jpg"
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      {/* Dark left gradient overlay */}
-      <div
-        className="absolute inset-0"
-        style={{ background: "linear-gradient(90deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.75) 40%, rgba(10,10,10,0.2) 70%, rgba(10,10,10,0) 100%)" }}
-      />
+    <section id="guide" className="px-5 py-16 md:px-10 md:py-24">
+      <div className="mx-auto grid max-w-[1320px] gap-8 lg:grid-cols-[1.15fr_1fr]">
 
-      <div className="relative mx-auto grid max-w-[1450px] h-full items-center gap-6 px-6 py-14 lg:grid-cols-[1fr_auto_auto] lg:px-10">
-
-        {/* Left — text */}
+        {/* 360° feature card */}
         <AnimateOnScroll anim="left">
-          <p className="label" style={{ color: "#ffffff" }}>IMMERSIVE 360° EXPERIENCE</p>
-          <h2 className="serif mt-2 text-4xl font-semibold text-white leading-tight lg:text-5xl">
-            Step Inside<br />the Magic
-          </h2>
-          <p className="mt-3 max-w-sm text-sm leading-5 text-white">
-            Experience Kolkata&apos;s iconic pandals in stunning 360° virtual tours. Feel the details, the artistry, and the devotion — from anywhere in the world.
-          </p>
-          <a
-            href="#"
-            className="mt-5 inline-block rounded-full px-6 py-3 text-[11px] font-bold text-white"
-            style={{ background: "#df151b" }}
-          >
-            Start 360° Tour &nbsp;→
-          </a>
-        </AnimateOnScroll>
-
-        {/* Center — 360° icon */}
-        <AnimateOnScroll anim="scale" delay={200} className="hidden lg:flex flex-col items-center gap-2 text-white px-10">
-          <div
-            className="flex h-24 w-24 flex-col items-center justify-center rounded-full border-4 border-white/60"
-            style={{ background: "rgba(255,255,255,0.12)", backdropFilter: "blur(4px)" }}
-          >
-            <span className="text-2xl font-bold">360°</span>
-          </div>
-          <span className="text-[11px] font-semibold text-white/70">↔ &nbsp;Drag to Explore</span>
-        </AnimateOnScroll>
-
-        {/* Right — thumbnail strip */}
-        <AnimateOnScroll anim="right" delay={300} className="hidden lg:flex flex-col gap-1.5">
-          {["/pandals/pandal1.jpg", "/pandals/pandal2.jpg", "/pandals/pandal3.jpg", "/pandals/pandal-1.jpg"].map((src, i) => (
+          <div className="relative flex min-h-[420px] flex-col justify-center overflow-hidden rounded-[25px] bg-gradient-to-r from-[#f49625] to-[#f14b25] p-8 text-white sm:p-12">
             <img
-              key={i}
-              src={src}
-              alt=""
-              className="w-24 h-16 object-cover rounded-lg opacity-80 hover:opacity-100 transition-opacity"
+              src="/pandals/pandal4.jpg"
+              alt="Immersive Durga Puja experience"
+              className="absolute inset-0 h-full w-full object-cover opacity-50"
             />
-          ))}
+
+            <div className="relative z-10 max-w-[380px]">
+              <p className="text-xs font-semibold uppercase tracking-[2px]">Immersive 360° Experience</p>
+
+              <h2 className="section-title mt-5 text-[40px] sm:text-[48px]">
+                Pandal 360°
+                <span className="block text-white">Virtual Tours</span>
+              </h2>
+
+              <p className="mt-5 max-w-[310px] text-base leading-7">
+                Walk through the magic, from anywhere in the world.
+              </p>
+
+              <Link
+                href="/tour"
+                className="mt-8 inline-flex h-[52px] items-center gap-4 rounded-full bg-white px-6 text-sm font-semibold text-utsav transition hover:bg-red-50"
+              >
+                Start 360° Tour <span>→</span>
+              </Link>
+            </div>
+          </div>
         </AnimateOnScroll>
+
+        {/* Guide feature cards */}
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
+
+          <AnimateOnScroll anim="right" delay={100}>
+            <article className="grid min-h-[200px] grid-cols-[1fr_120px] items-center overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm sm:grid-cols-[1fr_160px]">
+              <div className="p-6">
+                <h3 className="section-title text-[25px]">Puja Guide &amp; Routes</h3>
+                <p className="mt-3 text-sm leading-6 text-black/70">
+                  Plan your pandal hopping with smart routes and maps.
+                </p>
+                <a
+                  href="#pandals"
+                  className="mt-5 inline-flex items-center gap-3 rounded-full bg-utsav px-5 py-3 text-xs font-semibold text-white"
+                >
+                  View Guide <span>→</span>
+                </a>
+              </div>
+              <img src="/pandals/pandal2.jpg" alt="Puja guide" className="h-full w-full object-cover" />
+            </article>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll anim="right" delay={200}>
+            <article id="events" className="grid min-h-[200px] grid-cols-[1fr_120px] items-center overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm sm:grid-cols-[1fr_160px]">
+              <div className="p-6">
+                <h3 className="section-title text-[25px]">Events &amp; Cultural<br />Highlights</h3>
+                <p className="mt-3 text-sm leading-6 text-black/70">
+                  Discover puja events, performances and cultural programs.
+                </p>
+                <a
+                  href="#gallery"
+                  className="mt-5 inline-flex items-center gap-3 rounded-full bg-utsav px-5 py-3 text-xs font-semibold text-white"
+                >
+                  See What&apos;s On <span>→</span>
+                </a>
+              </div>
+              <img src="/pandals/pandal3.jpg" alt="Cultural events" className="h-full w-full object-cover" />
+            </article>
+          </AnimateOnScroll>
+
+        </div>
       </div>
     </section>
   );

@@ -1,19 +1,23 @@
 import HeroSection from "@/components/home/HeroSection";
+import AboutSection from "@/components/home/AboutSection";
 import FeaturedPandals from "@/components/home/FeaturedPandals";
 import CountdownSection from "@/components/home/CountdownSection";
-import ExperienceSection from "@/components/home/ExperienceSection";
 import ServicesSection from "@/components/home/ServicesSection";
-import ContactSection from "@/components/home/ContactSection";
+import ExperienceSection from "@/components/home/ExperienceSection";
+import GallerySection from "@/components/home/GallerySection";
+import MobileAppSection from "@/components/home/MobileAppSection";
 
 export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <AboutSection />
       <FeaturedPandals />
-      <CountdownSection />
-      <ExperienceSection />
+      {/* <CountdownSection /> */}
       <ServicesSection />
-      <ContactSection />
+      <ExperienceSection />
+      <GallerySection />
+      <MobileAppSection />
     </>
   );
 }

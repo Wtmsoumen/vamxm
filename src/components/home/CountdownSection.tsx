@@ -1,42 +1,57 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
-const dates = [
-  { month: "OCT", day: "09", name: "Mahalaya", sub: "The Beginning", active: true },
-  { month: "OCT", day: "20", name: "Shasthi", sub: "Puja Arrives", active: false },
-  { month: "OCT", day: "21", name: "Saptami", sub: "Rituals & Joy", active: false },
-  { month: "OCT", day: "22", name: "Ashtami", sub: "The Divine Power", active: false },
-  { month: "OCT", day: "23", name: "Navami", sub: "Grandeur Continues", active: false },
-  { month: "OCT", day: "24", name: "Dashami", sub: "Bidoy Maa", active: false },
-];
+const PUJA_DATE = new Date("2026-10-17T00:00:00+05:30").getTime();
+
+function pad(n: number) { return String(n).padStart(2, "0"); }
 
 export default function CountdownSection() {
+  const [time, setTime] = useState({ days: "00", hours: "00", minutes: "00", seconds: "00" });
+
+  useEffect(() => {
+    function tick() {
+      const remaining = PUJA_DATE - Date.now();
+      if (remaining <= 0) { setTime({ days: "00", hours: "00", minutes: "00", seconds: "00" }); return; }
+      setTime({
+        days: pad(Math.floor(remaining / (1000 * 60 * 60 * 24))),
+        hours: pad(Math.floor((remaining / (1000 * 60 * 60)) % 24)),
+        minutes: pad(Math.floor((remaining / (1000 * 60)) % 60)),
+        seconds: pad(Math.floor((remaining / 1000) % 60)),
+      });
+    }
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const units = [
+    { label: "Days", value: time.days },
+    { label: "Hours", value: time.hours },
+    { label: "Minutes", value: time.minutes },
+    { label: "Seconds", value: time.seconds },
+  ];
+
   return (
-    <section id="countdown" style={{ background: "#fffaf5" }}>
-      <div className="mx-auto grid max-w-[1450px] gap-8 px-6 py-14 lg:grid-cols-[280px_1fr] lg:px-10">
-        <AnimateOnScroll anim="left">
-          <p className="label">UPCOMING PUJA</p>
-          <h2 className="serif mt-2 text-4xl font-semibold">The Countdown <span className="red">Begins</span></h2>
-          <p className="mt-3 text-xs leading-5 text-slate-600">Be ready for another year of devotion, celebration and togetherness.</p>
+    <section id="countdown" className="relative overflow-hidden px-5 py-20 md:px-10 md:py-28">
+      <div className="mx-auto max-w-[1000px] text-center flex flex-col items-center">
+
+        <AnimateOnScroll anim="up">
+          {/* <p className="section-kicker">The Celebration Awaits</p> */}
+          <h2 className="section-kicker text-black!">
+            The Countdown Begins
+          </h2>
+          <div className="ornament"></div>
         </AnimateOnScroll>
 
-        <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
-          {dates.map(({ month, day, name, sub, active }, i) => (
-            <AnimateOnScroll key={name} anim="scale" delay={i * 70}>
-              {active ? (
-                <div className="count-active rounded-xl p-4 text-center text-white h-full">
-                  <b className="text-[12px]">{month}</b>
-                  <strong className="block text-3xl">{day}</strong>
-                  <span className="mt-2 block text-sm font-bold">{name}</span>
-                  <small className="text-xs font-normal">{sub}</small>
-                </div>
-              ) : (
-                <div className="rounded-xl border bg-white p-4 text-center h-full">
-                  <b className="text-[12px] red">{month}</b>
-                  <strong className="block text-3xl red">{day}</strong>
-                  <span className="mt-2 block text-sm font-bold">{name}</span>
-                  <small className="text-xs font-normal text-black">{sub}</small>
-                </div>
-              )}
+        <div className="mx-auto mt-12 w-full flex justify-center gap-20">
+          {units.map(({ label, value }, i) => (
+            <AnimateOnScroll key={label} anim="scale" delay={i * 80} className="flex flex-col items-center">
+              <div className="rounded-full border border-utsav/20 bg-white shadow-sm p-5 w-fit h-fit">
+                <div className="section-title display-gradient text-2xl md:text-4xl">{value}</div>
+              </div>
+              <p className="mt-3 text-xs font-semibold uppercase tracking-[2px]">{label}</p>
             </AnimateOnScroll>
           ))}
         </div>

@@ -1,57 +1,95 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
 
 export default function Footer() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    alert("Thank you for contacting us!");
+    setName("");
+    setEmail("");
+  }
+
   return (
-    <footer id="about" className="bg-white">
-      <div className="mx-auto grid max-w-[1450px] gap-10 px-6 py-11 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-10 relative">
-        <hr className="w-full border-2 border-[#df151b] absolute top-0" />
+    <footer id="footer" className="bg-[#0a1014] text-white">
+      <div className="mx-auto grid max-w-[1320px] gap-10 px-6 py-14 md:grid-cols-4 md:px-10">
+
+        {/* Brand */}
         <div>
-          <img src="/pandals/vamxm-horizontal.png" className="w-[160px]" alt="VAMXM" />
-          <p className="mt-3 max-w-sm text-[12px] leading-5 text-black">
-            Building immersive experiences for a smarter, connected tomorrow. Proud to power UtsavVerse and many more.
+          <img
+            src="/logo/vamxm-white.png"
+            alt="Utsav Verse logo"
+            className="mb-5 w-[180px]"
+          />
+          <p className="max-w-[280px] text-sm leading-6 text-white/65">
+            Celebrate Durga Puja with immersive experiences, pandal guides
+            and cultural discoveries.
           </p>
-          <div className="mt-5 flex gap-4 text-sm text-black">●　◎　◉　in　𝕏</div>
-        </div>
-        <div>
-          <h4 className="text-xs font-bold">Quick Links</h4>
-          <div className="mt-4 space-y-2 text-[12px] text-black">
-            <Link className="block" href="#">Home</Link>
-            <Link className="block" href="#pandals">Pandals</Link>
-            <Link className="block" href="#tours">360° Tours</Link>
-            <Link className="block" href="#countdown">Post Puja</Link>
-            <Link className="block" href="#about">About</Link>
-            <Link className="block" href="#services">Services</Link>
-            <Link className="block" href="#contact">Contact</Link>
+          <div className="mt-6 flex gap-3">
+            <a href="#" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-sm transition hover:bg-utsav">f</a>
+            <a href="#" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-sm transition hover:bg-utsav">◎</a>
+            <a href="#" aria-label="YouTube" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-sm transition hover:bg-utsav">▶</a>
           </div>
         </div>
+
+        {/* Quick Links */}
         <div>
-          <h4 className="text-xs font-bold">Our Services</h4>
-          <div className="mt-4 space-y-2 text-[12px] text-black">
-            <p>Website Development</p>
-            <p>Mobile App Development</p>
-            <p>Cyber Security</p>
-            <p>Digital Marketing</p>
-            <p>Metaverse Solutions</p>
-            <p>Consulting</p>
-          </div>
+          <h3 className="mb-5 text-sm font-semibold">Quick Links</h3>
+          <ul className="space-y-3 text-sm text-white/65">
+            <li><a href="#about"   className="transition hover:text-white">About Us</a></li>
+            <li><a href="#pandals" className="transition hover:text-white">Famous Pandals</a></li>
+            <li><a href="#guide"   className="transition hover:text-white">Puja Guide</a></li>
+            <li><a href="#gallery" className="transition hover:text-white">Gallery</a></li>
+          </ul>
         </div>
+
+        {/* Explore */}
         <div>
-          <h4 className="text-xs font-bold">Contact Us</h4>
-          <div className="mt-4 space-y-2 text-[12px] text-black">
-            <p>⌖ Kolkata, West Bengal, India</p>
-            <p>✉ info@vamxm.com</p>
-            <p>☎ +91 98765 43210</p>
-          </div>
-          <button className="mt-5 w-full rounded-lg py-3 text-[12px] font-bold text-white" style={{ background: "#df151b" }}>
-            ▣ &nbsp; Download App &nbsp; &nbsp; ▶
-          </button>
+          <h3 className="mb-5 text-sm font-semibold">Explore</h3>
+          <ul className="space-y-3 text-sm text-white/65">
+            <li><a href="#events"   className="transition hover:text-white">Cultural Events</a></li>
+            <li><a href="#app"      className="transition hover:text-white">Mobile App</a></li>
+            <li><a href="#pandals"  className="transition hover:text-white">Pandal 360°</a></li>
+            <li><a href="#services" className="transition hover:text-white">Our Services</a></li>
+          </ul>
         </div>
+
+        {/* Contact form */}
+        <div>
+          <h3 className="mb-5 text-sm font-semibold">Contact Us</h3>
+          <form onSubmit={handleSubmit} className="space-y-3">
+            <input
+              type="text"
+              placeholder="Your Name"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-white/50 focus:border-utsav"
+            />
+            <input
+              type="email"
+              placeholder="Your Email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-white/50 focus:border-utsav"
+            />
+            <button
+              type="submit"
+              className="red-gradient w-full rounded-md px-5 py-3 text-sm font-semibold text-white transition hover:brightness-110"
+            >
+              Send Message →
+            </button>
+          </form>
+        </div>
+
       </div>
-      <div className="border-t px-6 py-5 text-[9px] text-slate-400">
-        <div className="mx-auto flex max-w-[1450px] justify-between">
-          <span>© 2026 VAMXM. All rights reserved.</span>
-          <span>Tradition &nbsp;|&nbsp; Technology &nbsp;|&nbsp; Together</span>
-        </div>
+
+      <div className="border-t border-white/10 px-6 py-5 text-center text-xs text-white/50">
+        © 2026 Utsav Verse. All rights reserved.
       </div>
     </footer>
   );

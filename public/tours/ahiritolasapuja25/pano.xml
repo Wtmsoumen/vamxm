@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tour appversion="7.1.11" start="node1" hassounds="1" apprev="21010">
+  <panorama id="node1">
+    <input levelbias="0.400" leveltilesize="510" levelingroll="0" width="1440" height="1440" levelbiashidpi="1.000" overlap="1" levelingpitch="0" leveltileurl="tiles/node1/cf_%c/l_%l/c_%x/tile_%y.jpg">
+      <level preload="0" predecode="0" width="1440" height="1440"/>
+      <level preload="0" predecode="0" width="720" height="720"/>
+      <level preload="1" predecode="1" width="360" height="360"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view pannorth="0" fovmode="2">
+      <start fov="100" projection="4" pan="0" tilt="0"/>
+      <flyin fov="170" projection="9" pan="0" tilt="-90"/>
+      <min fovpixel="2" pan="0" tilt="-90"/>
+      <max fov="140" scaletofit="1" fovstereographic="330" fovfisheye="360" pan="360" tilt="90"/>
+    </view>
+    <userdata comment="" altitude="-10.37" customnodeid="" description="" nodeid="node1" info="" source="" longitude="88.35720541" tags="DONE" author="" datetime="25/09/2025 04:32 AM" copyright="" heading="0" title="1" latitude="22.59484796"/>
+    <hotspots smoothmovement="0" wordwrap="1" width="180" height="20">
+      <label textalpha="1" borderalpha="1" enabled="1" background="1" width="180" height="20" bordercolor="0x000000" border="1" backgroundalpha="1" backgroundcolor="0xffffff" textcolor="0x000000" borderradius="1" wordwrap="1"/>
+      <polystyle handcursor="1" bordercolor="0x0000ff" backgroundalpha="0.25098" backgroundcolor="0x0000ff" mode="0" borderalpha="1"/>
+      <hotspot id="Point01" target="-1.3/1.2/100.0" description="" pan="-343.21" url="{node2}" skinid="ht_node" distance="10.53" title="1" tilt="1.3"/>
+      <polyhotspot url="https://www.venkateshmotors.net" id="Poly01" target="_self" description="" title="website">
+        <polystring>-107.61/2.67|-107.68/32.12|-129.35/37.88|-128.9/3.11</polystring>
+      </polyhotspot>
+      <polyhotspot url="https://www.corporatenesst.com" id="Poly02" target="_self" description="" title="Website">
+        <polystring>-91.42/2.54|-90.92/24.13|-107.66/32.35|-107.65/2.91</polystring>
+      </polyhotspot>
+    </hotspots>
+    <media>
+      <video clickmode="0" id="Element01" mode="2" width="796" pan="-4.880" level="1.000" rotx="-0.930" field="90.000" handcursor="0" nodechangekeep="0" pansize="10.000" startmutedmobile="1" roty="32.760" ambientlevel="0.000" stretch="1.522" tiltsize="10.000" loop="0" height="1122" fov="12.340" popoutscaling="100" hidepinned="0" popbackmode="0" tilt="1.560" rotz="0.780">
+        <source url="media/Untitled design.mp4"/>
+      </video>
+      <video clickmode="0" id="Element04" mode="2" width="796" pan="-86.450" level="1.000" rotx="20.980" field="90.000" handcursor="1" nodechangekeep="0" pansize="10.000" startmutedmobile="1" roty="60.820" ambientlevel="0.000" stretch="0.727" tiltsize="10.000" loop="0" height="1122" fov="19.070" popoutscaling="100" hidepinned="0" popbackmode="0" tilt="12.110" rotz="-19.980">
+        <source url="media/Untitled design.mp4"/>
+      </video>
+      <image clickmode="0" id="Element02" roty="31.200" stretch="1.027" width="831" rotx="23.940" fov="23.990" pan="-116.640" height="1169" popoutscaling="100" popbackmode="0" hidepinned="0" handcursor="1" rotz="-11.960" tilt="20.720">
+        <source url="media/venkatesh motors add copy-1.jpg"/>
+      </image>
+      <image clickmode="0" id="Element03" roty="48.716" stretch="0.776" width="1753" rotx="21.895" fov="23.988" pan="-98.040" height="2480" popoutscaling="100" popbackmode="0" hidepinned="0" handcursor="1" rotz="-17.431" tilt="15.943">
+        <source url="media/corporatenesst add copy-1.jpg"/>
+      </image>
+      <sound startmutedmobile="0" id="Element05" mode="6" ambientlevel="0.000" tiltsize="32.000" loop="0" pan="-347.600" level="1.000" field="36.000" nodechangekeep="0" pansize="43.000" tilt="-3.810">
+        <source url="media/Hello and welcome to.mp3" mono="1"/>
+      </sound>
+    </media>
+    <transition softedge="0" zoomafterinfov="140" zoomout="0" zoomfov="40" zoomoutpause="1" blendtime="1" blendcolor="0x000000" zoomin="7" enabled="1" delay="none" zoomspeed="2" zoomafteroutfov="40" type="mesh"/>
+    <autorotate horizonfromdefview="0" nodefilter="" noderandom="1" enabled="1" delay="5.00" nodedelay="0.00" speed="0.100" useanimation="1" returntohorizon="0.000" startloaded="0"/>
+    <flyintransition speed="2.00" enabled="1"/>
+    <animation syncanimationwithvideo="0" useinautorotation="1" animsequence="Animation01" clipsrandom="0"/>
+    <control lockedkeyboardzoom="0" contextfullscreen="1" lockedkeyboard="0" contextprojections="0" hideabout="0" sensitivity="8" rubberband="0" invertcontrol="1" lockedwheel="0" simulatemass="1" invertwheel="0" dblclickfullscreen="0" zoomcentercursor="1" lockedmouse="0" speedwheel="1" contextvr="1"/>
+  </panorama>
+  <panorama id="node2">
+    <input levelbias="0.400" leveltilesize="510" levelingroll="0" width="1440" height="1440" levelbiashidpi="1.000" overlap="1" levelingpitch="0" leveltileurl="tiles/node2/cf_%c/l_%l/c_%x/tile_%y.jpg">
+      <level preload="0" predecode="0" width="1440" height="1440"/>
+      <level preload="0" predecode="0" width="720" height="720"/>
+      <level preload="1" predecode="1" width="360" height="360"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view pannorth="0" fovmode="2">
+      <start fov="100" projection="4" pan="0" tilt="0"/>
+      <flyin fov="170" projection="9" pan="0" tilt="-90"/>
+      <min fovpixel="2" pan="0" tilt="-90"/>
+      <max fov="140" scaletofit="1" fovstereographic="330" fovfisheye="360" pan="360" tilt="90"/>
+    </view>
+    <userdata comment="" altitude="-9.61" customnodeid="" description="" nodeid="node2" info="" source="" longitude="88.35718150" tags="DONE" author="" datetime="25/09/2025 04:33 AM" copyright="" heading="0" title="2" latitude="22.59494005"/>
+    <hotspots smoothmovement="0" wordwrap="1" width="180" height="20">
+      <label textalpha="1" borderalpha="1" enabled="1" background="1" width="180" height="20" bordercolor="0x000000" border="1" backgroundalpha="1" backgroundcolor="0xffffff" textcolor="0x000000" borderradius="1" wordwrap="1"/>
+      <polystyle handcursor="1" bordercolor="0x0000ff" backgroundalpha="0.25098" backgroundcolor="0x0000ff" mode="0" borderalpha="1"/>
+      <hotspot id="Point01" target="-3.3/-0.2/100.0" description="" pan="-14.25" url="{node3}" skinid="ht_node" distance="8.80049" title="3" tilt="-6.05"/>
+    </hotspots>
+    <media/>
+    <transition softedge="0" zoomafterinfov="140" zoomout="0" zoomfov="40" zoomoutpause="1" blendtime="1" blendcolor="0x000000" zoomin="7" enabled="1" delay="none" zoomspeed="2" zoomafteroutfov="40" type="mesh"/>
+    <autorotate horizonfromdefview="0" nodefilter="" noderandom="1" enabled="1" delay="5.00" nodedelay="0.00" speed="0.100" useanimation="1" returntohorizon="0.000" startloaded="0"/>
+    <flyintransition speed="2.00" enabled="1"/>
+    <animation syncanimationwithvideo="0" useinautorotation="1" animsequence="Animation01" clipsrandom="0"/>
+    <control lockedkeyboardzoom="0" contextfullscreen="1" lockedkeyboard="0" contextprojections="0" hideabout="0" sensitivity="8" rubberband="0" invertcontrol="1" lockedwheel="0" simulatemass="1" invertwheel="0" dblclickfullscreen="0" zoomcentercursor="1" lockedmouse="0" speedwheel="1" contextvr="1"/>
+  </panorama>
+  <panorama id="node3">
+    <input levelbias="0.400" leveltilesize="510" levelingroll="0" width="1440" height="1440" levelbiashidpi="1.000" overlap="1" levelingpitch="0" leveltileurl="tiles/node3/cf_%c/l_%l/c_%x/tile_%y.jpg">
+      <level preload="0" predecode="0" width="1440" height="1440"/>
+      <level preload="0" predecode="0" width="720" height="720"/>
+      <level preload="1" predecode="1" width="360" height="360"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view pannorth="0" fovmode="2">
+      <start fov="100" projection="4" pan="0" tilt="0"/>
+      <flyin fov="170" projection="9" pan="0" tilt="-90"/>
+      <min fovpixel="2" pan="0" tilt="-90"/>
+      <max fov="140" scaletofit="1" fovstereographic="330" fovfisheye="360" pan="360" tilt="90"/>
+    </view>
+    <userdata comment="" altitude="-23.62" customnodeid="" description="" nodeid="node3" info="" source="" longitude="88.35719267" tags="DONE" author="" datetime="25/09/2025 04:35 AM" copyright="" heading="0" title="3" latitude="22.59501852"/>
+    <hotspots smoothmovement="0" wordwrap="1" width="180" height="20">
+      <label textalpha="1" borderalpha="1" enabled="1" background="1" width="180" height="20" bordercolor="0x000000" border="1" backgroundalpha="1" backgroundcolor="0xffffff" textcolor="0x000000" borderradius="1" wordwrap="1"/>
+      <polystyle handcursor="1" bordercolor="0x0000ff" backgroundalpha="0.25098" backgroundcolor="0x0000ff" mode="0" borderalpha="1"/>
+    </hotspots>
+    <media/>
+    <transition softedge="0" zoomafterinfov="140" zoomout="0" zoomfov="40" zoomoutpause="1" blendtime="1" blendcolor="0x000000" zoomin="7" enabled="1" delay="none" zoomspeed="2" zoomafteroutfov="40" type="mesh"/>
+    <autorotate horizonfromdefview="0" nodefilter="" noderandom="1" enabled="1" delay="5.00" nodedelay="0.00" speed="0.100" useanimation="1" returntohorizon="0.000" startloaded="0"/>
+    <flyintransition speed="2.00" enabled="1"/>
+    <animation syncanimationwithvideo="0" useinautorotation="1" animsequence="Animation01" clipsrandom="0"/>
+    <control lockedkeyboardzoom="0" contextfullscreen="1" lockedkeyboard="0" contextprojections="0" hideabout="0" sensitivity="8" rubberband="0" invertcontrol="1" lockedwheel="0" simulatemass="1" invertwheel="0" dblclickfullscreen="0" zoomcentercursor="1" lockedmouse="0" speedwheel="1" contextvr="1"/>
+  </panorama>
+  <masternode>
+    <userdata comment="" tags="" author="" copyright="" description="" title=""/>
+    <animationsequences>
+      <sequence title="Animation01"/>
+    </animationsequences>
+  </masternode>
+</tour>

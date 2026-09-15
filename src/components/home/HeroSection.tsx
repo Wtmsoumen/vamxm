@@ -16,7 +16,7 @@ export default function HeroSection() {
             <span className="display-gradient block">Durga Puja</span>
           </h1>
 
-          <div className="ornament ml-0" />
+          {/* <div className="ornament ml-0" /> */}
 
           <p className="section-title mt-2 text-[24px] sm:text-[38px] md:text-[67px] hero-desc">
             Like Never Before

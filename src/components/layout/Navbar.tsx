@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const links = [
   { label: "Home", href: "/" },
@@ -15,9 +15,22 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-white/30 bg-white/35 ">
+    <header
+      className={`fixed left-0 top-0 z-50 w-full border-b transition-all duration-300 ${
+        scrolled
+          ? "border-black/8 bg-white shadow-sm"
+          : "border-white/30 bg-white/35"
+      }`}
+    >
       <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-6 px-5 md:px-10 xl:px-[7.5%] py-2 md:py-3">
 
         <Link href="/" className="shrink-0">

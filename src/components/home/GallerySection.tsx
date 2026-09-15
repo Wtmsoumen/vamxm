@@ -18,7 +18,7 @@ export default function GallerySection() {
         <AnimateOnScroll anim="up">
           <div className="text-center">
             <p className="section-kicker">Our Collections</p>
-            <h2 className="section-title mt-4 text-[44px] sm:text-[60px] md:text-[80px]">
+            <h2 className="section-title mt-4 text-[36px] sm:text-[60px] md:text-[80px]">
               Explore Our <span className="text-utsav">Gallery</span>
             </h2>
             {/* <div className="ornament"></div> */}

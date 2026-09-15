@@ -3,7 +3,7 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 export default function AboutSection() {
   return (
     <section id="about" className="relative overflow-hidden py-20 md:py-28">
-      <img src={"./wellcomeVamxmbg.png"} alt="wellcomeVamxmbg" className="w-3/4 h-full absolute bottom-0 -mb-40" />
+      <img src={"./wellcomeVamxmbg.png"} alt="wellcomeVamxmbg" className="w-3/4 h-full absolute bottom-0 right-0 opacity-60 pointer-events-none" />
       <div className="mx-auto grid max-w-[1280px] items-center gap-12 px-6 md:grid-cols-2 md:gap-16 md:px-10">
 
         <AnimateOnScroll anim="left">

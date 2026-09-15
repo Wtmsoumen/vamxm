@@ -44,8 +44,8 @@ export default function ExperienceSection() {
           <AnimateOnScroll anim="right" delay={100}>
             <article className="relative grid min-h-[200px] grid-cols-[1fr_120px] items-center overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm sm:grid-cols-[1fr_160px]">
               <div className="relative z-10 p-4">
-                <h3 className="section-title text-[25px]">Puja Guide &amp; Routes</h3>
-                <p className="mt-3 text-sm leading-6 text-black w-3/5">
+                <h3 className="section-title text-[22px]">Puja Guide &amp; Routes</h3>
+                <p className="mt-3 text-sm leading-6 text-black max-w-[200px]">
                   Plan your pandal hopping with smart routes and maps.
                 </p>
                 <a
@@ -66,8 +66,8 @@ export default function ExperienceSection() {
           <AnimateOnScroll anim="right" delay={200}>
             <article id="events" className="relative grid min-h-[200px] grid-cols-[1fr_120px] items-center overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm sm:grid-cols-[1fr_160px]">
               <div className="relative z-10 p-4">
-                <h3 className="section-title text-[25px]">Events &amp; Cultural<br />Highlights</h3>
-                <p className="mt-3 text-sm leading-6 text-black w-3/5">
+                <h3 className="section-title text-[22px]">Events &amp; Cultural<br />Highlights</h3>
+                <p className="mt-3 text-sm leading-6 text-black max-w-[200px]">
                   Discover puja events, performances and cultural programs.
                 </p>
                 <a

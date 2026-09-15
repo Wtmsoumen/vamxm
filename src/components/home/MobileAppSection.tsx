@@ -15,14 +15,14 @@ export default function MobileAppSection() {
         className="absolute inset-0 h-full w-full object-cover"
       />
 
-      <div className="relative mx-auto grid max-w-[1320px] items-center gap-10 md:grid-cols-3">
+      <div className="relative mx-auto grid max-w-[1320px] items-center gap-10 grid-cols-1 md:grid-cols-3">
 
         {/* Phone mockup 1 */}
-        <AnimateOnScroll anim="left" className="order-2 flex justify-center md:order-1">
+        <AnimateOnScroll anim="left" className="order-2 hidden justify-center md:order-1 md:flex">
           <img
             src="/MobileApp1.png"
             alt="Utsav Verse app splash screen"
-            className="max-h-[480px] w-auto object-contain drop-shadow-2xl -mb-56"
+            className="max-h-[480px] w-auto object-contain drop-shadow-2xl md:-mb-56"
           />
         </AnimateOnScroll>
 
@@ -30,14 +30,14 @@ export default function MobileAppSection() {
         <AnimateOnScroll anim="up" className="order-1 text-center md:order-2">
           <p className="section-kicker">Mobile App</p>
 
-          <h2 className="section-title mt-5 text-[42px] sm:text-[52px]">
+          <h2 className="section-title mt-5 text-[38px] sm:text-[52px]">
             Download Pandal
             <span className="display-gradient block">Explorer</span>
           </h2>
 
+          {/* <div className="ornament" /> */}
 
-
-          <p className="mx-auto mt-6 max-w-[420px] text-base leading-7 text-black/75">
+          <p className="mx-auto mt-2 max-w-[420px] text-[15px] leading-7 text-black/75">
             Live crowd updates, favorites, reviews and photo uploads — free on{" "}
             <strong>Android and iOS.</strong>
           </p>
@@ -78,7 +78,7 @@ export default function MobileAppSection() {
           <img
             src="/MobileApp2.png"
             alt="Utsav Verse app home screen"
-            className="max-h-[480px] w-auto object-contain drop-shadow-2xl -mt-31"
+            className="max-h-[380px] w-auto object-contain drop-shadow-2xl md:max-h-[480px] md:-mt-[124px]"
           />
         </AnimateOnScroll>
 

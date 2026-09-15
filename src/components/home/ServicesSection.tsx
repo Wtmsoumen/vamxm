@@ -45,7 +45,7 @@ export default function ServicesSection() {
         <AnimateOnScroll anim="up">
           <div className="text-center">
             <p className="section-kicker">Our Core Services</p>
-            <h2 className="section-title mt-4 text-[44px] sm:text-[60px] md:text-[80px]">
+            <h2 className="section-title mt-4 text-[36px] sm:text-[60px] md:text-[80px]">
               Building a Brighter
               <span className="display-gradient block">Tomorrow</span>
             </h2>
@@ -54,7 +54,7 @@ export default function ServicesSection() {
         </AnimateOnScroll>
 
         {/* Cards */}
-        <div className="mt-14 grid gap-8 md:grid-cols-3">
+        <div className="mt-14 grid gap-8 grid-cols-1 md:grid-cols-3">
           {services.map(({ icon, iconBg, border, learnColor, title, titleUnder, items }, i) => (
             <AnimateOnScroll key={title} anim="up" delay={i * 120}>
               <article

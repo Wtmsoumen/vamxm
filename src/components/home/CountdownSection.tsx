@@ -45,13 +45,13 @@ export default function CountdownSection() {
           {/* <div className="ornament"></div> */}
         </AnimateOnScroll>
 
-        <div className="mx-auto mt-12 w-full flex justify-center gap-20">
+        <div className="mx-auto mt-12 w-full flex justify-center gap-4 sm:gap-12 md:gap-20">
           {units.map(({ label, value }, i) => (
             <AnimateOnScroll key={label} anim="scale" delay={i * 80} className="flex flex-col items-center">
-              <div className="rounded-full border border-utsav/20 bg-white shadow-sm w-20 h-20 flex justify-center items-center">
-                <div className="section-title display-gradient text-2xl md:text-4xl pb-0!">{value}</div>
+              <div className="rounded-full border border-utsav/20 bg-white shadow-sm w-14 h-14 sm:w-20 sm:h-20 flex justify-center items-center">
+                <div className="section-title display-gradient text-lg sm:text-2xl md:text-4xl pb-0!">{value}</div>
               </div>
-              <p className="mt-3 text-xs font-semibold uppercase tracking-[2px]">{label}</p>
+              <p className="mt-2 text-[10px] sm:text-xs font-semibold uppercase tracking-[2px]">{label}</p>
             </AnimateOnScroll>
           ))}
         </div>

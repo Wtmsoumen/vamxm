@@ -12,7 +12,7 @@ const tiles = [
 
 export default function GallerySection() {
   return (
-    <section id="gallery" className="px-5 py-20 md:px-10 md:py-28">
+    <section id="gallery" className="px-5 py-10 md:px-10 md:py-20">
       <div className="mx-auto max-w-[1320px]">
 
         <AnimateOnScroll anim="up">
@@ -21,7 +21,7 @@ export default function GallerySection() {
             <h2 className="section-title mt-4 text-[44px] sm:text-[60px] md:text-[80px]">
               Explore Our <span className="text-utsav">Gallery</span>
             </h2>
-            <div className="ornament"></div>
+            {/* <div className="ornament"></div> */}
           </div>
         </AnimateOnScroll>
 

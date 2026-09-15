@@ -16,6 +16,8 @@ export default function HeroSection() {
             <span className="display-gradient block">Durga Puja</span>
           </h1>
 
+          {/* <div className="ornament ml-0" /> */}
+
           <p className="section-title mt-3 text-[32px] sm:text-[44px] md:text-[67px] hero-desc">
             Like Never Before
           </p>
@@ -44,21 +46,27 @@ export default function HeroSection() {
       </div>
 
       {/* Service strip */}
-      <div className="absolute -mb-14 bottom-0 left-0 z-20 w-full px-4 md:px-6 hero-strip">
+      <div className="absolute -mb-18 bottom-0 left-0 z-20 w-full px-4 md:px-6 hero-strip">
         <div className="mx-auto grid max-w-[1320px] grid-cols-1 overflow-hidden rounded-[19px] shadow-lg sm:grid-cols-3">
 
           <div className="flex items-center gap-4 bg-gradient-to-b from-[#d80117] to-[#a80202] px-6 py-6 text-white md:px-10">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/15 text-2xl">⌘</div>
+            <div className="flex h-18 w-18 shrink-0 items-center justify-center rounded-full bg-white/15 text-2xl">
+              <img src={"/website.svg"} alt="website" width={192} height={108} className="w-[34px] h-auto" />
+            </div>
             <p className="text-lg font-medium leading-6">Website<br />Development</p>
           </div>
 
           <div className="flex items-center gap-4 bg-gradient-to-b from-[#fa9d00] to-[#cd8205] px-6 py-6 text-white md:px-10">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/15 text-2xl">▣</div>
+            <div className="flex h-18 w-18 shrink-0 items-center justify-center rounded-full bg-white/15 text-2xl">
+              <img src={"/mobileApp.svg"} alt="mobileApp" width={192} height={108} className="w-[28px] h-auto" />
+            </div>
             <p className="text-lg font-medium leading-6">Mobile App<br />Development</p>
           </div>
 
           <div className="flex items-center gap-4 bg-gradient-to-b from-[#38c045] to-[#02a230] px-6 py-6 text-white md:px-10">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/15 text-2xl">⌑</div>
+            <div className="flex h-18 w-18 shrink-0 items-center justify-center rounded-full bg-white/15 text-2xl">
+              <img src={"/cyber.svg"} alt="cyber" width={192} height={108} className="w-[38px] h-[38px]" />
+            </div>
             <p className="text-lg font-medium leading-6">Cyber<br />Security</p>
           </div>
 

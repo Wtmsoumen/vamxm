@@ -4,12 +4,12 @@ import Link from "next/link";
 import { useState } from "react";
 
 const links = [
-  { label: "Home",       href: "/" },
-  { label: "About",      href: "#about" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "#about" },
   { label: "Puja Guide", href: "#guide" },
-  { label: "Pandal 360°",href: "/tour" },
-  { label: "Services",   href: "#services" },
-  { label: "Events",     href: "#events" },
+  { label: "Pandal 360°", href: "/tour" },
+  { label: "Services", href: "#services" },
+  { label: "Events", href: "#events" },
   { label: "Contact Us", href: "#footer" },
 ];
 
@@ -17,16 +17,16 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-white/30 bg-white/35 backdrop-blur-sm">
-      <div className="mx-auto flex min-h-[76px] max-w-[1600px] items-center justify-between gap-6 px-5 md:min-h-[105px] md:px-10 xl:px-[7.5%]">
+    <header className="fixed left-0 top-0 z-50 w-full border-b border-white/30 bg-white/35 ">
+      <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-6 px-5 md:px-10 xl:px-[7.5%] py-2 md:py-3">
 
         <Link href="/" className="shrink-0">
-          <img src="/pandals/vamxm-horizontal.png" alt="UtsavVerse" className="h-auto w-[145px] md:w-[200px]" />
+          <img src="/logo/vamxm-horizontal-black.png" alt="UtsavVerse" className="h-auto w-[215px]" />
         </Link>
 
-        <nav className="hidden items-center gap-7 text-[15px] font-medium lg:flex">
+        <nav className="hidden items-center gap-7 text-[16px] font-medium lg:flex">
           {links.map(({ label, href }) => (
-            <Link key={label} href={href} className="hover:text-utsav transition-colors">
+            <Link key={label} href={href} className="hover:text-[#D88418] transition-colors">
               {label}
             </Link>
           ))}

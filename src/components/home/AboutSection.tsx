@@ -22,7 +22,7 @@ export default function AboutSection() {
             <span className="display-gradient block">Vamxm</span>
           </h2>
 
-          <div className="ornament ml-0"></div>
+          {/* <div className="ornament ml-0" /> */}
 
           <p className="mt-7 text-[16px] leading-7 text-black/80">
             Celebrating Durga Puja is an emotion and no one should be deprived

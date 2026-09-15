@@ -11,11 +11,11 @@ const pandals = [
 
 export default function FeaturedPandals() {
   return (
-    // <section className="absolute overflow-hidden bg-[#fff0f3] px-5 py-20 md:px-10 md:py-28 top-0">
+    // <section className="absolute overflow-hidden bg-[#fff0f3] px-5 py-10 md:px-10 md:py-20 top-0">
 
     <section id="pandals" className="relative">
       <img src={"./FamousPandalsbg.png"} alt="wellcomeVamxmbg" className="w-full h-full" />
-      <section className="absolute overflow-hidden px-5 py-20 md:px-10 md:py-28 top-0 w-full">
+      <section className="absolute overflow-hidden px-5 py-10 md:px-10 md:py-20 top-0 w-full">
         <div className="mx-auto max-w-[1320px]">
 
           <AnimateOnScroll anim="up">
@@ -24,6 +24,7 @@ export default function FeaturedPandals() {
               <h2 className="section-title mt-4 text-[44px] sm:text-[60px] md:text-[80px]">
                 Famous <span className="text-utsav">Pandals </span>
               </h2>
+              {/* <div className="ornament" /> */}
             </div>
           </AnimateOnScroll>
 

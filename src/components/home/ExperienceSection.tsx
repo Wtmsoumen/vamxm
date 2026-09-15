@@ -1,5 +1,6 @@
 import Link from "next/link";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
+// public/ech.png public/pgr.png
 
 export default function ExperienceSection() {
   return (
@@ -8,11 +9,11 @@ export default function ExperienceSection() {
 
         {/* 360° feature card */}
         <AnimateOnScroll anim="left">
-          <div className="relative flex min-h-[420px] flex-col justify-center overflow-hidden rounded-[25px] bg-gradient-to-r from-[#f49625] to-[#f14b25] p-8 text-white sm:p-12">
+          <div className="relative flex min-h-[420px] flex-col justify-center overflow-hidden rounded-[25px] p-8 text-white sm:p-12">
             <img
-              src="/pandals/pandal4.jpg"
+              src="/pvt360.png"
               alt="Immersive Durga Puja experience"
-              className="absolute inset-0 h-full w-full object-cover opacity-50"
+              className="absolute inset-0 h-full w-full object-cover"
             />
 
             <div className="relative z-10 max-w-[380px]">
@@ -38,41 +39,49 @@ export default function ExperienceSection() {
         </AnimateOnScroll>
 
         {/* Guide feature cards */}
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
 
           <AnimateOnScroll anim="right" delay={100}>
-            <article className="grid min-h-[200px] grid-cols-[1fr_120px] items-center overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm sm:grid-cols-[1fr_160px]">
-              <div className="p-6">
+            <article className="relative grid min-h-[200px] grid-cols-[1fr_120px] items-center overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm sm:grid-cols-[1fr_160px]">
+              <div className="relative z-10 p-4">
                 <h3 className="section-title text-[25px]">Puja Guide &amp; Routes</h3>
-                <p className="mt-3 text-sm leading-6 text-black/70">
+                <p className="mt-3 text-sm leading-6 text-black w-3/5">
                   Plan your pandal hopping with smart routes and maps.
                 </p>
                 <a
                   href="#pandals"
-                  className="mt-5 inline-flex items-center gap-3 rounded-full bg-utsav px-5 py-3 text-xs font-semibold text-white"
+                  className="mt-3 inline-flex items-center gap-3 rounded-full bg-utsav px-5 py-3 text-xs font-semibold text-white"
                 >
                   View Guide <span>→</span>
                 </a>
               </div>
-              <img src="/pandals/pandal2.jpg" alt="Puja guide" className="h-full w-full object-cover" />
+              <img
+                src="/pgr.png"
+                alt="Immersive Durga Puja experience"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
             </article>
           </AnimateOnScroll>
 
           <AnimateOnScroll anim="right" delay={200}>
-            <article id="events" className="grid min-h-[200px] grid-cols-[1fr_120px] items-center overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm sm:grid-cols-[1fr_160px]">
-              <div className="p-6">
+            <article id="events" className="relative grid min-h-[200px] grid-cols-[1fr_120px] items-center overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm sm:grid-cols-[1fr_160px]">
+              <div className="relative z-10 p-4">
                 <h3 className="section-title text-[25px]">Events &amp; Cultural<br />Highlights</h3>
-                <p className="mt-3 text-sm leading-6 text-black/70">
+                <p className="mt-3 text-sm leading-6 text-black w-3/5">
                   Discover puja events, performances and cultural programs.
                 </p>
                 <a
                   href="#gallery"
-                  className="mt-5 inline-flex items-center gap-3 rounded-full bg-utsav px-5 py-3 text-xs font-semibold text-white"
+                  className="mt-3 inline-flex items-center gap-3 rounded-full bg-utsav px-5 py-3 text-xs font-semibold text-white"
                 >
                   See What&apos;s On <span>→</span>
                 </a>
               </div>
-              <img src="/pandals/pandal3.jpg" alt="Cultural events" className="h-full w-full object-cover" />
+              <img
+                src="/ech.png"
+                alt="Immersive Durga Puja experience"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
             </article>
           </AnimateOnScroll>
 

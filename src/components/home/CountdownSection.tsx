@@ -34,7 +34,7 @@ export default function CountdownSection() {
   ];
 
   return (
-    <section id="countdown" className="relative overflow-hidden px-5 py-20 md:px-10 md:py-28">
+    <section id="countdown" className="relative overflow-hidden px-5 py-10 md:px-10 md:py-20">
       <div className="mx-auto max-w-[1000px] text-center flex flex-col items-center">
 
         <AnimateOnScroll anim="up">
@@ -42,14 +42,14 @@ export default function CountdownSection() {
           <h2 className="section-kicker text-black!">
             The Countdown Begins
           </h2>
-          <div className="ornament"></div>
+          {/* <div className="ornament"></div> */}
         </AnimateOnScroll>
 
         <div className="mx-auto mt-12 w-full flex justify-center gap-20">
           {units.map(({ label, value }, i) => (
             <AnimateOnScroll key={label} anim="scale" delay={i * 80} className="flex flex-col items-center">
-              <div className="rounded-full border border-utsav/20 bg-white shadow-sm p-5 w-fit h-fit">
-                <div className="section-title display-gradient text-2xl md:text-4xl">{value}</div>
+              <div className="rounded-full border border-utsav/20 bg-white shadow-sm w-20 h-20 flex justify-center items-center">
+                <div className="section-title display-gradient text-2xl md:text-4xl pb-0!">{value}</div>
               </div>
               <p className="mt-3 text-xs font-semibold uppercase tracking-[2px]">{label}</p>
             </AnimateOnScroll>

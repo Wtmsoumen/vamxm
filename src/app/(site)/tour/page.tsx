@@ -1,24 +1,5 @@
 import Link from "next/link";
-import PanoramaViewer from "@/components/ui/PanoramaViewer";
-
-const tours = [
-  {
-    id: "uniworldpuja25",
-    title: "Uniworld City Puja 2025",
-    location: "Uniworld City, New Town, Kolkata",
-    nodes: 3,
-    preview: "/tours/uniworldpuja25/preview.jpg",
-    path: "/tours/uniworldpuja25/index.html",
-  },
-  {
-    id: "ahiritolasapuja25",
-    title: "Ahiritola Sarbojanin 2025",
-    location: "Ahiritola, North Kolkata",
-    nodes: 3,
-    preview: "/tours/ahiritolasapuja25/preview.jpg",
-    path: "/tours/ahiritolasapuja25/index.html",
-  },
-];
+import { tours } from "@/data/tours";
 
 export default function TourListPage() {
   return (

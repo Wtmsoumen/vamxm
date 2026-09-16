@@ -6,10 +6,9 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   MapPin,
-  Users,
-  Bell,
+  Image,
+  Star,
   Settings,
-  Eye,
   LogOut,
   Menu,
   X,
@@ -18,8 +17,8 @@ import {
 const navItems = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { label: "Pandals", href: "/admin/pandals", icon: MapPin },
-  { label: "Sponsors", href: "/admin/sponsors", icon: Users },
-  { label: "Notifications", href: "/admin/notifications", icon: Bell },
+  // { label: "Famous Pandals", href: "/admin/famous-pandals", icon: Star },
+  { label: "Gallery", href: "/admin/gallery", icon: Image },
   { label: "Settings", href: "/admin/settings", icon: Settings },
 ];
 
@@ -28,21 +27,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname();
 
   return (
-    <div className="min-h-screen bg-zinc-950 flex">
+    <div className="min-h-screen bg-white flex">
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-zinc-900 border-r border-white/10 transform transition-transform lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-black/10 transform transition-transform lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
           } lg:static lg:flex flex-col`}
       >
-        <div className="p-5 border-b border-white/10">
+        <div className="p-5 border-b border-black/10">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-saffron to-gold rounded-lg flex items-center justify-center">
-              <Eye className="w-4 h-4 text-white" />
-            </div>
-            <div>
-              <span className="font-bold text-base text-white">VaMax</span>
-              <p className="text-white/30 text-xs">Admin Panel</p>
-            </div>
+            <img src="/logo/vamxm-horizontal-black.png" alt="UtsavVerse" className="h-auto w-[215px]" />
           </Link>
         </div>
 
@@ -55,8 +48,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 href={item.href}
                 onClick={() => setSidebarOpen(false)}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${active
-                  ? "bg-saffron/20 text-saffron"
-                  : "text-white/50 hover:text-white hover:bg-white/5"
+                  ? "bg-utsav/10 text-utsav"
+                  : "text-black/50 hover:text-black hover:bg-black/5"
                   }`}
               >
                 <item.icon className="w-4 h-4" />
@@ -66,10 +59,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           })}
         </nav>
 
-        <div className="p-4 border-t border-white/10">
+        <div className="p-4 border-t border-black/10">
           <Link
             href="/"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-white/40 hover:text-white hover:bg-white/5 transition-all"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-black/40 hover:text-black hover:bg-black/5 transition-all"
           >
             <LogOut className="w-4 h-4" />
             Exit Admin
@@ -80,30 +73,30 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/60 z-40 lg:hidden"
+          className="fixed inset-0 bg-black/30 z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Main */}
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="bg-zinc-900 border-b border-white/10 px-6 py-4 flex items-center gap-4">
+        <header className="bg-white border-b border-black/10 px-6 py-4 flex items-center gap-4">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="lg:hidden text-white/60 hover:text-white"
+            className="lg:hidden text-black/60 hover:text-black"
           >
             {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
           <div className="flex-1" />
-          <div className="flex items-center gap-2 text-sm text-white/40">
-            <div className="w-7 h-7 bg-saffron/20 rounded-full flex items-center justify-center text-saffron font-bold text-xs">
+          <div className="flex items-center gap-2 text-sm text-black/40">
+            <div className="w-7 h-7 bg-utsav/10 rounded-full flex items-center justify-center text-utsav font-bold text-xs">
               A
             </div>
             Admin
           </div>
         </header>
 
-        <main className="flex-1 p-6 overflow-auto">{children}</main>
+        <main className="flex-1 p-6 overflow-auto bg-gray-50">{children}</main>
       </div>
     </div>
   );

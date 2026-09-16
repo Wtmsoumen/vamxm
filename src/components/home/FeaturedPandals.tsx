@@ -2,12 +2,7 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import Link from "next/link";
 import CountdownSection from "./CountdownSection";
 import { ArrowUpRight, Eye, MapPin, PinIcon } from "lucide-react";
-
-const pandals = [
-  { img: "/pandals/pandal1.jpg", name: "Santosh Mitra Square", views: "2.1M", location: "Central Kolkata" },
-  { img: "/pandals/pandal2.jpg", name: "Baghbazar Sarbojanin", views: "1.5M", location: "Central Kolkata" },
-  { img: "/pandals/pandal3.jpg", name: "Ekdalia Evergreen", views: "2.1M", location: "Central Kolkata" },
-];
+import { famousPandals as pandals } from "@/data/famousPandals";
 
 export default function FeaturedPandals() {
   return (

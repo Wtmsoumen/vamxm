@@ -1,14 +1,5 @@
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-
-const tiles = [
-  { src: "/pandals/pandal1.jpg", alt: "Durga Puja pandal", span: 1 },
-  { src: "/pandals/pandal2.jpg", alt: "Puja artwork", span: 1 },
-  { src: "/pandals/pandal3.jpg", alt: "Durga Puja celebration", span: 1 },
-  { src: "/pandals/pandal4.jpg", alt: "Durga Puja pandal", span: 1 },
-  { src: "/pandals/pandal1.jpg", alt: "Puja decorations", span: 1 },
-  { src: "/pandals/pandal2.jpg", alt: "Durga Puja pandal", span: 2 },
-  { src: "/pandals/pandal3.jpg", alt: "Durga Puja celebration", span: 1 },
-];
+import { galleryTiles as tiles } from "@/data/gallery";
 
 export default function GallerySection() {
   return (
@@ -26,9 +17,9 @@ export default function GallerySection() {
         </AnimateOnScroll>
 
         <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">
-          {tiles.map(({ src, alt, span }, i) => (
+          {tiles.map(({ id, src, alt, span }, i) => (
             <AnimateOnScroll
-              key={i}
+              key={id}
               anim="scale"
               delay={i * 60}
               className={span === 2 ? "col-span-2" : ""}

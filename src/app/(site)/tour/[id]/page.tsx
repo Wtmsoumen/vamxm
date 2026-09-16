@@ -1,29 +1,15 @@
 import { notFound } from "next/navigation";
 import PanoramaViewer from "@/components/ui/PanoramaViewer";
 import Link from "next/link";
-
-const tours: Record<string, { title: string; location: string; description: string; nodes: number }> = {
-  uniworldpuja25: {
-    title: "Uniworld City Puja 2025",
-    location: "Uniworld City, New Town, Kolkata",
-    description: "Explore the grandeur of Uniworld City's Durga Puja celebration through a fully immersive 360° virtual tour with 3 vantage points.",
-    nodes: 3,
-  },
-  ahiritolasapuja25: {
-    title: "Ahiritola Sarbojanin 2025",
-    location: "Ahiritola, North Kolkata",
-    description: "Step inside one of Kolkata's most celebrated Durga Puja pandals — Ahiritola Sarbojanin — in stunning 360° detail.",
-    nodes: 3,
-  },
-};
+import { tours } from "@/data/tours";
 
 export function generateStaticParams() {
-  return Object.keys(tours).map((id) => ({ id }));
+  return tours.map((t) => ({ id: t.id }));
 }
 
 export default async function TourPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const tour = tours[id];
+  const tour = tours.find((t) => t.id === id);
   if (!tour) notFound();
 
   return (
@@ -52,7 +38,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
 
       {/* 360° Viewer */}
       <PanoramaViewer
-        tourPath={`/tours/${id}/index.html`}
+        tourPath={tour.path}
         title={tour.title}
       />
 

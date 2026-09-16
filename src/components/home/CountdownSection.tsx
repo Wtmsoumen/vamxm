@@ -39,7 +39,7 @@ export default function CountdownSection() {
 
         <AnimateOnScroll anim="up">
           {/* <p className="section-kicker">The Celebration Awaits</p> */}
-          <h2 className="section-kicker text-black!">
+          <h2 className="section-kicker text-black! text-sm! lg:text-lg!">
             The Countdown Begins
           </h2>
           {/* <div className="ornament"></div> */}

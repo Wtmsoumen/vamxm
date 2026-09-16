@@ -2,12 +2,12 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative overflow-hidden py-20 md:py-28">
-      <img src={"./wellcomeVamxmbg.png"} alt="wellcomeVamxmbg" className="w-3/4 h-full absolute bottom-0 right-0 opacity-60 pointer-events-none" />
-      <div className="mx-auto grid max-w-[1280px] items-center gap-12 px-6 md:grid-cols-2 md:gap-16 md:px-10">
+    <section id="about" className="relative overflow-hidden py-14 sm:py-20 md:py-28">
+      <img src="./wellcomeVamxmbg.png" alt="" aria-hidden="true" className="w-3/4 h-full absolute bottom-0 right-0 opacity-60 pointer-events-none" />
+      <div className="mx-auto grid max-w-[1280px] items-center gap-10 px-5 sm:px-8 md:grid-cols-2 md:gap-16 md:px-10">
 
         <AnimateOnScroll anim="left">
-          <div className="relative mx-auto w-full max-w-[520px]">
+          <div className="relative mx-auto w-full max-w-[480px] md:max-w-[520px]">
             <img
               src="/wellcomeVamxm.png"
               alt="Durga Puja celebration"
@@ -17,21 +17,19 @@ export default function AboutSection() {
         </AnimateOnScroll>
 
         <AnimateOnScroll anim="right">
-          <h2 className="section-title text-[48px] sm:text-[60px] md:text-[80px]">
+          <h2 className="section-title text-[40px] sm:text-[52px] md:text-[72px] lg:text-[80px]">
             Welcome to
             <span className="display-gradient block">Vamxm</span>
           </h2>
 
-          {/* <div className="ornament ml-0" /> */}
-
-          <p className="mt-7 text-[16px] leading-7 text-black/80">
+          <p className="mt-6 text-[15px] leading-7 text-black/80">
             Celebrating Durga Puja is an emotion and no one should be deprived
             of it. The celebration starts with shopping and only ends on
             Dashami. And we are here to bring you the complete Durga Puja
             experience.
           </p>
 
-          <p className="mt-5 text-[16px] leading-7 text-black/80">
+          <p className="mt-4 text-[15px] leading-7 text-black/80">
             Shop from some of the top brands, see some of the major pandals
             of the city, offer tarpon and anjali and order bhog from your
             favourite puja pandals.
@@ -39,7 +37,7 @@ export default function AboutSection() {
 
           <a
             href="#services"
-            className="mt-8 inline-flex h-[48px] items-center gap-4 rounded-full bg-utsav px-7 text-sm font-semibold text-white transition hover:bg-utsavDark"
+            className="mt-8 inline-flex h-[48px] items-center gap-4 rounded-full bg-utsav px-7 text-sm font-semibold text-white transition hover:bg-utsav-dark"
           >
             About More <span>→</span>
           </a>

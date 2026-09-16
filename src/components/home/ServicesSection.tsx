@@ -38,10 +38,9 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="px-5 py-10 md:px-10 md:py-20">
+    <section id="services" className="px-5 py-12 sm:py-16 md:px-10 md:py-24">
       <div className="mx-auto max-w-[1320px]">
 
-        {/* Header */}
         <AnimateOnScroll anim="up">
           <div className="text-center">
             <p className="section-kicker">Our Core Services</p>
@@ -49,34 +48,34 @@ export default function ServicesSection() {
               Building a Brighter
               <span className="display-gradient block">Tomorrow</span>
             </h2>
-            {/* <div className="ornament"></div> */}
           </div>
         </AnimateOnScroll>
 
-        {/* Cards */}
-        <div className="mt-14 grid gap-8 grid-cols-1 md:grid-cols-3">
+        <div className="mt-16 grid gap-14 sm:gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {services.map(({ icon, iconBg, border, learnColor, title, titleUnder, items }, i) => (
             <AnimateOnScroll key={title} anim="up" delay={i * 120}>
               <article
-                className="service-card relative rounded-xl rounded-tr-[80px] bg-white px-7 pb-7 pt-16 shadow-sm group"
+                className="service-card relative rounded-xl rounded-tr-[80px] bg-white px-6 pb-7 pt-16 shadow-sm group"
                 style={{ border: `4px solid ${border}` }}
               >
                 <div
-                  className="absolute -top-12 right-0 flex h-28 w-28 items-center justify-center rounded-full text-2xl text-white shadow-md border-white border-4 group-hover:scale-120 transition-all duration-500"
+                  className="absolute -top-10 right-0 flex h-24 w-24 items-center justify-center rounded-full text-2xl text-white shadow-md border-white border-4 group-hover:scale-110 transition-all duration-500"
                   style={{ background: iconBg }}
                 >
-                  <Image src={icon} alt={title} width={192} height={108} className="w-auto h-12" />
-
+                  <Image src={icon} alt={title} width={192} height={108} className="w-auto h-11" />
                 </div>
 
-                <h3 className="text-[32px] font-medium leading-tight whitespace-pre-line flex flex-col gap-2">
+                <h3 className="text-[28px] sm:text-[32px] font-medium leading-tight whitespace-pre-line flex flex-col gap-2">
                   {title}
-                  <img src={titleUnder} alt="titleUnder" width={133} height={108} />
+                  <img src={titleUnder} alt="" width={133} height={108} />
                 </h3>
 
-                <ul className="mt-7 space-y-4 text-base leading-6 text-black/80">
+                <ul className="mt-6 space-y-3.5 text-[15px] leading-6 text-black/80">
                   {items.map((item) => (
-                    <li key={item} className={`flex items-center gap-1`}><BadgeCheck fill={border} stroke={"#ffffff"} size={20} strokeWidth={2} />{item}</li>
+                    <li key={item} className="flex items-center gap-2">
+                      <BadgeCheck fill={border} stroke="#ffffff" size={20} strokeWidth={2} />
+                      {item}
+                    </li>
                   ))}
                 </ul>
 

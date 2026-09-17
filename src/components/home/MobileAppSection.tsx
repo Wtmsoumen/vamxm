@@ -11,7 +11,7 @@ export default function MobileAppSection() {
       <div className="relative mx-auto grid max-w-[1320px] items-center gap-8 grid-cols-1 md:grid-cols-3">
 
         {/* Phone mockup 1 — hidden on mobile */}
-        <AnimateOnScroll anim="left" className="order-2 hidden justify-center md:order-1 md:flex">
+        <AnimateOnScroll anim="left" className="order-2 justify-center md:order-1 hidden md:flex">
           <img src="/MobileApp1.png" alt="Utsav Verse app splash screen" className="max-h-[480px] w-auto object-contain drop-shadow-2xl md:-mb-56" />
         </AnimateOnScroll>
 
@@ -37,7 +37,7 @@ export default function MobileAppSection() {
         </AnimateOnScroll>
 
         {/* Phone mockup 2 */}
-        <AnimateOnScroll anim="right" className="order-3 flex justify-center">
+        <AnimateOnScroll anim="right" className="order-3 hidden md:flex justify-center">
           <img
             src="/MobileApp2.png"
             alt="Utsav Verse app home screen"

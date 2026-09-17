@@ -47,7 +47,7 @@ export default function GallerySection() {
                 key={id}
                 anim="scale"
                 delay={i * 60}
-                className={span === 2 ? "col-span-2" : ""}
+                className={span === 2 ? "md:col-span-2 col-span-1" : ""}
               >
                 <button
                   className="gallery-tile h-[150px] w-full sm:h-[190px] md:h-[300px] cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-utsav"

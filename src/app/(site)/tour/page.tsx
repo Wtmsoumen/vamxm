@@ -19,7 +19,7 @@ export default function TourListPage() {
         {tours.map((tour) => (
           <Link key={tour.id} href={`/tour/${tour.id}`} className="group block">
             <div className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm transition group-hover:shadow-md">
-              <div className="relative h-[220px] overflow-hidden">
+              <div className="relative h-[300px] overflow-hidden">
                 <img
                   src={tour.preview}
                   alt={tour.title}

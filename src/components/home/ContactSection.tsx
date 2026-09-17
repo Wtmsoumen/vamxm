@@ -16,7 +16,7 @@ export default function ContactSection() {
         <AnimateOnScroll anim="left">
           {/* <div className="serif text-3xl italic red">Feel Bengal</div> */}
           <h2 className="serif mt-2 text-4xl font-semibold">Let&apos;s Build Something Amazing <span className="red">Together</span></h2>
-          <p className="mt-3 text-xs text-slate-600">Have a project in mind? Get in touch with us today.</p>
+          <p className="mt-3 text-lg text-black">Have a project in mind? Let's create<br />something extraordinary.</p>
         </AnimateOnScroll>
         <AnimateOnScroll anim="right">
           {sent ? (

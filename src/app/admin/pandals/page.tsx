@@ -66,7 +66,7 @@ export default function AdminPandalsPage() {
                 </td>
                 <td className="px-6 py-4">
                   <div className="flex items-center gap-1 justify-end">
-                    <Link href={`/tour/${t.id}`} target="_blank" className="p-2 text-black/30 hover:text-black transition-colors" title="View">
+                    <Link href={`/${t.id}`} target="_blank" className="p-2 text-black/30 hover:text-black transition-colors" title="View">
                       <Eye className="w-4 h-4" />
                     </Link>
                     <Link href={`/admin/pandals/${t.id}/edit`} className="p-2 text-black/30 hover:text-utsav transition-colors" title="Edit">

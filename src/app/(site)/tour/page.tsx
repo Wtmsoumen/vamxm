@@ -17,7 +17,7 @@ export default function TourListPage() {
 
       <div className="mt-14 grid gap-8 md:grid-cols-2">
         {tours.map((tour) => (
-          <Link key={tour.id} href={`/tour/${tour.id}`} className="group block">
+          <Link key={tour.id} href={`/${tour.id}`} className="group block">
             <div className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm transition group-hover:shadow-md">
               <div className="relative h-[300px] overflow-hidden">
                 <img

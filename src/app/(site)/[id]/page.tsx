@@ -41,6 +41,16 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
         tourPath={tour.path}
         title={tour.title}
       />
+      <div className="mt-3 flex justify-end">
+        <a
+          href={tour.path}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-utsav hover:underline"
+        >
+          Open in new tab ↗
+        </a>
+      </div>
 
       {/* Tips */}
       <div className="mt-6 flex flex-wrap gap-4 text-sm text-black/55">

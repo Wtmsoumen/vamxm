@@ -62,7 +62,7 @@ export default function AdminDashboard() {
               <span className={`text-xs px-2 py-1 rounded-full flex-shrink-0 ${t.published ? "bg-emerald-500/10 text-emerald-700" : "bg-yellow-400/10 text-yellow-700"}`}>
                 {t.published ? "Published" : "Draft"}
               </span>
-              <Link href={`/tour/${t.id}`} target="_blank" className="text-black/30 hover:text-black transition-colors">
+              <Link href={`/${t.id}`} target="_blank" className="text-black/30 hover:text-black transition-colors">
                 <Eye className="w-4 h-4" />
               </Link>
             </div>

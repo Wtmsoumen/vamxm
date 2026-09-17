@@ -39,7 +39,7 @@ export default function EditTourForm({ tour }: { tour: Tour }) {
           <h1 className="text-2xl font-bold text-black truncate">{tour.title}</h1>
         </div>
         <Link
-          href={`/tour/${tour.id}`}
+          href={`/${tour.id}`}
           target="_blank"
           className="flex items-center gap-2 border border-black/15 text-black/60 hover:text-black text-sm px-4 py-2.5 rounded-xl transition-colors"
         >

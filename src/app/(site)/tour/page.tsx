@@ -3,7 +3,7 @@ import { tours } from "@/data/tours";
 
 export default function TourListPage() {
   return (
-    <main className="mx-auto max-w-[1320px] px-5 py-24 md:px-10">
+    <main className="mx-auto max-w-[1320px] py-24">
       <div className="text-center">
         <p className="section-kicker">Virtual Experiences</p>
         <h1 className="section-title mt-4 text-[48px] sm:text-[64px] md:text-[80px]">
@@ -28,7 +28,7 @@ export default function TourListPage() {
                 <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-utsav shadow-lg">
                     <svg viewBox="0 0 24 24" width="28" fill="currentColor">
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
                     </svg>
                   </div>
                 </div>

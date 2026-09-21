@@ -3249,7 +3249,7 @@ function pano2vrSkin(player,base) {
 			return player.getCurrentNode();
 		}
 		me._image_1.onclick=function (e) {
-			player.openUrl("https:\/\/www.vamxm.com","_self");
+			player.openUrl("https:\/\/www.vamxm.com","_blank");
 		}
 		me._image_1.ggUpdatePosition=function (useTransition) {
 		}
@@ -3291,7 +3291,7 @@ function pano2vrSkin(player,base) {
 			return player.getCurrentNode();
 		}
 		me._image_2.onclick=function (e) {
-			player.openUrl("https:\/\/www.venkateshmotors.net","_self");
+			player.openUrl("https:\/\/www.venkateshmotors.net","_blank");
 		}
 		me._image_2.ggUpdatePosition=function (useTransition) {
 		}

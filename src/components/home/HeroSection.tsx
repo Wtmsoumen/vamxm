@@ -1,14 +1,106 @@
+"use client";
+
+import { useState, useEffect } from "react";
+
 export default function HeroSection() {
+
+  const images = ["/maaAschen.png", "/AIRobo.png"];
+  const innerhtml = [
+    <div className="relative z-10 mx-auto max-w-[1600px] px-5 sm:px-8 md:px-10 xl:px-[8.75%]">
+      <div className="max-w-[750px]">
+
+        <h1 className="section-title text-[32px] xs:text-[40px] sm:text-[56px] md:text-[90px] hero-h1">
+          Experience
+          <span className="display-gradient block">Durga Puja</span>
+        </h1>
+
+        <p className="section-title mt-2 text-[22px] xs:text-[28px] sm:text-[38px] md:text-[67px] hero-desc">
+          Like Never Before
+        </p>
+
+        <p className="mt-4 max-w-[650px] text-sm leading-7 md:text-[19px] hero-desc text-black/80">
+          Explore Kolkata&apos;s iconic pandals with immersive 360° tours,
+          real-time updates and a complete puja guide — all in one place.
+        </p>
+
+        <div className="mt-8 flex flex-wrap items-center gap-3 hero-btns">
+          <a
+            href="#pandals"
+            className="red-gradient inline-flex h-12 sm:h-[54px] items-center justify-center rounded-full px-6 sm:px-8 text-sm font-semibold text-white shadow-md transition hover:brightness-110"
+          >
+            Explore Pandals <span className="ml-3">→</span>
+          </a>
+          <a
+            href="#guide"
+            className="inline-flex h-12 sm:h-[54px] items-center justify-center gap-3 rounded-full border border-utsav bg-white px-5 sm:px-6 text-sm font-semibold text-black transition hover:bg-red-50"
+          >
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-utsav text-white text-xs">▶</span>
+            Watch Video
+          </a>
+        </div>
+      </div>
+    </div>
+    ,
+
+    <div className="relative z-10 mx-auto max-w-[1600px] px-5 sm:px-8 md:px-10 xl:px-[8.75%]">
+      <div className="max-w-[750px]">
+
+        <h1 className="section-title text-[32px] xs:text-[40px] sm:text-[56px] md:text-[90px] hero-h1">
+          Where Data
+          <span className="block">Meets <span className="text-[#FA9D00]">AI</span></span>
+        </h1>
+
+        <p className="section-title text-[#38C045] mt-2 text-[22px] xs:text-[28px] sm:text-[38px] md:text-[67px] hero-desc">
+          Intelligence
+        </p>
+
+        <p className="mt-4 max-w-[650px] text-sm leading-7 md:text-[19px] hero-desc text-black/80">
+          Our AI-driven agency, where innovation meets precision & we transform your data into actionable insights that drive success.
+        </p>
+
+        <div className="mt-8 flex flex-wrap items-center gap-3 hero-btns">
+          <a
+            href="#pandals"
+            className="red-gradient inline-flex h-12 sm:h-[54px] items-center justify-center rounded-full px-6 sm:px-8 text-sm font-semibold text-white shadow-md transition hover:brightness-110"
+          >
+            Explore Pandals <span className="ml-3">→</span>
+          </a>
+          <a
+            href="#guide"
+            className="inline-flex h-12 sm:h-[54px] items-center justify-center gap-3 rounded-full border border-utsav bg-white px-5 sm:px-6 text-sm font-semibold text-black transition hover:bg-red-50"
+          >
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-utsav text-white text-xs">▶</span>
+            Watch Video
+          </a>
+        </div>
+      </div>
+    </div>
+
+  ]
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section
-      className="relative pt-20 sm:pt-24 md:min-h-[900px] md:pt-[220px]"
-      style={{
-        backgroundImage: "linear-gradient(90deg, rgba(255,255,255,.04), transparent), url('/maaAschen.png')",
-        backgroundPosition: "center top",
-        backgroundSize: "cover",
-      }}
-    >
-      <div className="relative z-10 mx-auto max-w-[1600px] px-5 sm:px-8 md:px-10 xl:px-[8.75%]">
+    <section className="relative pt-24 md:min-h-[900px] md:pt-[220px]">
+      {images.map((img, index) => (
+        <div
+          key={img}
+          className={`absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? "opacity-100" : "opacity-0"
+            }`}
+          style={{
+            backgroundImage: `linear-gradient(90deg, rgba(255,255,255,.04), transparent), url('${img}')`,
+            backgroundPosition: "center top",
+            backgroundSize: "cover",
+          }}
+        />
+      ))}
+      {/* <div className="relative z-10 mx-auto max-w-[1600px] px-5 sm:px-8 md:px-10 xl:px-[8.75%]">
         <div className="max-w-[750px]">
 
           <h1 className="section-title text-[32px] xs:text-[40px] sm:text-[56px] md:text-[90px] hero-h1">
@@ -41,6 +133,18 @@ export default function HeroSection() {
             </a>
           </div>
         </div>
+      </div> */}
+      {/* <div className="relative z-10" dangerouslySetInnerHTML={{ __html: innerhtml[0] }} /> */}
+      <div className="relative z-10 grid">
+        {innerhtml.map((ii, idx) => (
+          <div
+            key={idx}
+            className={`col-start-1 row-start-1 transition-opacity duration-1000 ease-in-out ${idx === currentImageIndex ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+              }`}
+          >
+            {ii}
+          </div>
+        ))}
       </div>
 
       {/* Service strip */}

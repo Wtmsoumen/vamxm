@@ -15,6 +15,26 @@ const services = [
     items: ["Vulnerability Assessment", "Penetration Testing", "Security Architecture", "Threat Monitoring"],
   },
   {
+    icon: "/AIDA.svg",
+    iconBg: "#27b83a",
+    iconBg2: "#27b83a",
+    border: "#38C045",
+    learnColor: "#27b83a",
+    title: "AI-Driven\nAgency",
+    titleUnder: "/ornamentGreen.svg",
+    items: ["Machine Learning", "Natural Language Process", "Computer Vision", "AI Integration"],
+  },
+  {
+    icon: "/website.svg",
+    iconBg: "#FA9D00",
+    iconBg2: "#FA9D00",
+    border: "#FA9D00",
+    learnColor: "#FA9D00",
+    title: "Website\nDevelopment",
+    titleUnder: "/ornamentOrange.svg",
+    items: ["Business Websites", "E-commerce & CMS", "SEO & Performance", "Modern Tech Stack"],
+  },
+  {
     icon: "/mobileApp.svg",
     iconBg: "#00bfa5",
     iconBg2: "#00bfa5",
@@ -24,21 +44,11 @@ const services = [
     titleUnder: "/ornamentCobalt.svg",
     items: ["iOS & Android Apps", "React Native Development", "AR/VR & 360° Integrations", "App Store Deployment"],
   },
-  {
-    icon: "/website.svg",
-    iconBg: "#27b83a",
-    iconBg2: "#27b83a",
-    border: "#38C045",
-    learnColor: "#27b83a",
-    title: "Website\nDevelopment",
-    titleUnder: "/ornamentGreen.svg",
-    items: ["Business Websites", "E-commerce & CMS", "SEO & Performance", "Modern Tech Stack"],
-  },
 ];
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="px-5 py-12 sm:py-16 md:px-10 md:py-24">
+    <section id="services" className="px-5 py-10 sm:py-14 md:px-10 md:py-18">
       <div className="mx-auto max-w-[1320px]">
 
         <AnimateOnScroll anim="up">
@@ -51,7 +61,7 @@ export default function ServicesSection() {
           </div>
         </AnimateOnScroll>
 
-        <div className="mt-16 grid gap-14 sm:gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+        <div className="mt-16 grid gap-14 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {services.map(({ icon, iconBg, border, learnColor, title, titleUnder, items }, i) => (
             <AnimateOnScroll key={title} anim="up" delay={i * 120}>
               <article

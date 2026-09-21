@@ -4,12 +4,12 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 export default function ExperienceSection() {
   return (
-    <section id="guide" className="px-4 py-12 sm:px-6 sm:py-16 md:px-10 md:py-24">
+    <section id="guide" className="px-4 py-10 sm:px-6 sm:py-14 md:px-10 md:py-18">
       <div className="mx-auto grid max-w-[1320px] gap-6 lg:grid-cols-[1.15fr_1fr]">
 
         {/* 360° feature card */}
         <AnimateOnScroll anim="left">
-          <div className="relative flex min-h-[360px] sm:min-h-[420px] flex-col justify-end sm:justify-center overflow-hidden rounded-[25px] p-7 sm:p-12 text-white">
+          <div className="relative flex min-h-[360px] sm:min-h-[420px] flex-col justify-end sm:justify-center overflow-hidden rounded-[25px] p-7 sm:p-12 text-white transition-all duration-500 hover:scale-103">
             <img
               src="/pvt360.png"
               alt="Immersive Durga Puja experience"
@@ -43,32 +43,36 @@ export default function ExperienceSection() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
 
           <AnimateOnScroll anim="right" delay={100}>
-            <article className="relative flex min-h-[180px] sm:min-h-[200px] items-end sm:items-center overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm">
-              <img src="/pgr.png" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
+            <article className="relative flex min-h-[180px] sm:min-h-[200px] items-end sm:items-center overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm transition-all duration-500 hover:scale-103">
+              <img src="/nnAI.png" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent" />
               <div className="relative z-10 p-5 sm:p-6">
-                <h3 className="section-title text-[20px] sm:text-[22px]">Puja Guide &amp; Routes</h3>
-                <p className="mt-2 text-sm leading-6 text-black/70 max-w-[220px]">
-                  Plan your pandal hopping with smart routes and maps.
+                <h3 className="section-title text-[20px] sm:text-[22px]">Neural Networks in AI</h3>
+                <p className="mt-2 text-sm leading-6 text-black max-w-[220px]">
+                  We're a full-service AI automation agency.
                 </p>
                 <a href="#pandals" className="mt-4 inline-flex items-center gap-2 rounded-full bg-utsav px-5 py-2.5 text-xs font-semibold text-white">
-                  View Guide <span>→</span>
+                  Consult Us<span>→</span>
                 </a>
               </div>
             </article>
           </AnimateOnScroll>
 
           <AnimateOnScroll anim="right" delay={200}>
-            <article id="events" className="relative flex min-h-[180px] sm:min-h-[200px] items-end sm:items-center overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm">
-              <img src="/ech.png" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
+            <article id="events" className="relative flex min-h-[180px] sm:min-h-[200px] items-end sm:items-center overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm transition-all duration-500 hover:scale-103">
+              <img src="/dfbwAInc.png" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent" />
               <div className="relative z-10 p-5 sm:p-6">
-                <h3 className="section-title text-[20px] sm:text-[22px]">Events &amp; Cultural<br />Highlights</h3>
-                <p className="mt-2 text-sm leading-6 text-black/70 max-w-[250px]">
-                  Discover puja events, performances and cultural programs.
+                <h3 className="section-title text-[20px] sm:text-[22px]">
+                  Discover future business
+                  <br />
+                  with AI Neuro Consulting
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-black max-w-[250px]">
+                  Where we merge cutting-edge AI technology with innovative solutions.
                 </p>
                 <a href="#gallery" className="mt-4 inline-flex items-center gap-2 rounded-full bg-utsav px-5 py-2.5 text-xs font-semibold text-white">
-                  See What&apos;s On <span>→</span>
+                  Consult Us<span>→</span>
                 </a>
               </div>
             </article>

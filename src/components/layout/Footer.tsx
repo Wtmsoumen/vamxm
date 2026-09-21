@@ -37,10 +37,10 @@ export default function Footer() {
 
   return (
     <footer id="footer" className="bg-[#0a1014] text-white">
-      <div className="mx-auto max-w-[1600px] gap-5 px-6 py-14 md:px-10 flex items-start justify-between">
+      <div className="mx-auto max-w-[1600px] gap-5 px-6 py-14 md:px-10 flex sm:flex-row flex-col flex-wrap lg:flex-nowrap items-start justify-between">
 
         {/* Brand */}
-        <div className="w-[30%]">
+        <div className="sm:w-[30%] w-full">
           <img
             src="/logo/vamxm-horizontal.png"
             alt="Utsav Verse logo"
@@ -74,7 +74,7 @@ export default function Footer() {
         <div className="border-l border-[#484E54] h-[-webkit-fill-available]" />
 
         {/* Quick Links */}
-        <div className="w-[10%]">
+        <div className="sm:w-[10%] w-full">
           <h3 className="mb-5 text-lg font-semibold">Quick Links</h3>
           <ul className="space-y-3 text-sm text-white">
             {links.map((link) => <li><Link href={link.href} className="transition hover:text-white">{link.label}</Link></li>)}
@@ -87,7 +87,7 @@ export default function Footer() {
         <div className="border-l border-[#484E54] h-[-webkit-fill-available]" />
 
         {/* Explore */}
-        <div className="w-[20%]">
+        <div className="sm:w-[20%] w-full">
           <h3 className="mb-5 text-lg font-semibold">Our Services</h3>
           <ul className="space-y-3 text-sm text-white">
             {ourServices.map((link) => <li><Link href={link.href} className="transition hover:text-white">{link.label}</Link></li>)}
@@ -100,7 +100,7 @@ export default function Footer() {
         <div className="border-l border-[#484E54] h-[-webkit-fill-available]" />
 
         {/* Contact form */}
-        <div className="w-[23%] h-[-webkit-fill-available]">
+        <div className="sm:w-[23%] w-full h-[-webkit-fill-available]">
           <h3 className="mb-5 text-lg font-semibold">Contact Us</h3>
           <form onSubmit={handleSubmit} className="flex flex-col gap-3 text-sm">
             <Link href={"#"} className="transition hover:text-white">Kolkata, West Bengal, India</Link>
@@ -117,7 +117,7 @@ export default function Footer() {
 
         <div className="border-l border-[#484E54] h-[-webkit-fill-available]" />
 
-        <div className="w-[22%] h-[-webkit-fill-available] flex items-center justify-center">
+        <div className="sm:w-[22%] w-full h-[-webkit-fill-available] flex items-center justify-center">
           <img src="/logo/utsavverse-logo.png" alt="VAMXM LOGO" width={1920} height={1080} className="w-[186px] h-[93px]" />
         </div>
       </div>

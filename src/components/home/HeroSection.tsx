@@ -50,7 +50,7 @@ export default function HeroSection() {
           <span className="block">Meets <span className="text-[#FA9D00]">AI</span></span>
         </h1>
 
-        <p className="section-title text-[#38C045] mt-2 text-[22px] xs:text-[28px] sm:text-[38px] md:text-[67px] hero-desc">
+        <p className="section-title text-[#38C045] mt-2 text-[32px] xs:text-[40px] sm:text-[56px] md:text-[90px] hero-desc">
           Intelligence
         </p>
 

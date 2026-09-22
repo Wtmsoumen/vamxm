@@ -77,7 +77,7 @@ export default function Footer() {
         <div className="sm:w-[10%] w-full">
           <h3 className="mb-5 text-lg font-semibold">Quick Links</h3>
           <ul className="space-y-3 text-sm text-white">
-            {links.map((link) => <li><Link href={link.href} className="transition hover:text-white">{link.label}</Link></li>)}
+            {links.map((link, idx) => <li key={idx}><Link href={link.href} className="transition hover:text-white">{link.label}</Link></li>)}
             {/* <li><Link href="#pandals" className="transition hover:text-white">Famous Pandals</Link></li>
             <li><Link href="#guide" className="transition hover:text-white">Puja Guide</Link></li>
             <li><Link href="#gallery" className="transition hover:text-white">Gallery</Link></li> */}
@@ -90,7 +90,7 @@ export default function Footer() {
         <div className="sm:w-[20%] w-full">
           <h3 className="mb-5 text-lg font-semibold">Our Services</h3>
           <ul className="space-y-3 text-sm text-white">
-            {ourServices.map((link) => <li><Link href={link.href} className="transition hover:text-white">{link.label}</Link></li>)}
+            {ourServices.map((link, idx) => <li key={idx}><Link href={link.href} className="transition hover:text-white">{link.label}</Link></li>)}
             {/* <li><Link href="#app" className="transition hover:text-white">Mobile App</Link></li>
             <li><Link href="#pandals" className="transition hover:text-white">Pandal 360°</Link></li>
             <li><Link href="#services" className="transition hover:text-white">Our Services</Link></li> */}

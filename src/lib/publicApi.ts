@@ -115,18 +115,19 @@ export async function getPublicHome(): Promise<unknown | null> {
   }
 }
 
-export async function getPublicPandals(page = 1, perPage = 12): Promise<{ pandals: Pandal[]; total: number | null }> {
+export async function getPublicPandals(page = 1, perPage = 12): Promise<{ pandals: any; }> {
   try {
-    const payload = await getJson(`/public/pandals?page=${page}&per_page=${perPage}&sort=popular`);
-    const items = listFrom(payload);
-    const envelope = record(payload);
-    const data = record(envelope.data);
-    const meta = record(envelope.meta ?? data.meta ?? envelope.pagination ?? data.pagination);
-    const total = firstNumber(meta, "total", "total_count") ?? firstNumber(envelope, "total", "total_count") ?? null;
-    return { pandals: items.map(normalizePandal).filter((pandal) => pandal.id), total };
+    const payload: any = await getJson(`/mobile/tours`);
+    // const items = listFrom(payload);
+    // console.log(items, "__payload_");
+    // const envelope = record(payload);
+    // const data = record(envelope.data);
+    // const meta = record(envelope.meta ?? data.meta ?? envelope.pagination ?? data.pagination);
+    // const total = firstNumber(meta, "total", "total_count") ?? firstNumber(envelope, "total", "total_count") ?? null;
+    return { pandals: payload.data };
   } catch (error) {
     console.error("Unable to load public pandals", error);
-    return { pandals: [], total: null };
+    return { pandals: [] };
   }
 }
 

@@ -9,7 +9,7 @@ export default async function PandalDetailPage({
 }) {
   const { id } = await params;
   const pandal = await getPublicPandal(id);
-  console.log(pandal, "pandals_id");
+  console.log(id, "pandals_id");
   if (!pandal || !pandal.published) notFound();
   return <PandalDetailClient pandal={pandal} />;
 }

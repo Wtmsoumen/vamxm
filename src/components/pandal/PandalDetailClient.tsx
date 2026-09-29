@@ -5,6 +5,10 @@ import { MapPin, Eye, ArrowLeft, Star, Image as ImageIcon } from "lucide-react";
 import { Pandal } from "@/types";
 
 export default function PandalDetailClient({ pandal }: { pandal: Pandal }) {
+
+  // console.log(pandal, "pandal");
+  const pandal_url = localStorage.getItem("pandal_index_url");
+
   return (
     <div className="min-h-screen bg-black">
       <div className="bg-white w-full h-22" />
@@ -70,7 +74,9 @@ export default function PandalDetailClient({ pandal }: { pandal: Pandal }) {
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
-                  href={`/view/${pandal.id}/index.html`}
+                  // href={`/view/${pandal.id}/index.html`}
+                  target="_blank"
+                  href={`${pandal_url}`}
                   className="inline-flex items-center gap-2 bg-gradient-to-r from-saffron to-gold text-white font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
                 >
                   <Eye className="w-4 h-4" />

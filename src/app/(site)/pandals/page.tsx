@@ -3,10 +3,10 @@ import PandalCard from "@/components/pandal/PandalCard";
 import { getPublicPandals } from "@/lib/publicApi";
 
 export default async function PandalsPage() {
-  const { pandals, total } = await getPublicPandals();
-  const allSorted = pandals.filter((pandal) => pandal.published).sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
+  const { pandals } = await getPublicPandals();
+  const allSorted = pandals
 
-  console.log(pandals, total, "pandals_total");
+  console.log(pandals, "pandals_total");
 
   return (
     <div className="min-h-screen bg-white">
@@ -25,14 +25,14 @@ export default async function PandalsPage() {
       {/* Count */}
       <div className="max-w-7xl mx-auto px-6 pt-6">
         <p className="text-xs text-black uppercase tracking-widest">
-          Showing {allSorted.length}{total == null ? "" : ` of ${total}`} pandals
+          Showing {allSorted.length} pandals
         </p>
       </div>
 
       {/* Grid */}
       <div className="max-w-7xl mx-auto px-6 py-8 pb-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-          {allSorted.map((p, i) => {
+          {allSorted.map((p: any, i: number) => {
             const rank = i + 1;
             return (
               <div key={p.id} className="shadow-sm hover:shadow-lg rounded-xl overflow-hidden transition-all duration-300">

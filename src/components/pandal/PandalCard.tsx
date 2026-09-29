@@ -4,16 +4,20 @@ import Link from "next/link";
 import { Eye, Flame } from "lucide-react";
 import { Pandal } from "@/types";
 
-export default function PandalCard({ pandal, rank }: { pandal: Pandal; rank?: number }) {
+export default function PandalCard({ pandal, rank }: { pandal: any; rank?: number }) {
   const isTop3 = rank != null && rank <= 3;
 
   return (
-    <Link href={`/pandals/${pandal.id}`} className="group block bg-white hover:bg-gray-50 transition-colors">
+    <Link
+      href={`/pandals/${pandal.pandal.slug}`}
+      onClick={() => localStorage.setItem("pandal_index_url", pandal.index_url)}
+      className="group block bg-white hover:bg-gray-50 transition-colors"
+    >
       {/* Image */}
       <div className="relative aspect-video overflow-hidden bg-gray-100">
         <img
           src={pandal.thumbnail}
-          alt={pandal.name}
+          alt={pandal.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           onError={(e) => {
             (e.target as HTMLImageElement).src = `https://placehold.co/800x450/FF6B00/fff?text=${encodeURIComponent(pandal.name)}`;
@@ -47,9 +51,9 @@ export default function PandalCard({ pandal, rank }: { pandal: Pandal; rank?: nu
       <div className="px-5 py-4 border-t border-gray-100">
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">
-            <h3 className="font-black text-gray-900 text-sm leading-tight">{pandal.name}</h3>
-            {pandal.nameBengali && (
-              <p className="text-white text-xs mt-0.5">{pandal.nameBengali}</p>
+            <h3 className="font-black text-gray-900 text-sm leading-tight">{pandal.title}</h3>
+            {pandal.description && (
+              <p className="text-gray-400 text-xs mt-0.5">{pandal.description}</p>
             )}
           </div>
           {pandal.views != null && (
@@ -59,7 +63,7 @@ export default function PandalCard({ pandal, rank }: { pandal: Pandal; rank?: nu
             </div>
           )}
         </div>
-        <p className="text-gray-400 text-xs mt-2 uppercase tracking-wide">{pandal.location}</p>
+        {/* <p className="text-gray-800 text-xs mt-2 uppercase tracking-wide">{pandal.location}</p> */}
       </div>
     </Link>
   );

@@ -5,12 +5,14 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { galleryTiles as tiles } from "@/data/gallery";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function GallerySection() {
+export default function GallerySection(data: any) {
   const [lightbox, setLightbox] = useState<number | null>(null);
 
+  console.log(data?.data, "dataG__");
+
   const close = useCallback(() => setLightbox(null), []);
-  const prev = useCallback(() => setLightbox((i) => (i !== null ? (i - 1 + tiles.length) % tiles.length : null)), []);
-  const next = useCallback(() => setLightbox((i) => (i !== null ? (i + 1) % tiles.length : null)), []);
+  const prev = useCallback(() => setLightbox((i) => (i !== null ? (i - 1 + data?.data?.length) % data?.data?.length : null)), []);
+  const next = useCallback(() => setLightbox((i) => (i !== null ? (i + 1) % data?.data?.length : null)), []);
 
   useEffect(() => {
     if (lightbox === null) return;
@@ -29,7 +31,7 @@ export default function GallerySection() {
 
   return (
     <>
-      <section id="gallery" className="px-4 py-12 sm:px-6 md:px-10 md:py-20">
+      <section id="gallery" className="px-4 py-6 sm:px-6 md:px-10 md:py-10">
         <div className="mx-auto max-w-[1320px]">
 
           <AnimateOnScroll anim="up">
@@ -41,23 +43,23 @@ export default function GallerySection() {
             </div>
           </AnimateOnScroll>
 
-          <div className="mt-10 grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-4 md:gap-5">
-            {tiles.map(({ id, src, alt, span }, i) => (
+          <div className="mt-10 grid grid-cols-2 gap-2 md:grid-cols-4">
+            {data?.data?.length ? data?.data.map((i: any, idx: number) => (
               <AnimateOnScroll
-                key={id}
+                key={idx}
                 anim="scale"
                 delay={i * 60}
-                className={span === 2 ? "md:col-span-2 col-span-1" : ""}
+              // className={span === 2 ? "md:col-span-2 col-span-1" : ""}
               >
                 <button
                   className="gallery-tile h-[150px] w-full sm:h-[190px] md:h-[300px] cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-utsav"
-                  onClick={() => setLightbox(i)}
-                  aria-label={`Open ${alt}`}
+                  onClick={() => setLightbox(idx)}
+                  aria-label={`Open ${i?.pandal?.name}`}
                 >
-                  <img src={src} alt={alt} />
+                  <img src={i?.image} alt={i?.pandal?.name} />
                 </button>
               </AnimateOnScroll>
-            ))}
+            )) : null}
           </div>
 
         </div>
@@ -90,14 +92,14 @@ export default function GallerySection() {
           {/* Image */}
           <div className="relative max-h-[90vh] max-w-[90vw] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
             <img
-              key={lightbox}
-              src={tiles[lightbox].src}
-              alt={tiles[lightbox].alt}
+              key={data?.data[lightbox].id}
+              src={data?.data[lightbox].image}
+              alt={data?.data[lightbox].pandal?.name}
               className="max-h-[85vh] max-w-[85vw] rounded-xl object-contain shadow-2xl"
             />
-            {tiles[lightbox].alt && (
+            {data?.data[lightbox].pandal?.name && (
               <p className="absolute bottom-0 left-0 right-0 text-center text-white/70 text-sm py-3 bg-gradient-to-t from-black/60 to-transparent rounded-b-xl">
-                {tiles[lightbox].alt}
+                {data?.data[lightbox].alt}
               </p>
             )}
           </div>
@@ -113,7 +115,7 @@ export default function GallerySection() {
 
           {/* Counter */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
-            {tiles.map((_, i) => (
+            {data?.data.map((_: any, i: number) => (
               <button
                 key={i}
                 onClick={(e) => { e.stopPropagation(); setLightbox(i); }}

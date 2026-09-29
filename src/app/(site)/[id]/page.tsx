@@ -18,7 +18,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
       <nav className="mb-8 flex items-center gap-2 text-sm text-black/50">
         <Link href="/" className="hover:text-utsav">Home</Link>
         <span>/</span>
-        <Link href="/tour" className="hover:text-utsav">Pandal 360°</Link>
+        <Link href="/pandals" className="hover:text-utsav">Pandal 360°</Link>
         <span>/</span>
         <span className="text-black">{tour.title}</span>
       </nav>
@@ -63,7 +63,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
       {/* Back */}
       <div className="mt-10">
         <Link
-          href="/tour"
+          href="/pandals"
           className="inline-flex items-center gap-3 rounded-full border border-utsav px-6 py-3 text-sm font-semibold text-utsav transition hover:bg-utsav hover:text-white"
         >
           ← All Virtual Tours

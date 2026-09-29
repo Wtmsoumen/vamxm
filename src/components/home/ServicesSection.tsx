@@ -61,7 +61,7 @@ export default function ServicesSection() {
           </div>
         </AnimateOnScroll>
 
-        <div className="mt-16 grid gap-14 sm:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-12 lg:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {services.map(({ icon, iconBg, border, learnColor, title, titleUnder, items }, i) => (
             <AnimateOnScroll key={title} anim="up" delay={i * 120}>
               <article

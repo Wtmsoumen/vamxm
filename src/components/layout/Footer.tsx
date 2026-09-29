@@ -20,7 +20,7 @@ export default function Footer() {
     { label: "Home", href: "/" },
     { label: "About", href: "#about" },
     { label: "Puja Guide", href: "#guide" },
-    { label: "Pandal 360°", href: "/tour" },
+    { label: "Pandal 360°", href: "/pandals" },
     { label: "Services", href: "#services" },
     { label: "Events", href: "#events" },
     { label: "Contact Us", href: "#footer" },

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-export default function HeroSection() {
+export default function HeroSection(data: any) {
 
   // const images = ["/maaAschen.png", "/AIRobo.png", "/maaAschenMob.png", "/AIRoboMob.png"];
   const images = ["/maaAschen.png", "/AIRobo.png"];
@@ -80,6 +80,8 @@ export default function HeroSection() {
   ]
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  console.log(data?.data, "__dataB_");
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % images.length);
@@ -89,22 +91,22 @@ export default function HeroSection() {
 
   return (
     <section className="relative pt-24 md:min-h-[900px] md:pt-[220px]">
-      {images.map((img, index) => (
+      {data?.data?.length ? data?.data.map((item: any, index: number) => (
         <div
-          key={img}
+          key={index}
           className={`absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? "opacity-100" : "opacity-0"
             }`}
           style={{
-            backgroundImage: `linear-gradient(90deg, rgba(255,255,255,.04), transparent), url('${img}')`,
+            backgroundImage: `linear-gradient(90deg, rgba(255,255,255,.04), transparent), url('${item.image}')`,
             backgroundPosition: "center top",
             backgroundSize: "cover",
           }}
         />
-      ))}
+      )) : null}
 
       {/* <div className="relative z-10" dangerouslySetInnerHTML={{ __html: innerhtml[0] }} /> */}
       <div className="relative z-10 grid">
-        {innerhtml.map((ii, idx) => (
+        {/* {innerhtml.map((ii, idx) => (
           <div
             key={idx}
             className={`col-start-1 row-start-1 transition-opacity duration-1000 ease-in-out ${idx === currentImageIndex ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
@@ -112,7 +114,47 @@ export default function HeroSection() {
           >
             {ii}
           </div>
-        ))}
+        ))} */}
+        {data?.data?.length ? data?.data.map((item: any, index: number) => (<div
+          key={index}
+          className={`col-start-1 row-start-1 transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            }`}
+        >
+          <div className="relative z-10 mx-auto max-w-[1600px] px-5 sm:px-8 md:px-10 xl:px-[8.75%]">
+            <div className="max-w-[750px]">
+
+              <h1 className="section-title text-[32px] xs:text-[40px] sm:text-[56px] md:text-[90px] hero-h1">
+                {item?.title.split(" ")[0]}
+                <span className="display-gradient block">{item?.title.split(" ").slice(1, 3).join(" ")}</span>
+              </h1>
+
+              <p className="section-title mt-2 text-[22px] xs:text-[28px] sm:text-[38px] md:text-[67px] hero-desc">
+                {item?.title.split(" ").slice(3, item?.title.split(" ")?.length).join(" ")}
+              </p>
+
+              <p className="mt-4 max-w-[650px] text-sm md:text-[19px] hero-desc text-black">
+                Explore Kolkata&apos;s iconic pandals with immersive 360° tours,
+                real-time updates and a complete puja guide — all in one place.
+              </p>
+
+              <div className="mt-8 flex flex-nowrap items-center gap-3 hero-btns">
+                <a
+                  href="#pandals"
+                  className="red-gradient inline-flex h-12 sm:h-[54px] items-center justify-center rounded-full px-6 sm:px-8 text-xs sm:text-sm font-semibold text-white shadow-md transition hover:brightness-110"
+                >
+                  Explore Pandals <span className="ml-3">→</span>
+                </a>
+                <a
+                  href="#guide"
+                  className="inline-flex h-12 sm:h-[54px] items-center justify-center gap-3 rounded-full border border-utsav bg-white px-5 sm:px-6 text-xs sm:text-sm font-semibold text-black transition hover:bg-red-50"
+                >
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-utsav text-white text-xs">▶</span>
+                  Watch Video
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>)) : null}
       </div>
 
       {/* Service strip */}

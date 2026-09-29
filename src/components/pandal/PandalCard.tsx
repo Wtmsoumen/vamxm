@@ -23,11 +23,7 @@ export default function PandalCard({ pandal, rank }: { pandal: Pandal; rank?: nu
 
         {/* Rank badge */}
         {rank != null && (
-          <div className={`absolute top-3 left-3 w-8 h-8 flex items-center justify-center text-sm font-black rounded ${rank === 1 ? "bg-saffron text-white" :
-            rank === 2 ? "bg-gray-600 text-white" :
-              rank === 3 ? "bg-amber-700 text-white" :
-                "bg-black/50 text-white/60"
-            }`}>
+          <div className={`absolute top-3 left-3 w-8 h-8 flex items-center justify-center text-sm font-black rounded bg-saffron text-white`}>
             {rank}
           </div>
         )}
@@ -63,7 +59,7 @@ export default function PandalCard({ pandal, rank }: { pandal: Pandal; rank?: nu
             </div>
           )}
         </div>
-        <p className="text-gray-300 text-xs mt-2 uppercase tracking-wide">{pandal.location}</p>
+        <p className="text-gray-400 text-xs mt-2 uppercase tracking-wide">{pandal.location}</p>
       </div>
     </Link>
   );

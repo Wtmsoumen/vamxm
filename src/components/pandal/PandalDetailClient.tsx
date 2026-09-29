@@ -7,19 +7,22 @@ import { Pandal } from "@/types";
 export default function PandalDetailClient({ pandal }: { pandal: Pandal }) {
   return (
     <div className="min-h-screen bg-black">
+      <div className="bg-white w-full h-22" />
       {/* Hero */}
       <div className="relative h-[50vh] sm:h-[60vh] overflow-hidden bg-zinc-900">
         <img
           src={pandal.thumbnail}
           alt={pandal.name}
+          width={1920}
+          height={1080}
           className="w-full h-full object-cover"
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = "none";
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10" />
+        {/* <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10" /> */}
 
-        <div className="absolute top-20 left-6">
+        <div className="absolute top-10 left-6">
           <Link
             href="/pandals"
             className="flex items-center justify-center w-9 h-9 bg-black/50 border border-white/20 rounded-xl text-white hover:bg-white/10 transition-all"
@@ -35,7 +38,7 @@ export default function PandalDetailClient({ pandal }: { pandal: Pandal }) {
                 <Star className="w-3 h-3 fill-black" /> Featured
               </span>
             )}
-            <span className="bg-saffron/20 text-saffron border border-saffron/30 text-xs font-medium px-2.5 py-1 rounded-full">
+            <span className="bg-saffron text-white border border-saffron/30 text-xs font-medium px-2.5 py-1 rounded-full">
               360° Available
             </span>
             {pandal.idolPanoramaUrl && (
@@ -45,7 +48,7 @@ export default function PandalDetailClient({ pandal }: { pandal: Pandal }) {
             )}
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">{pandal.name}</h1>
-          <div className="flex items-center gap-2 text-white/60">
+          <div className="flex items-center gap-2 text-white">
             <MapPin className="w-4 h-4 text-saffron" />
             <span>{pandal.location}</span>
           </div>
@@ -57,17 +60,17 @@ export default function PandalDetailClient({ pandal }: { pandal: Pandal }) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
             <h2 className="text-xl font-bold text-white mb-4">About this Pandal</h2>
-            <p className="text-white/60 leading-relaxed mb-8">{pandal.description}</p>
+            <div className="text-white leading-relaxed mb-8" dangerouslySetInnerHTML={{ __html: pandal.description || "" }} />
 
             {/* 360° CTA */}
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8">
               <h3 className="text-white font-bold text-lg mb-2">Experience in 360°</h3>
-              <p className="text-white/50 text-sm mb-5">
+              <p className="text-white text-sm mb-5">
                 Step inside this pandal virtually. Explore every corner and witness the divine artistry of the Durga idol up close.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
-                  href={`/view/${pandal.id}`}
+                  href={`/view/${pandal.id}/index.html`}
                   className="inline-flex items-center gap-2 bg-gradient-to-r from-saffron to-gold text-white font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
                 >
                   <Eye className="w-4 h-4" />
@@ -89,7 +92,7 @@ export default function PandalDetailClient({ pandal }: { pandal: Pandal }) {
           {/* Sidebar */}
           <div>
             <div className="bg-white/5 border border-white/10 rounded-2xl p-5 mb-4">
-              <h3 className="text-white font-semibold mb-4 text-xs uppercase tracking-wider text-white/40">
+              <h3 className="text-white font-semibold mb-4 text-xs uppercase tracking-wider">
                 Pandal Info
               </h3>
               <div className="space-y-3 text-sm">
@@ -99,7 +102,7 @@ export default function PandalDetailClient({ pandal }: { pandal: Pandal }) {
                   { label: "Sponsors", value: String(pandal.sponsors.length) },
                 ].map((row) => (
                   <div key={row.label} className="flex justify-between gap-4">
-                    <span className="text-white/40">{row.label}</span>
+                    <span className="text-white">{row.label}</span>
                     <span className="text-white text-right">{row.value}</span>
                   </div>
                 ))}

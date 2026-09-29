@@ -7,7 +7,7 @@ const links = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Sponsors", href: "/sponsors" },
-  { label: "Pandal 360°", href: "/tour" },
+  { label: "Pandal 360°", href: "/pandals" },
   { label: "Services", href: "/#services" },
   { label: "Events", href: "/#events" },
   { label: "Contact Us", href: "/contact" },

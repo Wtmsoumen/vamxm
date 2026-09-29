@@ -4,7 +4,7 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 export default function ExperienceSection() {
   return (
-    <section id="guide" className="px-4 py-10 sm:px-6 sm:py-14 md:px-10 md:py-18">
+    <section id="guide" className="px-4 py-6 sm:px-6 sm:py-10 md:px-10 md:py-10">
       <div className="mx-auto grid max-w-[1320px] gap-6 lg:grid-cols-[1.15fr_1fr]">
 
         {/* 360° feature card */}
@@ -30,7 +30,7 @@ export default function ExperienceSection() {
               </p>
 
               <Link
-                href="/tour"
+                href="/pandals"
                 className="mt-6 inline-flex h-[48px] sm:h-[52px] items-center gap-4 rounded-full bg-white px-6 text-sm font-semibold text-utsav transition hover:bg-red-50"
               >
                 Start 360° Tour <span>→</span>

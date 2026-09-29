@@ -3,8 +3,20 @@ import Link from "next/link";
 import CountdownSection from "./CountdownSection";
 import { ArrowUpRight, Eye, MapPin } from "lucide-react";
 import { famousPandals as pandals } from "@/data/famousPandals";
+import { getHomePandalItems } from "@/lib/publicApi";
 
-export default function FeaturedPandals() {
+export default function FeaturedPandals({ data }: { data?: unknown }) {
+  const apiPandals = getHomePandalItems(data);
+  const featuredPandals = apiPandals.length
+    ? apiPandals.slice(0, 3).map((pandal) => ({
+        id: pandal.id,
+        name: pandal.name,
+        location: pandal.location,
+        views: (pandal.views ?? 0).toLocaleString(),
+        img: pandal.thumbnail,
+        link: `/pandals/${pandal.id}`,
+      }))
+    : pandals;
   return (
     <section
       id="pandals"
@@ -23,7 +35,7 @@ export default function FeaturedPandals() {
         </AnimateOnScroll>
 
         <div className="mt-10 grid gap-5 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {pandals.map(({ img, name, views, location, link }, i) => (
+          {featuredPandals.map(({ img, name, views, location, link }, i) => (
             <AnimateOnScroll key={name} anim="up" delay={i * 100}>
               <article className="pandal-card group hover:rounded-bl-[200px]! transition-all! duration-300! bg-white hover:bg-linear-to-b! from-[#F88C21]! to-[#D3111D]!">
                 <div className="p-5 sm:p-6">

@@ -7,17 +7,20 @@ import ExperienceSection from "@/components/home/ExperienceSection";
 import GallerySection from "@/components/home/GallerySection";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import ContactSection from "@/components/home/ContactSection";
+import { getPublicHome } from "@/lib/publicApi";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const homeData: any = await getPublicHome();
+  console.log(homeData?.data, "__homeData__");
   return (
     <>
-      <HeroSection />
+      <HeroSection data={homeData?.data?.banners} />
       <AboutSection />
-      <FeaturedPandals />
+      <FeaturedPandals data={homeData} />
       {/* <CountdownSection /> */}
       <ServicesSection />
       <ExperienceSection />
-      <GallerySection />
+      <GallerySection data={homeData?.data?.gallery} />
       <MobileAppSection />
       <ContactSection />
     </>

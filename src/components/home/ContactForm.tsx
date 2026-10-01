@@ -17,6 +17,7 @@ export default function ContactForm() {
     setSubmitting(true);
     try {
       await submitContact({ ...form, service_id: form.service_id || null, name: form.name.trim(), email: form.email.trim(), phone: form.phone.trim(), subject: form.subject.trim(), message: form.message.trim() });
+      setForm({ name: "", email: "", phone: "", service_id: "", subject: "", message: "" });
       // setSent(true);
     } catch (error) {
       setError(error instanceof Error ? error.message : "We could not send your message. Please try again.");
@@ -94,6 +95,8 @@ export default function ContactForm() {
         className="border border-gray-200 px-4 py-3.5 text-gray-900 placeholder:text-gray-400 text-sm focus:outline-none focus:border-saffron transition-colors resize-none"
         placeholder="Your Message"
       />
+
+      {sent ? <p className="text-green-500 text-sm">Thank you for contacting us. We will get back to you soon.</p> : null}
 
       <button
         type="submit"

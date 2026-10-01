@@ -19,6 +19,7 @@ export default function ContactPage() {
     setSubmitting(true);
     try {
       await submitContact({ ...form, service_id: form.service_id || null, name: form.name.trim(), email: form.email.trim(), phone: form.phone.trim(), subject: "", message: form.message.trim() });
+      setForm({ name: "", email: "", phone: "", service_id: "", subject: "", message: "" });
       // setSent(true);
     } catch (error) {
       setError(error instanceof Error ? error.message : "We could not send your message. Please try again.");
@@ -51,81 +52,81 @@ export default function ContactPage() {
           {/* ── LEFT — form + footer ── */}
           <div className="py-10 flex flex-col w-full">
 
-            {sent ? (
-              // <div className="flex flex-col gap-4 py-16 text-center">
-              //   <Send className="w-10 h-10 text-lime mx-auto" />
-              //   <h3 className="text-2xl font-black text-gray-900">Message Sent!</h3>
-              //   <p className="text-gray-500 text-sm">We'll get back to you soon.</p>
-              // </div>
-              null
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col items-end gap-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
-                  {/* Left column — stacked inputs */}
-                  <div className="flex flex-col gap-2">
-                    <input
-                      type="text"
-                      required
-                      value={form.name}
-                      onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                      className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
-                      placeholder="Your Name"
-                    />
-                    <input
-                      type="email"
-                      required
-                      value={form.email}
-                      onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                      className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
-                      placeholder="Email Address *"
-                    />
-                    <input
-                      type="tel"
-                      required
-                      value={form.phone}
-                      onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
-                      className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
-                      placeholder="Phone Number *"
-                    />
-                    <select
-                      value={service}
-                      onChange={e => { setForm(f => ({ ...f, message: "I would like to know more about " + e.target.value.replace(/[-]/g, " ") + "." })); setService(e.target.value) }}
-                      className="border rounded border-black/80 px-5 py-4 text-gray-900 text-sm focus:outline-none focus:border-black/80 transition-colors bg-white"
-                    >
-                      <option value="">Select a service (optional)</option>
-                      {contactServices.map(service => <option key={service.id} value={service.id}>{service.label}</option>)}
-                    </select>
-                    {/* <input
+            {/* {sent ? (
+              <div className="flex flex-col gap-4 py-16 text-center">
+                <Send className="w-10 h-10 text-lime mx-auto" />
+                <h3 className="text-2xl font-black text-gray-900">Message Sent!</h3>
+                <p className="text-gray-500 text-sm">We'll get back to you soon.</p>
+              </div>
+            ) : ( */}
+            <form onSubmit={handleSubmit} className="flex flex-col items-end gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
+                {/* Left column — stacked inputs */}
+                <div className="flex flex-col gap-2">
+                  <input
+                    type="text"
+                    required
+                    value={form.name}
+                    onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                    className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
+                    placeholder="Your Name"
+                  />
+                  <input
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                    className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
+                    placeholder="Email Address *"
+                  />
+                  <input
+                    type="tel"
+                    required
+                    value={form.phone}
+                    onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
+                    className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
+                    placeholder="Phone Number *"
+                  />
+                  <select
+                    value={service}
+                    onChange={e => { setForm(f => ({ ...f, message: "I would like to know more about " + e.target.value.replace(/[-]/g, " ") + "." })); setService(e.target.value) }}
+                    className="border rounded border-black/80 px-5 py-4 text-gray-900 text-sm focus:outline-none focus:border-black/80 transition-colors bg-white"
+                  >
+                    <option value="">Select a service (optional)</option>
+                    {contactServices.map(service => <option key={service.id} value={service.id}>{service.label}</option>)}
+                  </select>
+                  {/* <input
                       type="text"
                       value={form.subject}
                       onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
                       className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
                       placeholder="Subject (optional)"
                     /> */}
-                  </div>
-
-                  {/* Right column — message */}
-                  <textarea
-                    required
-                    rows={6}
-                    value={form.message}
-                    onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                    className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors resize-none"
-                    placeholder="Your Message"
-                  />
                 </div>
 
-                {error && <p role="alert" className="w-full text-sm text-red-600">{error}</p>}
+                {/* Right column — message */}
+                <textarea
+                  required
+                  rows={6}
+                  value={form.message}
+                  onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                  className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors resize-none"
+                  placeholder="Your Message"
+                />
+              </div>
 
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-1/2! red-gradient rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110"
-                >
-                  {submitting ? "Sending…" : "Send Message"}
-                </button>
-              </form>
-            )}
+              {error && <p role="alert" className="w-full text-sm text-red-600">{error}</p>}
+              {sent ? <p className="text-green-500 text-sm">Thank you for contacting us. We will get back to you soon.</p> : null}
+
+              <button
+                type="submit"
+                disabled={submitting}
+                className="w-1/2! red-gradient rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110"
+              >
+                {submitting ? "Sending…" : "Send Message"}
+              </button>
+            </form>
+            {/* )} */}
           </div>
 
           {/* ── RIGHT — contact info + VR headset ── */}

@@ -39,16 +39,16 @@ export default function ContactForm() {
   // }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+    <form onSubmit={handleSubmit} className="flex items-end flex-col gap-2">
       {/* <p className="text-black text-xs font-black uppercase tracking-[0.3em] mb-2">Send a Message</p> */}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
         <input
           type="text"
           required
           value={form.name}
           onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-          className="border border-gray-200 px-4 py-3.5 text-gray-900 placeholder:text-gray-400 text-sm focus:outline-none focus:border-saffron transition-colors"
+          className="border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 placeholder:text-gray-600 text-sm focus:outline-none focus:border-saffron transition-colors"
           placeholder="Your Name"
         />
         <input
@@ -56,7 +56,7 @@ export default function ContactForm() {
           required
           value={form.email}
           onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-          className="border border-gray-200 px-4 py-3.5 text-gray-900 placeholder:text-gray-400 text-sm focus:outline-none focus:border-saffron transition-colors"
+          className="border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 placeholder:text-gray-600 text-sm focus:outline-none focus:border-saffron transition-colors"
           placeholder="Email Address *"
         />
         <input
@@ -64,13 +64,13 @@ export default function ContactForm() {
           required
           value={form.phone}
           onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
-          className="border border-gray-200 px-4 py-3.5 text-gray-900 placeholder:text-gray-400 text-sm focus:outline-none focus:border-saffron transition-colors"
+          className="border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 placeholder:text-gray-600 text-sm focus:outline-none focus:border-saffron transition-colors"
           placeholder="Phone Number *"
         />
         <select
           value={service}
           onChange={e => { setForm(f => ({ ...f, message: "I would like to know more about " + e.target.value.replace(/[-]/g, " ") + "." })); setService(e.target.value) }}
-          className="border border-gray-200 px-4 py-3.5 text-gray-900 text-sm focus:outline-none focus:border-saffron transition-colors bg-white"
+          className="border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 text-sm focus:outline-none focus:border-saffron transition-colors bg-white"
         >
           <option value="">Select a service (optional)</option>
           {contactServices.map(service => <option key={service.id} value={service.id}>{service.label}</option>)}
@@ -81,7 +81,7 @@ export default function ContactForm() {
         type="text"
         value={form.subject}
         onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
-        className="border border-gray-200 px-4 py-3.5 text-gray-900 placeholder:text-gray-400 text-sm focus:outline-none focus:border-saffron transition-colors"
+        className="border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 placeholder:text-gray-600 text-sm focus:outline-none focus:border-saffron transition-colors"
         placeholder="Subject (optional)"
       /> */}
 
@@ -92,19 +92,18 @@ export default function ContactForm() {
         rows={2}
         value={form.message}
         onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-        className="border border-gray-200 px-4 py-3.5 text-gray-900 placeholder:text-gray-400 text-sm focus:outline-none focus:border-saffron transition-colors resize-none"
+        className="w-full border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 placeholder:text-gray-600 text-sm focus:outline-none focus:border-saffron transition-colors resize-none"
         placeholder="Your Message"
       />
 
-      {sent ? <p className="text-green-500 text-sm">Thank you for contacting us. We will get back to you soon.</p> : null}
+      {sent ? <div className="text-green-500 text-sm">Thank you for contacting us. We will get back to you soon. <button className="text-green-500 text-sm" onClick={() => setSent(false)}>X</button></div> : null}
 
       <button
         type="submit"
         disabled={submitting}
-        className="flex items-center justify-center gap-2 bg-saffron text-white font-black text-xs uppercase tracking-widest py-4 hover:bg-gray-900 transition-colors"
+        className="w-fit red-gradient hidden shrink-0 rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110 md:inline-flex gap-2 items-center"
       >
-        <Send className="w-4 h-4" />
-        {submitting ? "Sending…" : "Send Message"}
+        <Send className="w-4 h-4" /> {submitting ? "Sending…" : "Send Message"}
       </button>
     </form>
   );

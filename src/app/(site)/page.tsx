@@ -21,7 +21,7 @@ export default async function HomePage() {
       <ServicesSection />
       <ExperienceSection />
       <GallerySection data={homeData?.data?.gallery} />
-      <MobileAppSection />
+      <MobileAppSection data={homeData?.data?.app_downloads} />
       <ContactSection />
     </>
   );

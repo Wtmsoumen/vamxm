@@ -1,6 +1,8 @@
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
+import Link from "next/link";
 
-export default function MobileAppSection() {
+export default function MobileAppSection(data: any) {
+  console.log(data?.data, "__data__");
   return (
     <section
       id="app"
@@ -27,12 +29,13 @@ export default function MobileAppSection() {
             <strong>Android and iOS.</strong>
           </p>
           <div className="mt-8 flex justify-center gap-3 flex-wrap">
-            <a href="#" className="inline-flex items-center">
-              <img src="/googlePlay.svg" alt="Get it on Google Play" className="h-10 sm:h-12 w-auto" />
-            </a>
-            <a href="#" className="inline-flex items-center">
+            {data?.data?.map((v: any, i: number) =>
+              <Link key={i} target="_blank" href={v?.url} className="inline-flex items-center">
+                <img src={v?.platform === "Android" ? "/googlePlay.svg" : "/appStore.svg"} alt="Get it on Google Play" className="h-10 sm:h-12 w-auto" />
+              </Link>)}
+            {/* <Link href={data?.data?.[1]?.url} className="inline-flex items-center">
               <img src="/appStore.svg" alt="Download on the App Store" className="h-10 sm:h-12 w-auto" />
-            </a>
+            </Link> */}
           </div>
         </AnimateOnScroll>
 

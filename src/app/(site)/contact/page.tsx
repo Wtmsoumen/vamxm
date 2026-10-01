@@ -4,14 +4,26 @@ import { useState } from "react";
 import { MapPin, Send } from "lucide-react";
 import Link from "next/link";
 import MobileAppSection from "@/components/home/MobileAppSection";
+import { contactServices, submitContact } from "@/lib/contact";
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", service_id: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
+    setError("");
+    setSubmitting(true);
+    try {
+      await submitContact({ ...form, name: form.name.trim(), email: form.email.trim(), phone: form.phone.trim(), subject: form.subject.trim(), message: form.message.trim() });
+      setSent(true);
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "We could not send your message. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -66,11 +78,29 @@ export default function ContactPage() {
                       placeholder="Email Address *"
                     />
                     <input
+                      type="tel"
+                      required
+                      value={form.phone}
+                      onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
+                      className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
+                      placeholder="Phone Number *"
+                    />
+                    <select
+                      required
+                      value={form.service_id}
+                      onChange={e => setForm(f => ({ ...f, service_id: e.target.value }))}
+                      className="border rounded border-black/80 px-5 py-4 text-gray-900 text-sm focus:outline-none focus:border-black/80 transition-colors bg-white"
+                    >
+                      <option value="">Select a service *</option>
+                      {contactServices.map(service => <option key={service.id} value={service.id}>{service.label}</option>)}
+                    </select>
+                    <input
                       type="text"
+                      required
                       value={form.subject}
                       onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
                       className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
-                      placeholder="Subject"
+                      placeholder="Subject *"
                     />
                   </div>
 
@@ -85,11 +115,14 @@ export default function ContactPage() {
                   />
                 </div>
 
+                {error && <p role="alert" className="w-full text-sm text-red-600">{error}</p>}
+
                 <button
                   type="submit"
+                  disabled={submitting}
                   className="w-1/2! red-gradient rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110"
                 >
-                  Send Message
+                  {submitting ? "Sending…" : "Send Message"}
                 </button>
               </form>
             )}

@@ -2,7 +2,7 @@ export interface ContactSubmission {
   name: string;
   email: string;
   phone: string;
-  service_id: string;
+  service_id: string | null;
   subject: string;
   message: string;
 }

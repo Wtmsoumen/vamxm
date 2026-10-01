@@ -9,6 +9,7 @@ import { contactServices, submitContact } from "@/lib/contact";
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", service_id: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [service, setService] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
@@ -17,7 +18,7 @@ export default function ContactPage() {
     setError("");
     setSubmitting(true);
     try {
-      await submitContact({ ...form, name: form.name.trim(), email: form.email.trim(), phone: form.phone.trim(), subject: form.subject.trim(), message: form.message.trim() });
+      await submitContact({ ...form, service_id: form.service_id || null, name: form.name.trim(), email: form.email.trim(), phone: form.phone.trim(), subject: "", message: form.message.trim() });
       setSent(true);
     } catch (error) {
       setError(error instanceof Error ? error.message : "We could not send your message. Please try again.");
@@ -86,22 +87,20 @@ export default function ContactPage() {
                       placeholder="Phone Number *"
                     />
                     <select
-                      required
-                      value={form.service_id}
-                      onChange={e => setForm(f => ({ ...f, service_id: e.target.value }))}
+                      value={service}
+                      onChange={e => { setForm(f => ({ ...f, message: "I would like to know more about " + e.target.value.replace(/[-]/g, " ") + "." })); setService(e.target.value) }}
                       className="border rounded border-black/80 px-5 py-4 text-gray-900 text-sm focus:outline-none focus:border-black/80 transition-colors bg-white"
                     >
-                      <option value="">Select a service *</option>
+                      <option value="">Select a service (optional)</option>
                       {contactServices.map(service => <option key={service.id} value={service.id}>{service.label}</option>)}
                     </select>
-                    <input
+                    {/* <input
                       type="text"
-                      required
                       value={form.subject}
                       onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
                       className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
-                      placeholder="Subject *"
-                    />
+                      placeholder="Subject (optional)"
+                    /> */}
                   </div>
 
                   {/* Right column — message */}

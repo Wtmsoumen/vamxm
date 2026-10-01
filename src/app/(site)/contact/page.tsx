@@ -19,7 +19,7 @@ export default function ContactPage() {
     setSubmitting(true);
     try {
       await submitContact({ ...form, service_id: form.service_id || null, name: form.name.trim(), email: form.email.trim(), phone: form.phone.trim(), subject: "", message: form.message.trim() });
-      setSent(true);
+      // setSent(true);
     } catch (error) {
       setError(error instanceof Error ? error.message : "We could not send your message. Please try again.");
     } finally {
@@ -52,11 +52,12 @@ export default function ContactPage() {
           <div className="py-10 flex flex-col w-full">
 
             {sent ? (
-              <div className="flex flex-col gap-4 py-16 text-center">
-                <Send className="w-10 h-10 text-lime mx-auto" />
-                <h3 className="text-2xl font-black text-gray-900">Message Sent!</h3>
-                <p className="text-gray-500 text-sm">We'll get back to you soon.</p>
-              </div>
+              // <div className="flex flex-col gap-4 py-16 text-center">
+              //   <Send className="w-10 h-10 text-lime mx-auto" />
+              //   <h3 className="text-2xl font-black text-gray-900">Message Sent!</h3>
+              //   <p className="text-gray-500 text-sm">We'll get back to you soon.</p>
+              // </div>
+              null
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col items-end gap-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">

@@ -88,7 +88,8 @@ export default function ViewerPage({ pandal }: { pandal: Pandal }) {
       <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-b from-black/90 to-transparent absolute top-0 left-0 right-0 z-10">
         <div className="flex items-center gap-3">
           <Link
-            href={`/pandals/${pandal.id}`}
+            // href={`/pandals/${pandal.id}`}
+            href={`/${pandal.id}`}
             className="w-9 h-9 flex items-center justify-center bg-black/60 border border-white/20 rounded-xl text-white hover:bg-white/10 transition-all"
           >
             <ArrowLeft className="w-4 h-4" />

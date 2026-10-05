@@ -1,74 +1,38 @@
 import { notFound } from "next/navigation";
-import PanoramaViewer from "@/components/ui/PanoramaViewer";
-import Link from "next/link";
-import { tours } from "@/data/tours";
+import PandalDetailClient from "@/components/pandal/PandalDetailClient";
+import { getPublicPandal, getPublicPandals } from "@/lib/publicApi";
 
-export function generateStaticParams() {
-  return tours.map((t) => ({ id: t.id }));
+function toSlug(value: string) {
+  return value
+    .normalize("NFKD")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 }
 
-export default async function TourPage({ params }: { params: Promise<{ id: string }> }) {
+export async function generateStaticParams() {
+  const { pandals } = await getPublicPandals();
+  const slugs = Array.isArray(pandals)
+    ? pandals.flatMap((pandal: Record<string, unknown>) => {
+      const id = [pandal.slug, pandal.tour_slug, pandal.url_slug, pandal.id]
+        .find((value): value is string | number => typeof value === "string" || typeof value === "number");
+      const name = typeof pandal.name === "string" ? toSlug(pandal.name) : "";
+      return [id == null ? "" : String(id), name].filter(Boolean);
+    })
+    : [];
+
+  // Keep this known public link buildable if the API is temporarily unavailable
+  // while static params are being generated.
+  return [...new Set([...slugs, "santosh-mitra-square", "college-square", "baghbazar-sarbojanin"])].map((id) => ({ id }));
+}
+
+export default async function PandalDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
-  const tour = tours.find((t) => t.id === id);
-  if (!tour) notFound();
-
-  return (
-    <main className="mx-auto max-w-[1320px] px-5 py-20 md:px-10">
-      {/* Breadcrumb */}
-      <nav className="mb-8 flex items-center gap-2 text-sm text-black/50">
-        <Link href="/" className="hover:text-utsav">Home</Link>
-        <span>/</span>
-        <Link href="/pandals" className="hover:text-utsav">Pandal 360°</Link>
-        <span>/</span>
-        <span className="text-black">{tour.title}</span>
-      </nav>
-
-      {/* Header */}
-      <div className="mb-8">
-        <p className="section-kicker">Virtual Tour</p>
-        <h1 className="section-title mt-2 text-[36px] sm:text-[48px] md:text-[60px]">
-          {tour.title}
-        </h1>
-        <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-black/60">
-          <span className="flex items-center gap-2"><span className="text-utsav">⌖</span>{tour.location}</span>
-          <span className="flex items-center gap-2"><span className="text-utsav">◉</span>{tour.nodes} 360° Views</span>
-        </div>
-        <p className="mt-4 max-w-[600px] text-base leading-7 text-black/70">{tour.description}</p>
-      </div>
-
-      {/* 360° Viewer */}
-      <PanoramaViewer
-        tourPath={tour.path}
-        title={tour.title}
-      />
-      <div className="mt-3 flex justify-end">
-        <a
-          href={tour.path}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-utsav hover:underline"
-        >
-          Open in new tab ↗
-        </a>
-      </div>
-
-      {/* Tips */}
-      <div className="mt-6 flex flex-wrap gap-4 text-sm text-black/55">
-        <span>🖱 Drag to look around</span>
-        <span>🔍 Scroll to zoom</span>
-        <span>📍 Click hotspots to move</span>
-        <span>⛶ Fullscreen button for immersive view</span>
-      </div>
-
-      {/* Back */}
-      <div className="mt-10">
-        <Link
-          href="/pandals"
-          className="inline-flex items-center gap-3 rounded-full border border-utsav px-6 py-3 text-sm font-semibold text-utsav transition hover:bg-utsav hover:text-white"
-        >
-          ← All Virtual Tours
-        </Link>
-      </div>
-    </main>
-  );
+  const pandal = await getPublicPandal(id);
+  if (!pandal || !pandal.published) notFound();
+  return <PandalDetailClient pandal={pandal} />;
 }

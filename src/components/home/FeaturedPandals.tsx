@@ -14,7 +14,8 @@ export default function FeaturedPandals({ data }: { data?: any }) {
       location: pandal.location,
       views: (pandal.views ?? 0).toLocaleString(),
       img: pandal.thumbnail,
-      link: `/pandals/${pandal.id}`,
+      // link: `/pandals/${pandal.id}`,
+      link: `/${pandal.id}`,
     }))
     : pandals;
   console.log(data?.data?.featured_pandals, "apiPandals");
@@ -59,7 +60,8 @@ export default function FeaturedPandals({ data }: { data?: any }) {
                     className="h-full w-full object-cover rounded-xl group-hover:rounded-bl-[200px]! transition-all! duration-300!"
                   />
                   <Link
-                    href={`/pandals/${v?.slug}`}
+                    // href={`/pandals/${v?.slug}`}
+                    href={`/${v?.slug}`}
                     className="bg-[#FCEDEF] invisible group-hover:visible p-2 w-1 h-1 group-hover:w-28 group-hover:h-28 absolute bottom-0 left-0 transition-all duration-300 rounded-full"
                   >
                     <div className="hover:rotate-45 transition-all duration-300 bg-linear-to-b from-[#D80117] to-[#72010C] w-full h-full rounded-full flex items-center justify-center">

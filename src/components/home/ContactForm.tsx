@@ -7,7 +7,6 @@ import { contactServices, submitContact } from "@/lib/contact";
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", service_id: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
-  const [service, setService] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
@@ -68,8 +67,8 @@ export default function ContactForm() {
           placeholder="Phone Number *"
         />
         <select
-          value={service}
-          onChange={e => { setForm(f => ({ ...f, message: "I would like to know more about " + e.target.value.replace(/[-]/g, " ") + "." })); setService(e.target.value) }}
+          value={form.service_id}
+          onChange={e => setForm(f => ({ ...f, service_id: e.target.value }))}
           className="border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 text-sm focus:outline-none focus:border-saffron transition-colors bg-white"
         >
           <option value="">Select a service (optional)</option>
@@ -77,13 +76,13 @@ export default function ContactForm() {
         </select>
       </div>
 
-      {/* <input
+      <input
         type="text"
         value={form.subject}
         onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
-        className="border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 placeholder:text-gray-600 text-sm focus:outline-none focus:border-saffron transition-colors"
+        className="w-full border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 placeholder:text-gray-600 text-sm focus:outline-none focus:border-saffron transition-colors"
         placeholder="Subject (optional)"
-      /> */}
+      />
 
       {/* {error && <p role="alert" className="text-sm text-red-600">{error}</p>} */}
 

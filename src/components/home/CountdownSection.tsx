@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
-const PUJA_DATE = new Date("2026-10-17T00:00:00+05:30").getTime();
+const PUJA_DATE = new Date("2026-10-16T00:00:00+05:30").getTime();
 
 function pad(n: number) { return String(n).padStart(2, "0"); }
 

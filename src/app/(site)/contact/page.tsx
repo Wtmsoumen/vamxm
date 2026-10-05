@@ -9,7 +9,6 @@ import { contactServices, submitContact } from "@/lib/contact";
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", service_id: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
-  const [service, setService] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
@@ -88,20 +87,20 @@ export default function ContactPage() {
                     placeholder="Phone Number *"
                   />
                   <select
-                    value={service}
-                    onChange={e => { setForm(f => ({ ...f, message: "I would like to know more about " + e.target.value.replace(/[-]/g, " ") + "." })); setService(e.target.value) }}
+                    value={form.service_id}
+                    onChange={e => setForm(f => ({ ...f, service_id: e.target.value }))}
                     className="border rounded border-black/80 px-5 py-4 text-gray-900 text-sm focus:outline-none focus:border-black/80 transition-colors bg-white"
                   >
                     <option value="">Select a service (optional)</option>
                     {contactServices.map(service => <option key={service.id} value={service.id}>{service.label}</option>)}
                   </select>
-                  {/* <input
-                      type="text"
-                      value={form.subject}
-                      onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
-                      className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
-                      placeholder="Subject (optional)"
-                    /> */}
+                  <input
+                    type="text"
+                    value={form.subject}
+                    onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
+                    className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
+                    placeholder="Subject (optional)"
+                  />
                 </div>
 
                 {/* Right column — message */}

@@ -129,7 +129,7 @@ export default function Footer() {
           </div>
           <img src={"/durgaLotus.png"} alt="durgaLotus" width={1920} height={1080} className="w-[80px] h-[80px] absolute -top-6 left-[50%] right-[50%]" />
           <div className="text-center">
-            <Link href="#" className="text-white">Privacy Policy</Link>  |  <Link href="#" className="text-white">Terms of Service</Link> | <Link href="#" className="text-white">Sitemap</Link>
+            <Link href="/privacy-policy" className="text-white">Privacy Policy</Link>  |  <Link href="/terms-and-conditions" className="text-white">Terms of Service</Link> | <Link href="#" className="text-white">Sitemap</Link>
           </div>
         </div>
       </div>

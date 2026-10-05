@@ -1,48 +1,47 @@
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import Image from "next/image";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import ContactSection from "@/components/home/ContactSection";
 
 const sponsors = [
-  { name: "Bengal Heritage Foundation", tier: "Platinum", desc: "Cultural preservation partner." },
-  { name: "Kolkata Times", tier: "Gold", desc: "Media partner for Durga Puja coverage." },
-  { name: "Puja Bazar", tier: "Gold", desc: "Official retail sponsor." },
-  { name: "Eastern Railways", tier: "Silver", desc: "Transportation partner." },
-  { name: "Mishti Hub", tier: "Silver", desc: "Sweet sponsor of the festival." },
-  { name: "Ananda Bazaar Digital", tier: "Bronze", desc: "Digital media partner." },
+  { name: "Durable", logo: "/logoSponsor/DURABLE.png" },
+  { name: "OEM Linker", logo: "/logoSponsor/oem linker.png" },
+  { name: "Webtechnomind", logo: "/logoSponsor/WTM.png" },
+  { name: "Corporate Nest", logo: "/logoSponsor/CORPORATE NEST.png" },
+  { name: "Mrs Kitchen", logo: "/logoSponsor/MRS KITCHEN.png" },
+  { name: "Ghar", logo: "/logoSponsor/GHAR.png" },
+  { name: "Sthaal", logo: "/logoSponsor/Sthaal.png" },
+  { name: "Chaanghani", logo: "/logoSponsor/CHAANGHANI.png" },
+  { name: "Slick & Click", logo: "/logoSponsor/SLICK & CLICK.png" },
+  { name: "Revolucion", logo: "/logoSponsor/REVOLUCION.png" },
 ];
-
-const tierColor: Record<string, string> = {
-  Platinum: "text-blue-300 bg-blue-300/10 border-blue-300/30",
-  Gold: "text-gold bg-gold/10 border-gold/30",
-  Silver: "text-slate-400 bg-slate-400/10 border-slate-400/30",
-  Bronze: "text-orange-400 bg-orange-400/10 border-orange-400/30",
-};
 
 export default function SponsorsPage() {
   return (
     <>
       <div className="min-h-screen bg-white px-4 py-24">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <p className="text-saffron text-sm font-semibold uppercase tracking-widest mb-2">Our Partners</p>
-            <h1 className="text-4xl sm:text-5xl font-bold text-black mb-4">Sponsors</h1>
-            <p className="text-black max-w-xl mx-auto">
-              These organizations make the VaMax virtual Durga Puja experience possible.
+            <h1 className="text-4xl sm:text-5xl font-bold text-black mb-4">Our Sponsors</h1>
+            <p className="text-black/65 max-w-2xl mx-auto leading-relaxed">
+              Meet the organizations and businesses partnering with VAMXM. Their support helps us create meaningful technology and immersive cultural experiences.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
-            {sponsors.map((s) => (
-              <div key={s.name} className="bg-black/5 border border-black/10 hover:border-saffron/30 rounded-2xl p-6 transition-all">
-                <span className={`inline-block text-xs font-bold uppercase tracking-widest border rounded-full px-2 py-0.5 mb-3 ${tierColor[s.tier]}`}>
-                  {s.tier}
-                </span>
-                <h3 className="text-black font-semibold mb-2">{s.name}</h3>
-                <p className="text-black/50 text-sm mb-4">{s.desc}</p>
-                <Link href="#" className="flex items-center gap-1 text-saffron text-sm hover:underline">
-                  Visit website <ExternalLink className="w-3 h-3" />
-                </Link>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 mb-16">
+            {sponsors.map((sponsor) => (
+              <div key={sponsor.name} className="group flex min-h-40 flex-col items-center justify-center rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-saffron/40 hover:shadow-lg">
+                <div className="relative h-20 w-full">
+                  <Image
+                    src={sponsor.logo}
+                    alt={`${sponsor.name} logo`}
+                    fill
+                    sizes="(max-width: 640px) 45vw, (max-width: 1024px) 28vw, 18vw"
+                    className="object-contain"
+                  />
+                </div>
+                <h2 className="mt-4 text-center text-sm font-semibold text-black/80 group-hover:text-saffron transition-colors">{sponsor.name}</h2>
               </div>
             ))}
           </div>
@@ -50,7 +49,7 @@ export default function SponsorsPage() {
           <div className="text-center bg-black/5 border border-black/10 rounded-3xl p-10">
             <h2 className="text-2xl font-bold text-black mb-3">Become a Sponsor</h2>
             <p className="text-black/50 max-w-md mx-auto mb-6">
-              Reach millions of Durga Puja enthusiasts worldwide by sponsoring VaMax&apos;s virtual experience platform.
+              Partner with VAMXM to support technology, training and immersive cultural experiences reaching audiences around the world.
             </p>
             <Link
               href="/contact"

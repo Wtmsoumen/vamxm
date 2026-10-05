@@ -24,16 +24,11 @@ export default function AboutSection(props: any) {
           </h2>
 
           <p className="mt-6 text-[15px] leading-7 text-black/80">
-            Celebrating Durga Puja is an emotion and no one should be deprived
-            of it. The celebration starts with shopping and only ends on
-            Dashami. And we are here to bring you the complete Durga Puja
-            experience.
+            VAMXM Technologies is a Kolkata-based technology company building cybersecurity skills and protection, AI capability, and digital solutions for individuals and businesses. Our work spans training and services, digital tools, marketing and web applications, through to the immersive VR experiences where we started.
           </p>
 
           <p className="mt-4 text-[15px] leading-7 text-black/80">
-            Shop from some of the top brands, see some of the major pandals
-            of the city, offer tarpon and anjali and order bhog from your
-            favourite puja pandals.
+            We believe technology creates value when people know how to use it well. We bring training, services and products together under one roof, and act as a long-term partner to our clients.
           </p>
 
           {props.forAboutPage ? null : <Link

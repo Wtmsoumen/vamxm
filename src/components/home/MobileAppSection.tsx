@@ -10,7 +10,7 @@ export default function MobileAppSection(data: any) {
     >
       <img src="/MobileAppBg.png" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
 
-      <div className="relative mx-auto grid max-w-[1320px] items-center gap-8 grid-cols-1 md:grid-cols-3">
+      <div className="relative mx-auto max-w-[1320px] grid items-center gap-8 grid-cols-1 md:grid-cols-3">
 
         {/* Phone mockup 1 — hidden on mobile */}
         <AnimateOnScroll anim="left" className="order-2 justify-center md:order-1 hidden md:flex">

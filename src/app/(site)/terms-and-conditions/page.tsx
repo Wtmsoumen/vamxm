@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import axios from "axios";
 
 export const metadata: Metadata = {
     title: "Terms and Conditions | UtsavVerse",
@@ -6,13 +7,12 @@ export const metadata: Metadata = {
 };
 
 async function getTerms() {
-    const res = await fetch("https://vamxm.webtechnomind.in/api/v1/mobile/terms-and-conditions", {
-        next: { revalidate: 3600 },
-    });
-    if (!res.ok) {
+    try {
+        const res = await axios.get("https://vamxm.webtechnomind.in/api/v1/mobile/terms-and-conditions");
+        return res.data;
+    } catch {
         return null;
     }
-    return res.json();
 }
 
 export default async function TermsAndConditionsPage() {

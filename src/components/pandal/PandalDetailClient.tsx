@@ -2,12 +2,16 @@
 
 import Link from "next/link";
 import { MapPin, Eye, ArrowLeft, Star, Image as ImageIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Pandal } from "@/types";
 
 export default function PandalDetailClient({ pandal }: { pandal: Pandal }) {
+  const [pandalUrl, setPandalUrl] = useState(`/view/${pandal.id}`);
 
-  // console.log(pandal, "pandal");
-  const pandal_url = localStorage.getItem("pandal_index_url");
+  useEffect(() => {
+    const storedUrl = window.localStorage.getItem("pandal_index_url");
+    if (storedUrl) setPandalUrl(storedUrl);
+  }, []);
 
   return (
     <div className="min-h-screen bg-black">
@@ -76,7 +80,7 @@ export default function PandalDetailClient({ pandal }: { pandal: Pandal }) {
                 <Link
                   // href={`/view/${pandal.id}/index.html`}
                   target="_blank"
-                  href={`${pandal_url}`}
+                  href={pandalUrl}
                   className="inline-flex items-center gap-2 bg-gradient-to-r from-saffron to-gold text-white font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
                 >
                   <Eye className="w-4 h-4" />

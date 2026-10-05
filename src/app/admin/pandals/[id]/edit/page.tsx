@@ -3,6 +3,10 @@ import Link from "next/link";
 import { tours } from "@/data/tours";
 import EditTourForm from "./EditTourForm";
 
+export function generateStaticParams() {
+  return tours.map((tour) => ({ id: tour.id }));
+}
+
 export default async function EditTourPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const tour = tours.find((t) => t.id === id);

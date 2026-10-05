@@ -24,7 +24,7 @@ export default async function HomePage() {
       <ExperienceSection />
       <GallerySection data={homeData?.data?.gallery} />
       {/* sponsers image auto scroll */}
-      <SpImages />ß
+      <SpImages />
       <MobileAppSection data={homeData?.data?.app_downloads} />
       <ContactSection />
     </>

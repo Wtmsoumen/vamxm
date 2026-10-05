@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import axios from "axios";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | UtsavVerse",
@@ -6,13 +7,12 @@ export const metadata: Metadata = {
 };
 
 async function getPrivacyPolicy() {
-  const res = await fetch("https://vamxm.webtechnomind.in/api/v1/mobile/privacy-policy", {
-    next: { revalidate: 3600 },
-  });
-  if (!res.ok) {
+  try {
+    const res = await axios.get("https://vamxm.webtechnomind.in/api/v1/mobile/privacy-policy");
+    return res.data;
+  } catch {
     return null;
   }
-  return res.json();
 }
 
 export default async function PrivacyPolicyPage() {

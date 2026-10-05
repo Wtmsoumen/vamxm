@@ -2,18 +2,28 @@ import Link from "next/link";
 import Image from "next/image";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import ContactSection from "@/components/home/ContactSection";
+import CHAANGHANI from "../../../../public/logoSponsor/CHAANGHANI.png"
+import CORPORATENEST from "../../../../public/logoSponsor/CORPORATE NEST.png"
+import DURABLE from "../../../../public/logoSponsor/DURABLE.png"
+import GHAR from "../../../../public/logoSponsor/GHAR.png"
+import MRSKITCHEN from "../../../../public/logoSponsor/MRS KITCHEN.png"
+import OEMLINKER from "../../../../public/logoSponsor/oem linker.png"
+import REVOLUCION from "../../../../public/logoSponsor/REVOLUCION.png"
+import SLICKCLICK from "../../../../public/logoSponsor/SLICK & CLICK.png"
+import Sthaal from "../../../../public/logoSponsor/Sthaal.png"
+import WTM from "../../../../public/logoSponsor/WTM.png"
 
 const sponsors = [
-  { name: "Durable", logo: "/logoSponsor/DURABLE.png" },
-  { name: "OEM Linker", logo: "/logoSponsor/oem linker.png" },
-  { name: "Webtechnomind", logo: "/logoSponsor/WTM.png" },
-  { name: "Corporate Nest", logo: "/logoSponsor/CORPORATE NEST.png" },
-  { name: "Mrs Kitchen", logo: "/logoSponsor/MRS KITCHEN.png" },
-  { name: "Ghar", logo: "/logoSponsor/GHAR.png" },
-  { name: "Sthaal", logo: "/logoSponsor/Sthaal.png" },
-  { name: "Chaanghani", logo: "/logoSponsor/CHAANGHANI.png" },
-  { name: "Slick & Click", logo: "/logoSponsor/SLICK & CLICK.png" },
-  { name: "Revolucion", logo: "/logoSponsor/REVOLUCION.png" },
+  { name: "Durable", logo: DURABLE },
+  { name: "OEM Linker", logo: OEMLINKER },
+  { name: "Webtechnomind", logo: WTM },
+  { name: "Corporate Nest", logo: CORPORATENEST },
+  { name: "Mrs Kitchen", logo: MRSKITCHEN },
+  { name: "Ghar", logo: GHAR },
+  { name: "Sthaal", logo: Sthaal },
+  { name: "Chaanghani", logo: CHAANGHANI },
+  { name: "Slick & Click", logo: SLICKCLICK },
+  { name: "Revolucion", logo: REVOLUCION },
 ];
 
 export default function SponsorsPage() {

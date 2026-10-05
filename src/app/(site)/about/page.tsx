@@ -2,6 +2,7 @@ import ContactSection from "@/components/home/ContactSection";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import Image from "next/image";
 import Link from "next/link";
+import wellcomeVamxm from "../../../../public/wellcomeVamxm.png"
 import { ArrowUpRight, BrainCircuit, BriefcaseBusiness, Globe2, HeartHandshake, ShieldCheck, Sparkles } from "lucide-react";
 
 const services = [
@@ -71,7 +72,7 @@ export default function AboutPage() {
             </Link>
           </div>
           <div className="flex items-center justify-center">
-            <Image src="/wellcomeVamxm.png" alt="VAMXM Technologies" width={400} height={400} className="w-full h-auto object-contain" priority />
+            <Image src={wellcomeVamxm} alt="VAMXM Technologies" width={400} height={400} className="w-full h-auto object-contain" priority />
           </div>
         </div>
       </section>

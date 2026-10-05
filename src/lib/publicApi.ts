@@ -1,4 +1,5 @@
 import { Pandal, Sponsor, Hotspot } from "@/types";
+import axios from "axios";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
 
@@ -98,12 +99,10 @@ export function normalizePandal(value: unknown): Pandal {
     createdAt: createdAt || "",
   };
 }
-
 async function getJson(path: string): Promise<unknown> {
   if (!API_BASE_URL) throw new Error("NEXT_PUBLIC_API_URL is not configured");
-  const response = await fetch(`${API_BASE_URL}${path}`, { cache: "no-store" });
-  if (!response.ok) throw new Error(`Public API request failed (${response.status})`);
-  return response.json();
+  const response = await axios.get(`${API_BASE_URL}${path}`);
+  return response.data;
 }
 
 export async function getPublicHome(): Promise<unknown | null> {

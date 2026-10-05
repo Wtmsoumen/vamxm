@@ -13,6 +13,7 @@ export interface Pandal {
   sponsors: Sponsor[];
   hotspots: Hotspot[];
   createdAt: string;
+  visitor_count?: number | string;
 }
 
 export interface Sponsor {

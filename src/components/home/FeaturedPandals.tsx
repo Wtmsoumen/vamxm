@@ -1,9 +1,11 @@
+"use client"
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import Link from "next/link";
 import CountdownSection from "./CountdownSection";
 import { ArrowUpRight, Eye, MapPin } from "lucide-react";
 import { famousPandals as pandals } from "@/data/famousPandals";
 import { getHomePandalItems } from "@/lib/publicApi";
+import { useEffect } from "react";
 
 export default function FeaturedPandals({ data }: { data?: any }) {
   const apiPandals = getHomePandalItems(data);
@@ -19,6 +21,7 @@ export default function FeaturedPandals({ data }: { data?: any }) {
     }))
     : pandals;
   console.log(data?.data?.featured_pandals, "apiPandals");
+
   return (
     <section
       id="pandals"
@@ -81,7 +84,7 @@ export default function FeaturedPandals({ data }: { data?: any }) {
         </div> */}
       </div>
 
-      <CountdownSection />
+      <CountdownSection data={data?.data?.settings?.festival} />
     </section>
   );
 }

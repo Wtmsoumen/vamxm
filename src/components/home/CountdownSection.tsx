@@ -3,16 +3,17 @@
 import { useEffect, useState } from "react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
-const PUJA_DATE = new Date("2026-10-16T00:00:00+05:30").getTime();
+// const PUJA_DATE = new Date("2026-10-16T00:00:00+05:30").getTime();
 
 function pad(n: number) { return String(n).padStart(2, "0"); }
 
-export default function CountdownSection() {
+export default function CountdownSection({ data }: { data: any }) {
   const [time, setTime] = useState({ days: "00", hours: "00", minutes: "00", seconds: "00" });
 
   useEffect(() => {
     function tick() {
-      const remaining = PUJA_DATE - Date.now();
+      // const remaining = PUJA_DATE - Date.now();
+      const remaining = new Date(data?.start_at).getTime() - Date.now();
       if (remaining <= 0) { setTime({ days: "00", hours: "00", minutes: "00", seconds: "00" }); return; }
       setTime({
         days: pad(Math.floor(remaining / (1000 * 60 * 60 * 24))),
@@ -36,7 +37,6 @@ export default function CountdownSection() {
   return (
     <section id="countdown" className="relative overflow-hidden px-5 py-10 md:px-10 md:py-20">
       <div className="mx-auto max-w-[1000px] text-center flex flex-col items-center">
-
         <AnimateOnScroll anim="up">
           {/* <p className="section-kicker">The Celebration Awaits</p> */}
           <h2 className="section-kicker text-black! text-sm! lg:text-lg!">

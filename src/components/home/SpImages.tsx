@@ -14,7 +14,7 @@ import SLICKCLICK from "../../../public/logoSponsor/SLICK & CLICK.png"
 import Sthaal from "../../../public/logoSponsor/Sthaal.png"
 import WTM from "../../../public/logoSponsor/WTM.png"
 
-export default async function SpImages() {
+export default function SpImages() {
 
     let sponsersImages = [
         { img: CHAANGHANI, name: "CHAANGHANI" },

@@ -5,9 +5,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { faFacebook, faFacebookF, faInstagram, faLinkedinIn, faXTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
-export default function Footer() {
+export default function Footer({ data }: { data: any }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+
+  console.log(data, "_fdata_");
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -18,12 +20,12 @@ export default function Footer() {
 
   const links = [
     { label: "Home", href: "/" },
-    { label: "About", href: "#about" },
-    { label: "Puja Guide", href: "#guide" },
+    { label: "About", href: "/about" },
+    { label: "Sponsors", href: "/sponsors" },
     { label: "Pandal 360°", href: "/pandals" },
-    { label: "Services", href: "#services" },
-    { label: "Events", href: "#events" },
-    { label: "Contact Us", href: "#footer" },
+    { label: "Services", href: "/#services" },
+    { label: "Events", href: "/#events" },
+    { label: "Contact Us", href: "/contact" },
   ];
 
   const ourServices = [
@@ -34,7 +36,7 @@ export default function Footer() {
     { label: "Branding & Design", href: "#" },
     { label: "IT Consulting", href: "#" },
   ];
-
+  // console.log(data?.social_links?.length, "data?.social_links");
   return (
     <footer id="footer" className="bg-[#0a1014] text-white">
       <div className="mx-auto max-w-[1600px] gap-5 px-6 py-14 md:px-10 flex sm:flex-row flex-col flex-wrap lg:flex-nowrap items-start justify-between">
@@ -49,25 +51,19 @@ export default function Footer() {
             className="mb-5 w-[260px]"
           />
           <p className=" text-sm leading-6 text-white">
-            Building digital experiences for a brighter tomorrow.
-            Proudly based in Kolkata, for a connected world.
+            {data?.settings?.seo?.description}
           </p>
+
           <div className="mt-6 flex gap-3">
-            <Link href="#" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-sm transition text-black hover:text-white bg-white hover:bg-utsav">
-              <FontAwesomeIcon icon={faFacebookF} />
-            </Link>
-            <Link href="#" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-sm transition text-black hover:text-white bg-white hover:bg-utsav">
-              <FontAwesomeIcon icon={faInstagram} />
-            </Link>
-            <Link href="#" aria-label="Linkedin In" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-sm transition text-black hover:text-white bg-white hover:bg-utsav">
-              <FontAwesomeIcon icon={faLinkedinIn} />
-            </Link>
-            <Link href="#" aria-label="YouTube" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-sm transition text-black hover:text-white bg-white hover:bg-utsav">
-              <FontAwesomeIcon icon={faYoutube} />
-            </Link>
-            <Link href="#" aria-label="Twitter" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-sm transition text-black hover:text-white bg-white hover:bg-utsav">
-              <FontAwesomeIcon icon={faXTwitter} />
-            </Link>
+            {data?.social_links?.length ? data?.social_links.map((item: any, idx: number) =>
+              <Link key={idx} href={item?.url} target="_blank" aria-label={item?.platform} className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-sm transition text-black hover:text-white bg-white hover:bg-utsav">
+                {item?.icon === "facebook" && <FontAwesomeIcon icon={faFacebookF} />}
+                {item?.icon === "instagram" && <FontAwesomeIcon icon={faInstagram} />}
+                {item?.icon === "linkedin" && <FontAwesomeIcon icon={faLinkedinIn} />}
+                {item?.icon === "youtube" && <FontAwesomeIcon icon={faYoutube} />}
+                {item?.icon === "twitter" && <FontAwesomeIcon icon={faXTwitter} />}
+              </Link>
+            ) : null}
           </div>
         </div>
 
@@ -103,9 +99,9 @@ export default function Footer() {
         <div className="sm:w-[23%] w-full h-[-webkit-fill-available]">
           <h3 className="mb-5 text-lg font-semibold">Contact Us</h3>
           <form onSubmit={handleSubmit} className="flex flex-col gap-3 text-sm">
-            <Link href={"#"} className="transition hover:text-white">Kolkata, West Bengal, India</Link>
-            <Link href={"#"} className="transition hover:text-white">hello@vamxm.com</Link>
-            <Link href={"#"} className="transition hover:text-white">+91 98765 43210</Link>
+            <p className="transition hover:text-white">{data?.settings?.address || "Kolkata, West Bengal, India"}</p>
+            <Link href={`mailto:${data?.settings?.email}`} className="transition hover:text-white">{data?.settings?.email || "[EMAIL_ADDRESS]"}</Link>
+            <Link href={`tel:${data?.settings?.phone}`} className="transition hover:text-white">{data?.settings?.phone || "+91 98765 43210"}</Link>
             <button
               type="submit"
               className="red-gradient w-full rounded-md px-5 py-3 text-sm font-semibold text-white transition hover:brightness-110 mt-8"
@@ -125,7 +121,7 @@ export default function Footer() {
       <div className="border-t border-[#484E54]">
         <div className="relative flex items-center justify-between mx-auto max-w-[1600px] gap-10 px-6 py-5">
           <div className="text-center text-white">
-            © 2026 VAMXM. All rights reserved.
+            {data?.settings?.copyright_text}
           </div>
           <img src={"/durgaLotus.png"} alt="durgaLotus" width={1920} height={1080} className="w-[80px] h-[80px] absolute -top-6 left-[50%] right-[50%]" />
           <div className="text-center">

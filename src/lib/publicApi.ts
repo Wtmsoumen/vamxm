@@ -39,14 +39,18 @@ function firstBoolean(source: UnknownRecord, ...keys: string[]): boolean {
 function listFrom(value: unknown): unknown[] {
   if (Array.isArray(value)) return value;
   const envelope = record(value);
-  for (const key of ["data", "items", "results", "pandals"]) {
+  for (const key of ["data", "items", "results", "pandals", "tours"]) {
     if (Array.isArray(envelope[key])) return envelope[key] as unknown[];
   }
   const data = record(envelope.data);
-  for (const key of ["items", "results", "pandals"]) {
+  for (const key of ["items", "results", "pandals", "tours"]) {
     if (Array.isArray(data[key])) return data[key] as unknown[];
   }
   return [];
+}
+
+function slugify(value: string): string {
+  return value.normalize("NFKD").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
 function normalizeSponsor(value: unknown): Sponsor {
@@ -114,16 +118,10 @@ export async function getPublicHome(): Promise<unknown | null> {
   }
 }
 
-export async function getPublicPandals(page = 1, perPage = 12): Promise<{ pandals: any; }> {
+export async function getPublicPandals(page = 1, perPage = 12): Promise<{ pandals: UnknownRecord[]; }> {
   try {
-    const payload: any = await getJson(`/mobile/tours`);
-    // const items = listFrom(payload);
-    // console.log(items, "__payload_");
-    // const envelope = record(payload);
-    // const data = record(envelope.data);
-    // const meta = record(envelope.meta ?? data.meta ?? envelope.pagination ?? data.pagination);
-    // const total = firstNumber(meta, "total", "total_count") ?? firstNumber(envelope, "total", "total_count") ?? null;
-    return { pandals: payload.data };
+    const payload = await getJson(`/mobile/tours?page=${page}&per_page=${perPage}`);
+    return { pandals: listFrom(payload).map(record) };
   } catch (error) {
     console.error("Unable to load public pandals", error);
     return { pandals: [] };
@@ -134,13 +132,42 @@ export async function getPublicPandal(slug: string): Promise<Pandal | null> {
   try {
     const payload = await getJson(`/public/pandals/${encodeURIComponent(slug)}`);
     const envelope = record(payload);
-    const data = envelope.data ?? envelope.pandal ?? payload;
-    const pandal = normalizePandal(data);
-    return pandal.id ? pandal : null;
+    const data = record(envelope.data);
+    const directCandidates = [data.pandal, data.tour, envelope.pandal, envelope.tour, envelope.data, payload]
+      .filter((candidate) => candidate && typeof candidate === "object");
+
+    for (const candidate of directCandidates) {
+      const pandal = normalizePandal(candidate);
+      if (pandal.id) return pandal;
+    }
   } catch (error) {
-    console.error(`Unable to load public pandal "${slug}"`, error);
-    return null;
+    // The public detail endpoint may not contain every tour exposed by the
+    // mobile list endpoint; try that list before treating the slug as missing.
   }
+
+  try {
+    const { pandals } = await getPublicPandals(1, 1000);
+    const wantedSlug = slugify(slug);
+    const match = pandals.find((item) => {
+      const nested = [item.pandal, item.tour, item.data].map(record);
+      const candidates = [item, ...nested];
+      return candidates.some((candidate) => {
+        const explicit = firstString(candidate, "slug", "tour_slug", "url_slug");
+        const title = firstString(candidate, "name", "title");
+        return (explicit && slugify(explicit) === wantedSlug) || (title && slugify(title) === wantedSlug);
+      });
+    });
+
+    if (match) {
+      const source = record(match.pandal ?? match.tour ?? match.data ?? match);
+      const normalized = normalizePandal({ ...source, slug: firstString(source, "slug", "tour_slug", "url_slug") || slug });
+      if (normalized.id) return normalized;
+    }
+  } catch (error) {
+    console.error(`Unable to load pandal data for "${slug}"`, error);
+  }
+
+  return null;
 }
 
 export function getHomePandalItems(payload: unknown): Pandal[] {

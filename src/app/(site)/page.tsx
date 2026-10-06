@@ -1,3 +1,4 @@
+// "use client"
 import HeroSection from "@/components/home/HeroSection";
 import AboutSection from "@/components/home/AboutSection";
 import FeaturedPandals from "@/components/home/FeaturedPandals";
@@ -10,10 +11,15 @@ import ContactSection from "@/components/home/ContactSection";
 import { getPublicHome } from "@/lib/publicApi";
 import Slider from "react-slick";
 import SpImages from "@/components/home/SpImages";
+// import { useEffect } from "react";
 
 export default async function HomePage() {
   const homeData: any = await getPublicHome();
   console.log(homeData?.data, "__homeData__");
+
+  // useEffect(() => {
+  //   localStorage.setItem("pandal", JSON.stringify(homeData?.data?.featured_pandals));
+  // }, [])
   return (
     <>
       <HeroSection data={homeData?.data?.banners} />

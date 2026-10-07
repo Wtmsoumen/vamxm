@@ -17,6 +17,8 @@ export default function Footer() {
     return () => { active = false; };
   }, []);
 
+  console.log(data, "data__data");
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     alert("Thank you for contacting us!");
@@ -35,12 +37,10 @@ export default function Footer() {
   ];
 
   const ourServices = [
-    { label: "Website Development", href: "#" },
-    { label: "Mobile Application Development", href: "#" },
     { label: "Cyber Security", href: "#" },
-    { label: "Digital Marketing", href: "#" },
-    { label: "Branding & Design", href: "#" },
-    { label: "IT Consulting", href: "#" },
+    { label: "AI-Driven Agency", href: "#" },
+    { label: "Website Development", href: "#" },
+    { label: "Mobile App Development", href: "#" },
   ];
 
   return (
@@ -57,11 +57,11 @@ export default function Footer() {
             className="mb-5 w-[260px]"
           />
           <p className=" text-sm leading-6 text-white">
-            {data?.settings?.seo?.description}
+            {data?.data?.settings?.seo?.description}
           </p>
 
           <div className="mt-6 flex gap-3">
-            {data?.social_links?.length ? data?.social_links.map((item: any, idx: number) =>
+            {data?.data?.social_links?.length ? data?.data?.social_links.map((item: any, idx: number) =>
               <Link key={idx} href={item?.url} target="_blank" aria-label={item?.platform} className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-sm transition text-black hover:text-white bg-white hover:bg-utsav">
                 {item?.icon === "facebook" && <FontAwesomeIcon icon={faFacebookF} />}
                 {item?.icon === "instagram" && <FontAwesomeIcon icon={faInstagram} />}
@@ -105,15 +105,15 @@ export default function Footer() {
         <div className="sm:w-[23%] w-full h-[-webkit-fill-available]">
           <h3 className="mb-5 text-lg font-semibold">Contact Us</h3>
           <form onSubmit={handleSubmit} className="flex flex-col gap-3 text-sm">
-            <p className="transition hover:text-white">{data?.settings?.address || "Kolkata, West Bengal, India"}</p>
-            <Link href={`mailto:${data?.settings?.email}`} className="transition hover:text-white">{data?.settings?.email || "[EMAIL_ADDRESS]"}</Link>
-            <Link href={`tel:${data?.settings?.phone}`} className="transition hover:text-white">{data?.settings?.phone || "+91 98765 43210"}</Link>
-            <button
+            <p className="transition hover:text-white">{data?.data?.settings?.address || "Kolkata, West Bengal, India"}</p>
+            <Link href={`mailto:${data?.data?.settings?.email}`} className="transition hover:text-white">{data?.data?.settings?.email || "[EMAIL_ADDRESS]"}</Link>
+            <Link href={`tel:${data?.data?.settings?.phone}`} className="transition hover:text-white">{data?.data?.settings?.phone || "+91 98765 43210"}</Link>
+            {/* <button
               type="submit"
               className="red-gradient w-full rounded-md px-5 py-3 text-sm font-semibold text-white transition hover:brightness-110 mt-8"
             >
               Download Brochure
-            </button>
+            </button> */}
           </form>
         </div>
 
@@ -127,7 +127,7 @@ export default function Footer() {
       <div className="border-t border-[#484E54]">
         <div className="relative flex items-center justify-between mx-auto max-w-[1600px] gap-10 px-6 py-5">
           <div className="text-center text-white">
-            {data?.settings?.copyright_text}
+            {data?.data?.settings?.copyright_text}
           </div>
           <img src={"/durgaLotus.png"} alt="durgaLotus" width={1920} height={1080} className="w-[80px] h-[80px] absolute -top-6 left-[50%] right-[50%]" />
           <div className="text-center">

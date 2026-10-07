@@ -1,5 +1,6 @@
 "use client";
 
+import { getPublicHome } from "@/lib/publicApi";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -45,7 +46,7 @@ export default function Navbar() {
         </nav>
 
         <Link
-          href="#pandals"
+          href="#app"
           className="red-gradient hidden shrink-0 rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110 md:inline-flex"
         >
           Download Utsav verse <span className="ml-3">→</span>

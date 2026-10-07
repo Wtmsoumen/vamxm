@@ -47,8 +47,8 @@ export default function ExperienceSection() {
               <img src="/nnAI.png" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent" />
               <div className="relative z-10 p-5 sm:p-6">
-                <h3 className="section-title text-[20px] sm:text-[22px]">Neural Networks in AI</h3>
-                <p className="mt-2 text-sm leading-6 text-black max-w-[220px]">
+                <h3 className="section-title text-[20px] sm:text-[28px]">Neural Networks in AI</h3>
+                <p className="mt-2 text-base leading-6 text-black max-w-[350px]">
                   We're a full-service AI automation agency.
                 </p>
                 <a href="#pandals" className="mt-4 inline-flex items-center gap-2 rounded-full bg-utsav px-5 py-2.5 text-xs font-semibold text-white">
@@ -63,12 +63,12 @@ export default function ExperienceSection() {
               <img src="/dfbwAInc.png" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent" />
               <div className="relative z-10 p-5 sm:p-6">
-                <h3 className="section-title text-[20px] sm:text-[22px]">
+                <h3 className="section-title text-[20px] sm:text-[28px]">
                   Discover future business
                   <br />
                   with AI Neuro Consulting
                 </h3>
-                <p className="mt-2 text-sm leading-6 text-black max-w-[250px]">
+                <p className="mt-2 text-base leading-6 text-black max-w-[350px]">
                   Where we merge cutting-edge AI technology with innovative solutions.
                 </p>
                 <a href="#gallery" className="mt-4 inline-flex items-center gap-2 rounded-full bg-utsav px-5 py-2.5 text-xs font-semibold text-white">

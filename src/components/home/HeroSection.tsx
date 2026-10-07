@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 export default function HeroSection(data: any) {
@@ -138,19 +139,19 @@ export default function HeroSection(data: any) {
               </p>
 
               <div className="mt-8 flex flex-nowrap items-center gap-3 hero-btns">
-                <a
+                <Link
                   href="#pandals"
                   className="red-gradient inline-flex h-12 sm:h-[54px] items-center justify-center rounded-full px-6 sm:px-8 text-xs sm:text-sm font-semibold text-white shadow-md transition hover:brightness-110"
                 >
                   Explore Pandals <span className="ml-3">→</span>
-                </a>
-                <a
+                </Link>
+                {/* <a
                   href="#guide"
                   className="inline-flex h-12 sm:h-[54px] items-center justify-center gap-3 rounded-full border border-utsav bg-white px-5 sm:px-6 text-xs sm:text-sm font-semibold text-black transition hover:bg-red-50"
                 >
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-utsav text-white text-xs">▶</span>
                   Watch Video
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

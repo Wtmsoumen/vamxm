@@ -17,9 +17,6 @@ export default async function HomePage() {
   const homeData: any = await getPublicHome();
   console.log(homeData?.data, "__homeData__");
 
-  // useEffect(() => {
-  //   localStorage.setItem("pandal", JSON.stringify(homeData?.data?.featured_pandals));
-  // }, [])
   return (
     <>
       <HeroSection data={homeData?.data?.banners} />

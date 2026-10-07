@@ -124,12 +124,12 @@ export default function HeroSection(data: any) {
           <div className="relative z-10 mx-auto max-w-[1600px] px-5 sm:px-8 md:px-10 xl:px-[8.75%]">
             <div className="max-w-[750px]">
 
-              <h1 className="section-title text-[32px] xs:text-[40px] sm:text-[56px] md:text-[90px] hero-h1">
+              <h1 className="section-title text-[32px] xs:text-[40px] sm:text-[56px] md:text-[90px] hero-h1 capitalize">
                 {(item?.title || "").split(" ")[0]}
-                <span className="display-gradient block">{(item?.title || "").split(" ").slice(1, 3).join(" ")}</span>
+                <span className="display-gradient block capitalize">{(item?.title || "").split(" ").slice(1, 3).join(" ")}</span>
               </h1>
 
-              <p className="section-title mt-2 text-[22px] xs:text-[28px] sm:text-[38px] md:text-[67px] hero-desc">
+              <p className="section-title mt-2 text-[22px] xs:text-[28px] sm:text-[38px] md:text-[67px] hero-desc capitalize">
                 {(item?.title || "").split(" ").slice(3).join(" ")}
               </p>
 

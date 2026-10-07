@@ -185,6 +185,7 @@ export default function HeroSection(data: any) {
 
           <div className="flex items-center justify-center sm:justify-start sm:rounded-none rounded-[19px] gap-4 bg-gradient-to-b from-[#38c045] to-[#02a230] px-6 py-5 sm:py-6 text-white md:px-10">
             <div className="flex h-14 w-14 sm:h-18 sm:w-18 shrink-0 items-center justify-center rounded-full bg-white/15">
+              <img src="/digitalmarketing.svg" alt="website" width={192} height={108} className="w-[30px] sm:w-[34px] h-auto" />
             </div>
             <p className="text-base sm:text-lg font-medium leading-6 hidden sm:block">Digital<br />Marketing</p>
           </div>

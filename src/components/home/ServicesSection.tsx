@@ -48,7 +48,9 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="px-5 py-10 sm:py-14 md:px-10 md:py-18">
+    // <section id="services" className="px-5 py-10 sm:py-14 md:px-10 md:py-18">
+    <section id="services" className="px-4 py-6 sm:px-6 sm:py-10 md:px-10 md:py-10">
+
       <div className="mx-auto max-w-[1320px]">
 
         <AnimateOnScroll anim="up">

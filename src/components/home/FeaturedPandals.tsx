@@ -17,8 +17,6 @@ export default function FeaturedPandals({ data }: { data?: any }) {
     link: `/${pandal.id}`,
   }));
 
-  console.log(data?.data?.settings?.festival, "festivle");
-
   return (
     <section
       id="pandals"
@@ -81,7 +79,7 @@ export default function FeaturedPandals({ data }: { data?: any }) {
         </div> */}
       </div>
 
-      <CountdownSection data={data?.data?.settings?.festival} />
+      <CountdownSection data={data?.data?.festival} />
     </section>
   );
 }

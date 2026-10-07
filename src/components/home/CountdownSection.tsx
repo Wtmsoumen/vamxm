@@ -9,11 +9,11 @@ function pad(n: number) { return String(n).padStart(2, "0"); }
 
 export default function CountdownSection({ data }: { data: any }) {
   const [time, setTime] = useState({ days: "00", hours: "00", minutes: "00", seconds: "00" });
-  // console.log(data?.start_at, "data?.start_at");
+
   useEffect(() => {
     function tick() {
       // const remaining = PUJA_DATE - Date.now();
-      const remaining = new Date(data?.start_at).getTime() - Date.now();
+      const remaining = new Date(data?.countdown?.target_at).getTime() - Date.now();
       if (remaining <= 0) { setTime({ days: "00", hours: "00", minutes: "00", seconds: "00" }); return; }
       setTime({
         days: pad(Math.floor(remaining / (1000 * 60 * 60 * 24))),
@@ -25,7 +25,7 @@ export default function CountdownSection({ data }: { data: any }) {
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, [data?.start_at]);
+  }, [data?.countdown?.target_at]);
 
   const units = [
     { label: "Days", value: time.days },
@@ -46,14 +46,17 @@ export default function CountdownSection({ data }: { data: any }) {
         </AnimateOnScroll>
 
         <div className="mx-auto mt-12 w-full flex justify-center gap-4 sm:gap-12 md:gap-20">
-          {units.map(({ label, value }, i) => (
-            <AnimateOnScroll key={label} anim="scale" delay={i * 80} className="flex flex-col items-center">
-              <div className="rounded-full border border-utsav/20 bg-white shadow-sm w-14 h-14 sm:w-20 sm:h-20 flex justify-center items-center">
-                <div className="section-title display-gradient text-lg sm:text-2xl md:text-4xl pb-0!">{value}</div>
-              </div>
-              <p className="mt-2 text-[10px] sm:text-xs font-semibold uppercase tracking-[2px]">{label}</p>
-            </AnimateOnScroll>
-          ))}
+          {data?.todays_ritual ?
+            null
+            :
+            units.map(({ label, value }, i) => (
+              <AnimateOnScroll key={label} anim="scale" delay={i * 80} className="flex flex-col items-center">
+                <div className="rounded-full border border-utsav/20 bg-white shadow-sm w-14 h-14 sm:w-20 sm:h-20 flex justify-center items-center">
+                  <div className="section-title display-gradient text-lg sm:text-2xl md:text-4xl pb-0!">{value}</div>
+                </div>
+                <p className="mt-2 text-[10px] sm:text-xs font-semibold uppercase tracking-[2px]">{label}</p>
+              </AnimateOnScroll>
+            ))}
         </div>
       </div>
     </section>

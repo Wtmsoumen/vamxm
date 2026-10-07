@@ -42,7 +42,7 @@ export default function Footer() {
     { label: "Branding & Design", href: "#" },
     { label: "IT Consulting", href: "#" },
   ];
-  // console.log(data?.social_links?.length, "data?.social_links");
+
   return (
     <footer id="footer" className="bg-[#0a1014] text-white">
       <div className="mx-auto max-w-[1600px] gap-5 px-6 py-14 md:px-10 flex sm:flex-row flex-col flex-wrap lg:flex-nowrap items-start justify-between">

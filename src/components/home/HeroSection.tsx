@@ -90,6 +90,7 @@ export default function HeroSection(data: any) {
 
   return (
     <section className="relative pt-24 md:min-h-[900px] md:pt-[220px]">
+      <div className="h-full w-3/4 bg-linear-to-r from-white via-white/90 to-transparent absolute left-0 top-0 z-10" />
       {banners.length ? banners.map((item: any, index: number) => (
         <div
           key={index}

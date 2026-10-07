@@ -38,7 +38,6 @@ export default function PandalDetailRoute() {
         if (!normalized.id || !normalized.published) {
           throw new Error("Pandal not found");
         }
-        // console.log(response.data.data.virtual_tour.index_url, "esponse_data");
         setPandelDetails(response.data.data)
         setPandal(normalized);
       } catch (error) {

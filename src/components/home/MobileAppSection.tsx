@@ -2,7 +2,6 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import Link from "next/link";
 
 export default function MobileAppSection(data: any) {
-  console.log(data?.data, "__data__");
   return (
     <section
       id="app"

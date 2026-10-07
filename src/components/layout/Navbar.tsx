@@ -48,7 +48,7 @@ export default function Navbar() {
           href="#pandals"
           className="red-gradient hidden shrink-0 rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110 md:inline-flex"
         >
-          Explore Pandals <span className="ml-3">→</span>
+          Download Utsav verse <span className="ml-3">→</span>
         </Link>
 
         <button

@@ -13,7 +13,6 @@ export default function PandalDetailClient({ pandal, pandelDetails }: { pandal: 
     if (storedUrl) setPandalUrl(storedUrl);
   }, []);
 
-  console.log(pandelDetails, "pandal__");
 
   return (
     <div className="min-h-screen bg-black">
@@ -79,14 +78,17 @@ export default function PandalDetailClient({ pandal, pandelDetails }: { pandal: 
                 Step inside this pandal virtually. Explore every corner and witness the divine artistry of the Durga idol up close.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link
-                  target="_blank"
-                  href={`${pandelDetails.virtual_tour.index_url}`}
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-saffron to-gold text-white font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
-                >
-                  <Eye className="w-4 h-4" />
-                  Enter 360° Experience
-                </Link>
+                {pandelDetails.virtual_tour ?
+                  <Link
+                    target="_blank"
+                    href={`${pandelDetails.virtual_tour.index_url}`}
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-saffron to-gold text-white font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
+                  >
+                    <Eye className="w-4 h-4" />
+                    Enter 360° Experience
+                  </Link>
+                  :
+                  null}
                 {pandal.idolPanoramaUrl && (
                   <Link
                     href={`/view/${pandal.id}?view=idol`}

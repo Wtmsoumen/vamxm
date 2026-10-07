@@ -9,11 +9,15 @@ import { Pandal } from "@/types";
 
 export default function PandalsList() {
   const [pandals, setPandals] = useState<Pandal[]>([]);
+  const [pandalsData, setPandalsData] = useState<any>([]);
 
   useEffect(() => {
     let active = true;
     getPublicPandals(1, 1000).then(({ pandals: items }) => {
-      if (active) setPandals(items.map(normalizePandal).filter((pandal) => pandal.id && pandal.published));
+      if (active) {
+        setPandalsData(items);
+        setPandals(items.map(normalizePandal).filter((pandal) => pandal.id && pandal.published))
+      };
     });
     return () => { active = false; };
   }, []);
@@ -24,7 +28,7 @@ export default function PandalsList() {
     </div>
     <div className="max-w-7xl mx-auto px-6 py-8 pb-20">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-        {pandals.map((pandal, index) => <div key={pandal.id} className="shadow-sm hover:shadow-lg rounded-xl overflow-hidden transition-all duration-300">
+        {pandalsData.map((pandal: any, index: number) => <div key={pandal.id} className="shadow-sm hover:shadow-lg rounded-xl overflow-hidden transition-all duration-300">
           <PandalCard pandal={pandal} rank={index + 1} />
         </div>)}
       </div>

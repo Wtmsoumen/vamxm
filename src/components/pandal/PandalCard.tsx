@@ -9,7 +9,6 @@ export default function PandalCard({ pandal, rank }: { pandal: any; rank?: numbe
 
   return (
     <Link
-      // href={`/pandals/${pandal.pandal.slug}`}
       href={`/${pandal.pandal.slug}`}
       onClick={() => localStorage.setItem("pandal_index_url", pandal.index_url)}
       className="group block bg-white hover:bg-gray-50 transition-colors"

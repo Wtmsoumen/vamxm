@@ -2,14 +2,20 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getPublicHome } from "@/lib/publicApi";
 import { faFacebook, faFacebookF, faInstagram, faLinkedinIn, faXTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
-export default function Footer({ data }: { data: any }) {
+export default function Footer() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [data, setData] = useState<any>(null);
 
-  console.log(data, "_fdata_");
+  useEffect(() => {
+    let active = true;
+    getPublicHome().then((home) => { if (active) setData(home); });
+    return () => { active = false; };
+  }, []);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

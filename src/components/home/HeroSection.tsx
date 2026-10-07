@@ -79,19 +79,18 @@ export default function HeroSection(data: any) {
 
   ]
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  console.log(data?.data, "__dataB_");
+  const banners = Array.isArray(data?.data) ? data.data : [];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % data?.data?.length);
+      setCurrentImageIndex((prev) => (prev + 1) % banners.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [banners.length]);
 
   return (
     <section className="relative pt-24 md:min-h-[900px] md:pt-[220px]">
-      {data?.data?.length ? data?.data.map((item: any, index: number) => (
+      {banners.length ? banners.map((item: any, index: number) => (
         <div
           key={index}
           className={`absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? "opacity-100" : "opacity-0"
@@ -115,7 +114,7 @@ export default function HeroSection(data: any) {
             {ii}
           </div>
         ))} */}
-        {data?.data?.length ? data?.data.map((item: any, index: number) => (<div
+        {banners.length ? banners.map((item: any, index: number) => (<div
           key={index}
           className={`col-start-1 row-start-1 transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
             }`}
@@ -124,12 +123,12 @@ export default function HeroSection(data: any) {
             <div className="max-w-[750px]">
 
               <h1 className="section-title text-[32px] xs:text-[40px] sm:text-[56px] md:text-[90px] hero-h1">
-                {item?.title.split(" ")[0]}
-                <span className="display-gradient block">{item?.title.split(" ").slice(1, 3).join(" ")}</span>
+                {(item?.title || "").split(" ")[0]}
+                <span className="display-gradient block">{(item?.title || "").split(" ").slice(1, 3).join(" ")}</span>
               </h1>
 
               <p className="section-title mt-2 text-[22px] xs:text-[28px] sm:text-[38px] md:text-[67px] hero-desc">
-                {item?.title.split(" ").slice(3, item?.title.split(" ")?.length).join(" ")}
+                {(item?.title || "").split(" ").slice(3).join(" ")}
               </p>
 
               <p className="mt-4 max-w-[650px] text-sm md:text-[19px] hero-desc text-black">

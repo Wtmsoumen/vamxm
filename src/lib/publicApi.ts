@@ -103,15 +103,20 @@ export function normalizePandal(value: unknown): Pandal {
     createdAt: createdAt || "",
   };
 }
-async function getJson(path: string): Promise<unknown> {
-  if (!API_BASE_URL) throw new Error("NEXT_PUBLIC_API_URL is not configured");
-  const response = await axios.get(`${API_BASE_URL}${path}`);
-  return response.data;
+export async function getPublicJson(path: string): Promise<unknown | null> {
+  try {
+    if (!API_BASE_URL) throw new Error("NEXT_PUBLIC_API_URL is not configured");
+    const response = await axios.get(`${API_BASE_URL}${path}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Unable to load public API path ${path}`, error);
+    return null;
+  }
 }
 
 export async function getPublicHome(): Promise<unknown | null> {
   try {
-    return await getJson("/public/home");
+    return await getPublicJson("/public/home");
   } catch (error) {
     console.error("Unable to load public home data", error);
     return null;
@@ -120,7 +125,7 @@ export async function getPublicHome(): Promise<unknown | null> {
 
 export async function getPublicPandals(page = 1, perPage = 12): Promise<{ pandals: UnknownRecord[]; }> {
   try {
-    const payload = await getJson(`/mobile/tours?page=${page}&per_page=${perPage}`);
+    const payload = await getPublicJson(`/mobile/tours?page=${page}&per_page=${perPage}`);
     return { pandals: listFrom(payload).map(record) };
   } catch (error) {
     console.error("Unable to load public pandals", error);
@@ -130,7 +135,7 @@ export async function getPublicPandals(page = 1, perPage = 12): Promise<{ pandal
 
 export async function getPublicPandal(slug: string): Promise<Pandal | null> {
   try {
-    const payload = await getJson(`/public/pandals/${encodeURIComponent(slug)}`);
+    const payload = await getPublicJson(`/public/pandals/${encodeURIComponent(slug)}`);
     const envelope = record(payload);
     const data = record(envelope.data);
     const directCandidates = [data.pandal, data.tour, envelope.pandal, envelope.tour, envelope.data, payload]

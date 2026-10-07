@@ -9,7 +9,7 @@ function pad(n: number) { return String(n).padStart(2, "0"); }
 
 export default function CountdownSection({ data }: { data: any }) {
   const [time, setTime] = useState({ days: "00", hours: "00", minutes: "00", seconds: "00" });
-
+  // console.log(data?.start_at, "data?.start_at");
   useEffect(() => {
     function tick() {
       // const remaining = PUJA_DATE - Date.now();
@@ -25,7 +25,7 @@ export default function CountdownSection({ data }: { data: any }) {
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [data?.start_at]);
 
   const units = [
     { label: "Days", value: time.days },

@@ -5,14 +5,13 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { galleryTiles as tiles } from "@/data/gallery";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function GallerySection(data: any) {
+export default function GallerySection({ data }: { data?: any[] }) {
   const [lightbox, setLightbox] = useState<number | null>(null);
-
-  console.log(data?.data, "dataG__");
+  const items = Array.isArray(data) ? data : [];
 
   const close = useCallback(() => setLightbox(null), []);
-  const prev = useCallback(() => setLightbox((i) => (i !== null ? (i - 1 + data?.data?.length) % data?.data?.length : null)), []);
-  const next = useCallback(() => setLightbox((i) => (i !== null ? (i + 1) % data?.data?.length : null)), []);
+  const prev = useCallback(() => setLightbox((i) => (i !== null && items.length ? (i - 1 + items.length) % items.length : null)), [items.length]);
+  const next = useCallback(() => setLightbox((i) => (i !== null && items.length ? (i + 1) % items.length : null)), [items.length]);
 
   useEffect(() => {
     if (lightbox === null) return;
@@ -44,7 +43,7 @@ export default function GallerySection(data: any) {
           </AnimateOnScroll>
 
           <div className="mt-10 grid grid-cols-2 gap-2 md:grid-cols-4">
-            {data?.data?.length ? data?.data.map((i: any, idx: number) => (
+            {items.map((i: any, idx: number) => (
               <AnimateOnScroll
                 key={idx}
                 anim="scale"
@@ -59,7 +58,7 @@ export default function GallerySection(data: any) {
                   <img src={i?.image} alt={i?.pandal?.name} />
                 </button>
               </AnimateOnScroll>
-            )) : null}
+            ))}
           </div>
 
         </div>
@@ -92,14 +91,14 @@ export default function GallerySection(data: any) {
           {/* Image */}
           <div className="relative max-h-[90vh] max-w-[90vw] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
             <img
-              key={data?.data[lightbox].id}
-              src={data?.data[lightbox].image}
-              alt={data?.data[lightbox].pandal?.name}
+              key={items[lightbox].id}
+              src={items[lightbox].image}
+              alt={items[lightbox].pandal?.name}
               className="max-h-[85vh] max-w-[85vw] rounded-xl object-contain shadow-2xl"
             />
-            {data?.data[lightbox].pandal?.name && (
+            {items[lightbox].pandal?.name && (
               <p className="absolute bottom-0 left-0 right-0 text-center text-white/70 text-sm py-3 bg-gradient-to-t from-black/60 to-transparent rounded-b-xl">
-                {data?.data[lightbox].alt}
+                {items[lightbox].alt}
               </p>
             )}
           </div>
@@ -115,7 +114,7 @@ export default function GallerySection(data: any) {
 
           {/* Counter */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
-            {data?.data.map((_: any, i: number) => (
+            {items.map((_: any, i: number) => (
               <button
                 key={i}
                 onClick={(e) => { e.stopPropagation(); setLightbox(i); }}

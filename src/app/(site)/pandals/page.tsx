@@ -1,13 +1,6 @@
-import { Eye } from "lucide-react";
-import PandalCard from "@/components/pandal/PandalCard";
-import { getPublicPandals } from "@/lib/publicApi";
+import PandalsList from "@/components/pandal/PandalsList";
 
-export default async function PandalsPage() {
-  const { pandals } = await getPublicPandals();
-  const allSorted = pandals
-
-  console.log(pandals, "pandals_total");
-
+export default function PandalsPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Saffron header block */}
@@ -22,33 +15,7 @@ export default async function PandalsPage() {
         </p>
       </div>
 
-      {/* Count */}
-      <div className="max-w-7xl mx-auto px-6 pt-6">
-        <p className="text-xs text-black uppercase tracking-widest">
-          Showing {allSorted.length} pandals
-        </p>
-      </div>
-
-      {/* Grid */}
-      <div className="max-w-7xl mx-auto px-6 py-8 pb-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-          {allSorted.map((p: any, i: number) => {
-            const rank = i + 1;
-            return (
-              <div key={p.id} className="shadow-sm hover:shadow-lg rounded-xl overflow-hidden transition-all duration-300">
-                <PandalCard pandal={p} rank={rank} />
-              </div>
-            );
-          })}
-        </div>
-
-        {allSorted.length === 0 && (
-          <div className="text-center py-24 border border-gray-200">
-            <Eye className="w-10 h-10 text-gray-200 mx-auto mb-3" />
-            <p className="text-gray-300 font-black uppercase tracking-widest text-sm">No pandals found</p>
-          </div>
-        )}
-      </div>
+      <PandalsList />
     </div>
   );
 }

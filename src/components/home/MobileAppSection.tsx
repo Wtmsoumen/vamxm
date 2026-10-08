@@ -9,7 +9,7 @@ export default function MobileAppSection(data: any) {
     >
       <img src="/MobileAppBg.png" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
 
-      <div className="relative mx-auto max-w-[1320px] grid items-center gap-8 grid-cols-1 md:grid-cols-3">
+      <div className="relative mx-auto max-w-[1400px] grid items-center gap-8 grid-cols-1 md:grid-cols-3">
 
         {/* Phone mockup 1 — hidden on mobile */}
         <AnimateOnScroll anim="left" className="order-2 justify-center md:order-1 hidden md:flex">
@@ -20,8 +20,8 @@ export default function MobileAppSection(data: any) {
         <AnimateOnScroll anim="up" className="order-1 text-center md:order-2">
           <p className="section-kicker">Mobile App</p>
           <h2 className="section-title mt-5 text-[34px] sm:text-[44px] md:text-[52px]">
-            Download Pandal
-            <span className="display-gradient block">Explorer</span>
+            Download
+            <span className="display-gradient block uppercase">Utsavverse</span>
           </h2>
           <p className="mx-auto mt-3 max-w-[360px] text-[15px] leading-7 text-black/75">
             Live crowd updates, favorites, reviews and photo uploads — free on{" "}

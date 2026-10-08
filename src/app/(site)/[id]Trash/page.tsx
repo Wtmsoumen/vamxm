@@ -13,7 +13,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
   if (!tour) notFound();
 
   return (
-    <main className="mx-auto max-w-[1320px] px-5 py-20 md:px-10">
+    <main className="mx-auto max-w-[1400px] px-5 py-20 md:px-10">
       {/* Breadcrumb */}
       <nav className="mb-8 flex items-center gap-2 text-sm text-black/50">
         <Link href="/" className="hover:text-utsav">Home</Link>

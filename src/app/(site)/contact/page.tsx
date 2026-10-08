@@ -40,123 +40,142 @@ export default function ContactPage() {
       {/* <div className="absolute top-0 left-0 h-[-webkit-fill-available] w-full -mt-60">
         <img src="/pandals/ganga-flower.png" className="h-full w-full object-cover" alt="ganga-flower" />
       </div> */}
-      <div className="max-w-[1320px] mx-auto pt-20 bg-white/90">
-        <div className="mt-12">
-          <p className="text-black text-xs font-bold uppercase tracking-[0.3em] mb-2">Questions?</p>
-          <h1 className="text-4xl sm:text-5xl font-black text-black leading-tight">
-            Let's Get In Touch
-          </h1>
-        </div>
-        <div className="relative z-10 flex flex-col lg:flex-row gap-8">
-          {/* ── LEFT — form + footer ── */}
-          <div className="py-10 flex flex-col w-full">
+      <section className="relative w-full overflow-hidden bg-white h-57.5 sm:h-77.5 lg:h-97.5 mt-22" aria-label="Our location">
+        <iframe
+          title="Map to Vamxm office in Howrah"
+          src="https://maps.google.com/maps?q=10%2C%20Sitanath%20Banerjee%20Lane%2C%20Nirmala%20Garden%2C%20Howrah%20711103&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          className="absolute inset-0 h-full w-full border-0 grayscale-[15%]"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=10%2C%20Sitanath%20Banerjee%20Lane%2C%20Nirmala%20Garden%2C%20Howrah%20711103"
+          target="_blank"
+          rel="noreferrer"
+          className="absolute bottom-5 left-5 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black shadow-lg transition hover:bg-black hover:text-white sm:bottom-8 sm:left-8"
+        >
+          Get directions
+        </a>
+      </section>
+      <div className="relative overflow-hidden px-5 md:px-10">
+        <div className="max-w-[1400px] mx-auto pt-12 bg-white/90">
+          <div className="">
+            <p className="text-black text-xs font-bold uppercase tracking-[0.3em] mb-2">Questions?</p>
+            <h1 className="text-4xl sm:text-5xl font-black text-black leading-tight">
+              Let's Get In Touch
+            </h1>
+          </div>
+          <div className="relative z-10 flex flex-col lg:flex-row gap-8">
+            {/* ── LEFT — form + footer ── */}
+            <div className="py-10 flex flex-col w-full">
 
-            {/* {sent ? (
+              {/* {sent ? (
               <div className="flex flex-col gap-4 py-16 text-center">
                 <Send className="w-10 h-10 text-lime mx-auto" />
                 <h3 className="text-2xl font-black text-gray-900">Message Sent!</h3>
                 <p className="text-gray-500 text-sm">We'll get back to you soon.</p>
               </div>
             ) : ( */}
-            <form onSubmit={handleSubmit} className="flex flex-col items-end gap-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
-                {/* Left column — stacked inputs */}
-                <div className="flex flex-col gap-2">
-                  <input
-                    type="text"
-                    required
-                    value={form.name}
-                    onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                    className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
-                    placeholder="Your Name"
-                  />
-                  <input
-                    type="email"
-                    required
-                    value={form.email}
-                    onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                    className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
-                    placeholder="Email Address *"
-                  />
-                  <input
-                    type="tel"
-                    required
-                    value={form.phone}
-                    onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
-                    className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
-                    placeholder="Phone Number *"
-                  />
-                  <select
+              <form onSubmit={handleSubmit} className="flex flex-col items-end gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
+                  {/* Left column — stacked inputs */}
+                  <div className="flex flex-col gap-2">
+                    <input
+                      type="text"
+                      required
+                      value={form.name}
+                      onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                      className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
+                      placeholder="Your Name"
+                    />
+                    <input
+                      type="email"
+                      required
+                      value={form.email}
+                      onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                      className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
+                      placeholder="Email Address *"
+                    />
+                    <input
+                      type="tel"
+                      required
+                      value={form.phone}
+                      onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
+                      className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
+                      placeholder="Phone Number *"
+                    />
+                    {/* <select
                     value={form.service_id}
                     onChange={e => setForm(f => ({ ...f, service_id: e.target.value }))}
                     className="border rounded border-black/80 px-5 py-4 text-gray-900 text-sm focus:outline-none focus:border-black/80 transition-colors bg-white"
                   >
                     <option value="">Select a service (optional)</option>
                     {contactServices.map(service => <option key={service.id} value={service.id}>{service.label}</option>)}
-                  </select>
-                  <input
-                    type="text"
-                    value={form.subject}
-                    onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
-                    className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
-                    placeholder="Subject (optional)"
+                  </select> */}
+                    <input
+                      type="text"
+                      value={form.subject}
+                      onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
+                      className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
+                      placeholder="Subject (optional)"
+                    />
+                  </div>
+
+                  {/* Right column — message */}
+                  <textarea
+                    required
+                    rows={6}
+                    value={form.message}
+                    onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                    className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors resize-none"
+                    placeholder="Your Message"
                   />
                 </div>
 
-                {/* Right column — message */}
-                <textarea
-                  required
-                  rows={6}
-                  value={form.message}
-                  onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                  className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors resize-none"
-                  placeholder="Your Message"
-                />
-              </div>
+                {error && <p role="alert" className="w-full text-sm text-red-600">{error}</p>}
+                {sent ? <p className="text-green-500 text-sm">Thank you for contacting us. We will get back to you soon.</p> : null}
 
-              {error && <p role="alert" className="w-full text-sm text-red-600">{error}</p>}
-              {sent ? <p className="text-green-500 text-sm">Thank you for contacting us. We will get back to you soon.</p> : null}
-
-              <button
-                type="submit"
-                disabled={submitting}
-                className="w-1/2! red-gradient rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110"
-              >
-                {submitting ? "Sending…" : "Send Message"}
-              </button>
-            </form>
-            {/* )} */}
-          </div>
-
-          {/* ── RIGHT — contact info + VR headset ── */}
-          <div className="w-1/2 py-10 flex flex-col relative">
-            {/* Contact info */}
-            <div className="flex flex-col gap-4">
-              <div className="flex items-start gap-4 bg-red-50 p-4 rounded-lg">
-                <MapPin className="w-5 h-5 text-black mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                <p className="text-black text-base leading-relaxed">
-                  10, Sitanath Banerjee Lane,
-                  Nirmala Garden, Block C, 3rd
-                  Floor, Flat No- 301 &amp; 302,
-                  Howrah 711103
-                </p>
-              </div>
-              <div className="flex items-start gap-4 bg-blue-50 p-4 rounded-lg">
-                <Send className="w-5 h-5 text-black mt-0.5 flex-shrink-0" strokeWidth={1.5} />
-                <Link href="mailto:info.vamxm@gmail.com" className="text-black text-base hover:text-blue-500 transition-colors">
-                  info.vamxm@gmail.com
-                </Link>
-              </div>
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="w-1/2! red-gradient rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110"
+                >
+                  {submitting ? "Sending…" : "Send Message"}
+                </button>
+              </form>
+              {/* )} */}
             </div>
 
-            {/* VR Headset */}
-            {/* <div className="mt-auto pt-12 flex justify-center lg:justify-start">
+            {/* ── RIGHT — contact info + VR headset ── */}
+            <div className="w-1/2 py-10 flex flex-col relative">
+              {/* Contact info */}
+              <div className="flex flex-col gap-4">
+                <div className="flex items-start gap-4 bg-red-50 p-4 rounded-lg">
+                  <MapPin className="w-5 h-5 text-black mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                  <p className="text-black text-base leading-relaxed">
+                    10, Sitanath Banerjee Lane,
+                    Nirmala Garden, Block C, 3rd
+                    Floor, Flat No- 301 &amp; 302,
+                    Howrah 711103
+                  </p>
+                </div>
+                <div className="flex items-start gap-4 bg-blue-50 p-4 rounded-lg">
+                  <Send className="w-5 h-5 text-black mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                  <Link href="mailto:info.vamxm@gmail.com" className="text-black text-base hover:text-blue-500 transition-colors">
+                    info.vamxm@gmail.com
+                  </Link>
+                </div>
+              </div>
+
+              {/* VR Headset */}
+              {/* <div className="mt-auto pt-12 flex justify-center lg:justify-start">
             <img
               src="/vr-headset2.png"
               alt="VR Headset"
               className="w-64 object-contain drop-shadow-xl"
             />
           </div> */}
+            </div>
           </div>
         </div>
       </div>

@@ -24,24 +24,50 @@ body {
   overflow-x: hidden;
   background: #ffffff;
   color: #10151b;
-  font-family: var(--font-dm-sans), sans-serif;
+  font-family: Calibri, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 /* ── Typography ──────────────────────────────────────── */
 .serif {
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-poppins), sans-serif;
 }
 
 .display {
-  font-family: var(--font-bodoni), Georgia, serif;
+  font-family: var(--font-poppins), sans-serif;
 }
 
 .section-title {
-  font-family: var(--font-bodoni), Georgia, serif;
-  font-weight: 700;
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 600;
   letter-spacing: -1.5px;
   line-height: 1.08;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 600;
+}
+
+h1[class*="font-bold"],
+h2[class*="font-bold"],
+h3[class*="font-bold"],
+h4[class*="font-bold"],
+h5[class*="font-bold"],
+h6[class*="font-bold"] {
+  font-weight: 600;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: Calibri, Arial, sans-serif;
 }
 
 .section-kicker {

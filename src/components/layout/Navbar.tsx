@@ -8,9 +8,9 @@ const links = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Sponsors", href: "/sponsors" },
-  { label: "Pandal 360°", href: "/pandals" },
+  { label: "Utsavverse", href: "/pandals" },
   { label: "Services", href: "/#services" },
-  { label: "Events", href: "/#events" },
+  { label: "Gallery", href: "/#gallery" },
   { label: "Contact Us", href: "/contact" },
 ];
 
@@ -26,12 +26,12 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed left-0 top-0 z-50 w-full border-b transition-all duration-300 ${scrolled
+      className={`fixed left-0 top-0 z-50 w-full border-b transition-all duration-300 px-6 md:px-10 ${scrolled
         ? "border-black/8 bg-white shadow-sm"
         : "border-white/30 bg-white/35"
         }`}
     >
-      <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-6 px-5 md:px-10 xl:px-[7.5%] py-2 md:py-3">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 py-2 md:py-3">
 
         <Link href="/" className="shrink-0">
           <img src="/logo/vamxm-horizontal-black.png" alt="UtsavVerse" className="h-auto w-[215px]" />
@@ -49,7 +49,7 @@ export default function Navbar() {
           href="#app"
           className="red-gradient hidden shrink-0 rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110 md:inline-flex"
         >
-          Download Utsav verse <span className="ml-3">→</span>
+          Download UtsavVerse App<span className="ml-3">→</span>
         </Link>
 
         <button

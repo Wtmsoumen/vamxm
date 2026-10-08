@@ -8,7 +8,7 @@ export default function HeroSection(data: any) {
   // const images = ["/maaAschen.png", "/AIRobo.png", "/maaAschenMob.png", "/AIRoboMob.png"];
   const images = ["/maaAschen.png", "/AIRobo.png"];
   const innerhtml = [
-    <div className="relative z-10 mx-auto max-w-[1600px] px-5 sm:px-8 md:px-10 xl:px-[8.75%]">
+    <div className="relative z-10 mx-auto max-w-[1400px] px-5 sm:px-8 md:px-10 xl:px-[8.75%]">
       <div className="max-w-[750px]">
 
         <h1 className="section-title text-[32px] xs:text-[40px] sm:text-[56px] md:text-[90px] hero-h1">
@@ -44,7 +44,7 @@ export default function HeroSection(data: any) {
     </div>
     ,
 
-    <div className="relative z-10 mx-auto max-w-[1600px] px-5 sm:px-8 md:px-10 xl:px-[8.75%]">
+    <div className="relative z-10 mx-auto max-w-[1400px] px-5 sm:px-8 md:px-10 xl:px-[8.75%]">
       <div className="max-w-[750px]">
 
         <h1 className="section-title text-[32px] xs:text-[40px] sm:text-[56px] md:text-[90px] hero-h1">
@@ -118,10 +118,10 @@ export default function HeroSection(data: any) {
         ))} */}
         {banners.length ? banners.map((item: any, index: number) => (<div
           key={index}
-          className={`col-start-1 row-start-1 transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          className={`col-start-1 row-start-1 transition-opacity duration-1000 ease-in-out px-6 md:px-10 ${index === currentImageIndex ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
             }`}
         >
-          <div className="relative z-10 mx-auto max-w-[1600px] px-5 sm:px-8 md:px-10 xl:px-[8.75%]">
+          <div className="relative z-10 mx-auto max-w-[1400px]">
             <div className="max-w-[750px]">
 
               <h1 className="section-title text-[32px] xs:text-[40px] sm:text-[56px] md:text-[90px] hero-h1 capitalize">
@@ -160,7 +160,7 @@ export default function HeroSection(data: any) {
 
       {/* Service strip */}
       <div className="relative mt-10 px-4 pb-10 sm:pb-0 md:absolute md:bottom-0 md:left-0 md:mt-0 md:-mb-18 md:w-full md:px-6 z-20 hero-strip">
-        <div className="mx-auto grid max-w-[1320px] grid-cols-2 overflow-hidden rounded-[19px] gap-2 sm:gap-0 shadow-lg lg:grid-cols-4">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-2 overflow-hidden rounded-[19px] gap-2 sm:gap-0 shadow-lg lg:grid-cols-4">
 
           <div className="flex items-center justify-center sm:justify-start sm:rounded-none rounded-[19px] gap-4 bg-gradient-to-b from-[#d80117] to-[#a80202] px-6 py-5 sm:py-6 text-white md:px-10">
             <div className="flex h-14 w-14 sm:h-18 sm:w-18 shrink-0 items-center justify-center rounded-full bg-white/15">

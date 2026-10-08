@@ -5,11 +5,11 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 export default function ExperienceSection() {
   return (
     <section id="guide" className="px-4 py-6 sm:px-6 sm:py-10 md:px-10 md:py-10">
-      <div className="mx-auto grid max-w-[1320px] gap-6 lg:grid-cols-[1.15fr_1fr]">
+      <div className="mx-auto grid max-w-[1400px] gap-6 lg:grid-cols-[1.15fr_1fr]">
 
         {/* 360° feature card */}
         <AnimateOnScroll anim="left">
-          <div className="relative flex min-h-[360px] sm:min-h-[420px] flex-col justify-end sm:justify-center overflow-hidden rounded-[25px] p-7 sm:p-12 text-white transition-all duration-500 hover:scale-103">
+          <div className="relative flex min-h-[360px] sm:min-h-[420px] flex-col justify-end sm:justify-center overflow-hidden rounded-[25px] p-7 sm:p-7 text-white transition-all duration-500 hover:scale-103">
             <img
               src="/pvt360.png"
               alt="Immersive Durga Puja experience"
@@ -20,7 +20,7 @@ export default function ExperienceSection() {
             <div className="relative z-10 max-w-[380px]">
               <p className="text-xs font-semibold uppercase tracking-[2px]">Immersive 360° Experience</p>
 
-              <h2 className="section-title mt-4 text-[32px] sm:text-[40px] md:text-[48px]">
+              <h2 className="section-title mt-4 text-[28px] sm:text-[38px] md:text-[44px]">
                 Pandal 360°
                 <span className="block text-white">Virtual Tours</span>
               </h2>
@@ -59,7 +59,7 @@ export default function ExperienceSection() {
           </AnimateOnScroll>
 
           <AnimateOnScroll anim="right" delay={200}>
-            <article id="events" className="relative flex min-h-[180px] sm:min-h-[200px] items-end sm:items-center overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm transition-all duration-500 hover:scale-103">
+            <article id="gallery" className="relative flex min-h-[180px] sm:min-h-[200px] items-end sm:items-center overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm transition-all duration-500 hover:scale-103">
               <img src="/dfbwAInc.png" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent" />
               <div className="relative z-10 p-5 sm:p-6">

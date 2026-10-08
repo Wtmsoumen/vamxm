@@ -16,14 +16,14 @@ export default function FeaturedPandals({ data }: { data?: any }) {
     // link: `/pandals/${pandal.id}`,
     link: `/${pandal.id}`,
   }));
-
+  console.log(data?.data?.featured_pandals, "apiPandals");
   return (
     <section
       id="pandals"
       className="relative px-5 pt-14 pb-14 sm:pt-18 sm:pb-18 md:pt-24 md:pb-50 md:px-10 lg:bg-[#00000000] bg-[#FCEDEF]"
     >
       <img src={"/FamousPandalsbg.png"} alt="FamousPandalsbg.png" className="absolute top-0 left-0 w-full h-full lg:block hidden" />
-      <div className="mx-auto max-w-[1320px]">
+      <div className="mx-auto max-w-[1400px]">
 
         <AnimateOnScroll anim="up">
           <div className="text-center">
@@ -35,7 +35,7 @@ export default function FeaturedPandals({ data }: { data?: any }) {
         </AnimateOnScroll>
 
         <div className="mt-10 grid gap-5 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredPandals.map((v, i) => (
+          {data?.data?.featured_pandals.map((v: any, i: number) => (
             <AnimateOnScroll key={i} anim="up" delay={i * 100}>
               <article className="pandal-card group hover:rounded-bl-[200px]! transition-all! duration-300! bg-white hover:bg-linear-to-b! from-[#F88C21]! to-[#D3111D]!">
                 <div className="p-5 sm:p-6">
@@ -50,16 +50,16 @@ export default function FeaturedPandals({ data }: { data?: any }) {
                 <div className="relative h-[220px] sm:h-[260px] md:h-[300px] lg:h-[340px] p-2">
                   <span className="absolute right-3.5 top-3.5 rounded-full bg-utsav shadow-md px-2 py-1 text-sm font-semibold text-white flex items-center gap-2 z-10">
                     <span className="bg-white/45 rounded-full p-1"><Eye size={14} /></span>
-                    {v?.views}
+                    {v?.visitor_count}
                   </span>
                   <img
-                    src={v?.img}
+                    src={v?.featured_image}
                     alt={v?.name}
                     className="h-full w-full object-cover rounded-xl group-hover:rounded-bl-[200px]! transition-all! duration-300!"
                   />
                   <Link
-                    // href={`/pandals/${v?.slug}`}
-                    href={v.link}
+                    href={`/pandals/${v?.slug}`}
+                    // href={v.link}
                     className="bg-[#FCEDEF] invisible group-hover:visible p-2 w-1 h-1 group-hover:w-28 group-hover:h-28 absolute bottom-0 left-0 transition-all duration-300 rounded-full"
                   >
                     <div className="hover:rotate-45 transition-all duration-300 bg-linear-to-b from-[#D80117] to-[#72010C] w-full h-full rounded-full flex items-center justify-center">

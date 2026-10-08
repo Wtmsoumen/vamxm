@@ -27,7 +27,7 @@ export async function submitContact(payload: ContactSubmission): Promise<void> {
 }
 
 export const contactServices = [
-  { id: "website-development", label: "Website Development" },
-  { id: "mobile-app-development", label: "Mobile App Development" },
-  { id: "cyber-security", label: "Cyber Security" },
+  { id: 1, label: "Website Development" },
+  { id: 2, label: "Mobile App Development" },
+  { id: 3, label: "Cyber Security" },
 ];

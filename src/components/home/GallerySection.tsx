@@ -4,10 +4,13 @@ import { useState, useEffect, useCallback } from "react";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { galleryTiles as tiles } from "@/data/gallery";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
-export default function GallerySection({ data }: { data?: any[] }) {
+export default function GallerySection({ data, fullPage = false }: { data?: any[]; fullPage?: boolean }) {
   const [lightbox, setLightbox] = useState<number | null>(null);
-  const items = Array.isArray(data) ? data : [];
+  const items = Array.isArray(data) && data.length > 0
+    ? data
+    : tiles.map((tile) => ({ id: tile.id, url: tile.src, alt_text: tile.alt }));
 
   const close = useCallback(() => setLightbox(null), []);
   const prev = useCallback(() => setLightbox((i) => (i !== null && items.length ? (i - 1 + items.length) % items.length : null)), [items.length]);
@@ -30,36 +33,47 @@ export default function GallerySection({ data }: { data?: any[] }) {
 
   return (
     <>
-      <section id="gallery" className="px-4 py-6 sm:px-6 md:px-10 md:py-10">
-        <div className="mx-auto max-w-[1320px]">
+      <section id="gallery" className={`px-4 sm:px-6 md:px-10 ${fullPage ? "pb-20 pt-32 md:pt-40" : "py-6 md:py-10"}`}>
+        <div className="mx-auto max-w-[1400px]">
 
           <AnimateOnScroll anim="up">
             <div className="text-center">
               <p className="section-kicker">Our Collections</p>
-              <h2 className="section-title mt-4 text-[36px] sm:text-[60px] md:text-[80px]">
-                Explore Our <span className="text-utsav">Gallery</span>
-              </h2>
+              {fullPage ? (
+                <h1 className="section-title mt-4 text-[30px] sm:text-[52px] md:text-[72px]">Explore Our <span className="text-utsav">Gallery</span></h1>
+              ) : (
+                <h2 className="section-title mt-4 text-[30px] sm:text-[52px] md:text-[72px]">Explore Our <span className="text-utsav">Gallery</span></h2>
+              )}
+              {fullPage && <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-black/60">A collection of moments, places and experiences from VAMXM.</p>}
             </div>
           </AnimateOnScroll>
 
-          <div className="mt-10 grid grid-cols-2 gap-2 md:grid-cols-4">
+          <div className={`mt-10 grid grid-cols-2 gap-2 md:grid-cols-4 ${fullPage ? "lg:gap-4" : ""}`}>
             {items.map((i: any, idx: number) => (
               <AnimateOnScroll
                 key={idx}
                 anim="scale"
-                delay={i * 60}
+                delay={idx * 60}
               // className={span === 2 ? "md:col-span-2 col-span-1" : ""}
               >
                 <button
                   className="gallery-tile h-[150px] w-full sm:h-[190px] md:h-[300px] cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-utsav"
                   onClick={() => setLightbox(idx)}
-                  aria-label={`Open ${i?.pandal?.name}`}
+                  aria-label={`Open ${i?.alt_text || "gallery image"}`}
                 >
-                  <img src={i?.image} alt={i?.pandal?.name} />
+                  <img src={i?.url} alt={i?.alt_text} />
                 </button>
               </AnimateOnScroll>
             ))}
           </div>
+
+          {!fullPage && (
+            <div className="mt-8 text-center">
+              <Link href="/gallery" className="red-gradient inline-flex items-center gap-3 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:brightness-110">
+                View full gallery <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          )}
 
         </div>
       </section>
@@ -91,14 +105,14 @@ export default function GallerySection({ data }: { data?: any[] }) {
           {/* Image */}
           <div className="relative max-h-[90vh] max-w-[90vw] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
             <img
-              key={items[lightbox].id}
-              src={items[lightbox].image}
-              alt={items[lightbox].pandal?.name}
+              key={items[lightbox]?.id ?? lightbox}
+              src={items[lightbox].url}
+              alt={items[lightbox].alt_text}
               className="max-h-[85vh] max-w-[85vw] rounded-xl object-contain shadow-2xl"
             />
-            {items[lightbox].pandal?.name && (
-              <p className="absolute bottom-0 left-0 right-0 text-center text-white/70 text-sm py-3 bg-gradient-to-t from-black/60 to-transparent rounded-b-xl">
-                {items[lightbox].alt}
+            {items[lightbox]?.alt_text && (
+              <p className="absolute bottom-0 left-0 right-0 rounded-b-xl bg-gradient-to-t from-black/60 to-transparent py-3 text-center text-sm text-white/70">
+                {items[lightbox].alt_text}
               </p>
             )}
           </div>

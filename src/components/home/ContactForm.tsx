@@ -66,23 +66,23 @@ export default function ContactForm() {
           className="border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 placeholder:text-gray-600 text-sm focus:outline-none focus:border-saffron transition-colors"
           placeholder="Phone Number *"
         />
-        <select
+        {/* <select
           value={form.service_id}
           onChange={e => setForm(f => ({ ...f, service_id: e.target.value }))}
           className="border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 text-sm focus:outline-none focus:border-saffron transition-colors bg-white"
         >
           <option value="">Select a service (optional)</option>
           {contactServices.map(service => <option key={service.id} value={service.id}>{service.label}</option>)}
-        </select>
+        </select> */}
+        <input
+          type="text"
+          value={form.subject}
+          onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
+          className="w-full border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 placeholder:text-gray-600 text-sm focus:outline-none focus:border-saffron transition-colors"
+          placeholder="Subject (optional)"
+        />
       </div>
 
-      <input
-        type="text"
-        value={form.subject}
-        onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
-        className="w-full border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 placeholder:text-gray-600 text-sm focus:outline-none focus:border-saffron transition-colors"
-        placeholder="Subject (optional)"
-      />
 
       {/* {error && <p role="alert" className="text-sm text-red-600">{error}</p>} */}
 

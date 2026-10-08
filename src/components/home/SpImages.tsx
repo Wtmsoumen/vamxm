@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
+import Link from "next/link";
 import CHAANGHANI from "../../../public/logoSponsor/CHAANGHANI.png"
 import CORPORATENEST from "../../../public/logoSponsor/CORPORATE NEST.png"
 import DURABLE from "../../../public/logoSponsor/DURABLE.png"
@@ -67,17 +68,27 @@ export default function SpImages() {
     };
 
     return (
-        <div className="mx-auto max-w-[1320px] pb-6 md:pb-10">
-            <div className="slider-container">
-                <div>
-                    <Slider {...settings}>
-                        {sponsersImages.map((_, i) =>
-                            <div key={i} className="mx-2 flex! items-center justify-center">
-                                <Image src={_.img} alt={_.name} width={400} height={200} className="h-auto w-2/3" />
-                            </div>)}
-                    </Slider>
-                </div>
+        <section className="mx-auto max-w-[1400px] px-4 pb-10 md:px-8 md:pb-14 flex flex-col items-center gap-8">
+            <div className="text-center sm:text-left">
+                {/* <p className="section-kicker text-3xl!">Our partners</p> */}
+                <h2 className="section-title mt-4 text-[30px] sm:text-[52px] md:text-[72px]">Our <span className="text-utsav">Partners</span></h2>
             </div>
-        </div>
+            <div className="slider-container w-full">
+
+                <Slider {...settings}>
+                    {sponsersImages.map((_, i) =>
+                        <div key={i} className="mx-2 flex! items-center justify-center">
+                            <Image src={_.img} alt={_.name} width={400} height={200} className="h-auto w-2/3" />
+                        </div>)}
+                </Slider>
+
+            </div>
+            <Link
+                href="/sponsors"
+                className="mt-8 red-gradient hidden shrink-0 rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110 md:inline-flex"
+            >
+                View all sponsors <span className="ml-3">→</span>
+            </Link>
+        </section>
     )
 }

@@ -6,7 +6,7 @@ import ContactSection from "@/components/home/ContactSection";
 export default function TourListPage() {
   return (
     <>
-      <main className="mx-auto max-w-[1320px] py-24">
+      <main className="mx-auto max-w-[1400px] py-24">
         <div className="text-center">
           <p className="section-kicker">Virtual Experiences</p>
           <h1 className="section-title mt-4 text-[48px] sm:text-[64px] md:text-[80px]">

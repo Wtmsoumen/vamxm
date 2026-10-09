@@ -92,7 +92,7 @@ export default function HeroSection(data: any) {
   console.log(banners, "banners__");
 
   return (
-    <section className="relative pt-24 md:min-h-[900px] md:pt-[220px]">
+    <section className="relative pt-24 sm:pt-28 md:min-h-[900px] md:pt-[220px]">
       <div className="h-full w-3/4 bg-linear-to-r from-white via-white/90 to-transparent absolute left-0 top-0 z-10" />
       {banners.length ? banners.map((item: any, index: number) => (
         <div
@@ -120,18 +120,18 @@ export default function HeroSection(data: any) {
         ))} */}
         {banners.length ? banners.map((item: any, index: number) => (<div
           key={index}
-          className={`col-start-1 row-start-1 transition-opacity duration-1000 ease-in-out px-6 md:px-10 ${index === currentImageIndex ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          className={`col-start-1 row-start-1 transition-opacity duration-1000 ease-in-out px-4 sm:px-6 md:px-10 ${index === currentImageIndex ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
             }`}
         >
           <div className="relative z-10 mx-auto max-w-[1400px]">
             <div className="max-w-[750px]">
 
-              <h1 className="section-title text-[32px] xs:text-[40px] sm:text-[56px] md:text-[90px] hero-h1 capitalize">
+              <h1 className="section-title text-[clamp(2rem,8vw,3.5rem)] sm:text-[56px] md:text-[90px] hero-h1 capitalize">
                 {(item?.title || "").split(" ")[0]}
                 <span className="display-gradient block capitalize">{(item?.title || "").split(" ").slice(1, 3).join(" ")}</span>
               </h1>
 
-              <p className="section-title mt-2 text-[22px] xs:text-[28px] sm:text-[38px] md:text-[67px] hero-desc capitalize">
+              <p className="section-title mt-2 text-[clamp(1.35rem,6vw,2.375rem)] md:text-[67px] hero-desc capitalize">
                 {(item?.title || "").split(" ").slice(3).join(" ")}
               </p>
 
@@ -140,7 +140,7 @@ export default function HeroSection(data: any) {
                 real-time updates and a complete puja guide — all in one place.
               </p>
 
-              <div className="mt-8 flex flex-nowrap items-center gap-3 hero-btns">
+              <div className="mt-8 flex flex-wrap items-center gap-3 hero-btns">
                 <Link
                   href={`${item?.button_url}`}
                   className="red-gradient inline-flex h-12 sm:h-[54px] items-center justify-center rounded-full px-6 sm:px-8 text-xs sm:text-sm font-semibold text-white shadow-md transition hover:brightness-110"
@@ -164,32 +164,32 @@ export default function HeroSection(data: any) {
       <div className="relative mt-10 px-4 pb-10 sm:pb-0 md:absolute md:bottom-0 md:left-0 md:mt-0 md:-mb-18 md:w-full md:px-6 z-20 hero-strip">
         <div className="mx-auto grid max-w-[1400px] grid-cols-2 overflow-hidden rounded-[19px] gap-2 sm:gap-0 shadow-lg lg:grid-cols-4">
 
-          <div className="flex items-center justify-center sm:justify-start sm:rounded-none rounded-[19px] gap-4 bg-gradient-to-b from-[#d80117] to-[#a80202] px-6 py-5 sm:py-6 text-white md:px-10">
+          <div className="flex items-center justify-center sm:justify-start sm:rounded-none rounded-[19px] gap-3 bg-gradient-to-b from-[#d80117] to-[#a80202] px-3 py-4 sm:gap-4 sm:py-6 text-white md:px-10">
             <div className="flex h-14 w-14 sm:h-18 sm:w-18 shrink-0 items-center justify-center rounded-full bg-white/15">
               <img src="/cyber.svg" alt="cyber" width={192} height={108} className="w-[34px] sm:w-[38px] h-auto" />
             </div>
-            <p className="text-base sm:text-lg font-medium leading-6 hidden sm:block">Cyber<br />Security</p>
+            <p className="text-xs font-medium leading-4 sm:text-lg sm:leading-6">Cyber<br className="sm:hidden" /><span className="hidden sm:inline"> </span>Security</p>
           </div>
 
-          <div className="flex items-center justify-center sm:justify-start sm:rounded-none rounded-[19px] gap-4 bg-gradient-to-b from-[#00bfa5] to-[#018F7C] px-6 py-5 sm:py-6 text-white md:px-10">
+          <div className="flex items-center justify-center sm:justify-start sm:rounded-none rounded-[19px] gap-3 bg-gradient-to-b from-[#00bfa5] to-[#018F7C] px-3 py-4 sm:gap-4 sm:py-6 text-white md:px-10">
             <div className="flex h-14 w-14 sm:h-18 sm:w-18 shrink-0 items-center justify-center rounded-full bg-white/15">
               <img src="/AIDA.svg" alt="mobileApp" width={192} height={108} className="w-[24px] sm:w-[28px] h-auto" />
             </div>
-            <p className="text-base sm:text-lg font-medium leading-6 hidden sm:block">Artificial<br />Intelligence</p>
+            <p className="text-xs font-medium leading-4 sm:text-lg sm:leading-6">Artificial<br className="sm:hidden" /><span className="hidden sm:inline"> </span>Intelligence</p>
           </div>
 
-          <div className="flex items-center justify-center sm:justify-start sm:rounded-none rounded-[19px] gap-4 bg-gradient-to-b from-[#fa9d00] to-[#cd8205] px-6 py-5 sm:py-6 text-white md:px-10">
+          <div className="flex items-center justify-center sm:justify-start sm:rounded-none rounded-[19px] gap-3 bg-gradient-to-b from-[#fa9d00] to-[#cd8205] px-3 py-4 sm:gap-4 sm:py-6 text-white md:px-10">
             <div className="flex h-14 w-14 sm:h-18 sm:w-18 shrink-0 items-center justify-center rounded-full bg-white/15">
               <img src="/website.svg" alt="website" width={192} height={108} className="w-[30px] sm:w-[34px] h-auto" />
             </div>
-            <p className="text-base sm:text-lg font-medium leading-6 hidden sm:block">Website & App<br />Development</p>
+            <p className="text-xs font-medium leading-4 sm:text-lg sm:leading-6">Website & App<br className="sm:hidden" /><span className="hidden sm:inline"> </span>Development</p>
           </div>
 
-          <div className="flex items-center justify-center sm:justify-start sm:rounded-none rounded-[19px] gap-4 bg-gradient-to-b from-[#38c045] to-[#02a230] px-6 py-5 sm:py-6 text-white md:px-10">
+          <div className="flex items-center justify-center sm:justify-start sm:rounded-none rounded-[19px] gap-3 bg-gradient-to-b from-[#38c045] to-[#02a230] px-3 py-4 sm:gap-4 sm:py-6 text-white md:px-10">
             <div className="flex h-14 w-14 sm:h-18 sm:w-18 shrink-0 items-center justify-center rounded-full bg-white/15">
               <img src="/digitalmarketing.svg" alt="website" width={192} height={108} className="w-[30px] sm:w-[34px] h-auto" />
             </div>
-            <p className="text-base sm:text-lg font-medium leading-6 hidden sm:block">Digital<br />Marketing</p>
+            <p className="text-xs font-medium leading-4 sm:text-lg sm:leading-6">Digital<br className="sm:hidden" /><span className="hidden sm:inline"> </span>Marketing</p>
           </div>
 
         </div>

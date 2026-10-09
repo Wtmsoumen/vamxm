@@ -70,8 +70,8 @@ export default function Footer() {
 
   return (
     <footer id="footer" className="bg-[#0a1014] text-white">
-      <div className="px-6 md:px-10 ">
-        <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-start gap-x-10 gap-y-12 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_1fr_1.1fr_0.9fr]">
+      <div className="px-5 sm:px-6 md:px-10">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-start gap-x-8 gap-y-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_1fr_1.1fr_0.9fr] lg:gap-x-10 lg:py-14">
           {/* Brand */}
           <div className="w-full">
             <img
@@ -79,7 +79,7 @@ export default function Footer() {
               alt="Utsav Verse logo"
               width={1920}
               height={1080}
-              className="mb-5 w-[260px]"
+              className="mb-5 h-auto w-[min(100%,260px)]"
             />
             <p className=" text-sm leading-6 text-white">
               {settings.seo?.description}
@@ -157,13 +157,13 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-[#484E54] px-6 md:px-10">
-        <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-4 text-center md:grid-cols-[1fr_auto_1fr] ">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-3 py-4 text-center text-sm sm:text-base md:grid-cols-[1fr_auto_1fr]">
           <div className="text-white md:text-left">
             {settings.copyright_text || data?.data?.settings?.copyright_text}
           </div>
-          <img src={"/durgaLotus.png"} alt="durgaLotus" width={1920} height={1080} className="mx-auto h-16 w-16 md:h-20 md:w-20 -mt-8" />
+          <img src={"/durgaLotus.png"} alt="durgaLotus" width={1920} height={1080} className="mx-auto h-14 w-14 md:h-20 md:w-20 md:-mt-8" />
           <div className="text-center md:text-right">
-            <Link href="/privacy-policy" className="text-white">Privacy Policy</Link>  |  <Link href="/terms-and-conditions" className="text-white">Terms of Service</Link>
+            <Link href="/privacy-policy" className="text-white">Privacy Policy</Link><span aria-hidden="true" className="mx-2">|</span><Link href="/terms-and-conditions" className="text-white">Terms of Service</Link>
           </div>
         </div>
       </div>

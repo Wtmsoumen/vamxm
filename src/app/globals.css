@@ -28,6 +28,26 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+input,
+textarea,
+select,
+button {
+  max-width: 100%;
+}
+
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
 /* ── Typography ──────────────────────────────────────── */
 .serif {
   font-family: var(--font-poppins), sans-serif;
@@ -345,5 +365,13 @@ button {
 @media (max-width: 767px) {
   .section-title {
     letter-spacing: -1px;
+  }
+
+  .hero-strip {
+    margin-top: 1.5rem;
+  }
+
+  .viewer-container {
+    height: 100dvh;
   }
 }

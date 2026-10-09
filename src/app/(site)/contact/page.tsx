@@ -65,9 +65,9 @@ export default function ContactPage() {
               Let's Get In Touch
             </h1>
           </div>
-          <div className="relative z-10 flex flex-col lg:flex-row gap-8">
+          <div className="relative z-10 flex flex-col lg:flex-row lg:gap-8 gap-0">
             {/* ── LEFT — form + footer ── */}
-            <div className="py-10 flex flex-col w-full">
+            <div className="lg:py-10 py-4 flex flex-col w-full">
 
               {/* {sent ? (
               <div className="flex flex-col gap-4 py-16 text-center">
@@ -147,7 +147,7 @@ export default function ContactPage() {
             </div>
 
             {/* ── RIGHT — contact info + VR headset ── */}
-            <div className="w-1/2 py-10 flex flex-col relative">
+            <div className="lg:w-1/2 w-full lg:py-10 py-4 flex flex-col relative">
               {/* Contact info */}
               <div className="flex flex-col gap-4">
                 <div className="flex items-start gap-4 bg-red-50 p-4 rounded-lg">

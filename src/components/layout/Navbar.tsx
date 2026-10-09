@@ -29,15 +29,15 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed left-0 top-0 z-50 w-full border-b transition-all duration-300 px-6 md:px-10 ${scrolled
+      className={`fixed left-0 top-0 z-50 w-full border-b transition-all duration-300 px-4 sm:px-6 md:px-10 ${scrolled
         ? "border-black/8 bg-white shadow-sm"
         : "border-white/30 bg-white/35"
         }`}
     >
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 py-2 md:py-3">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-3 py-2 md:gap-6 md:py-3">
 
         <Link href="/" className="shrink-0">
-          <img src={siteLogo || "/logo/vamxm-horizontal-black.png"} alt="UtsavVerse" className="h-auto w-[215px]" />
+          <img src={siteLogo || "/logo/vamxm-horizontal-black.png"} alt="UtsavVerse" className="h-auto w-[min(54vw,180px)] sm:w-[215px]" />
         </Link>
 
         <nav className="hidden items-center gap-7 text-[16px] font-medium lg:flex">
@@ -57,7 +57,7 @@ export default function Navbar() {
 
         <button
           onClick={() => setOpen(!open)}
-          className="rounded-lg border border-black/10 px-3 py-2 text-2xl lg:hidden"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-black/10 text-2xl lg:hidden"
           aria-label="Toggle navigation"
           aria-expanded={open}
         >
@@ -66,13 +66,16 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <nav className="border-t border-white/40 bg-white/95 px-6 py-5 lg:hidden">
-          <div className="flex flex-col gap-4 text-sm font-medium">
+        <nav className="max-h-[calc(100dvh-64px)] overflow-y-auto border-t border-black/10 bg-white/95 px-4 py-4 sm:px-6 lg:hidden">
+          <div className="flex flex-col gap-1 text-base font-medium">
             {links.map(({ label, href }) => (
-              <Link key={label} href={href} onClick={() => setOpen(false)}>
+              <Link key={label} href={href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-3 transition-colors hover:bg-black/5">
                 {label}
               </Link>
             ))}
+            <Link href="#app" onClick={() => setOpen(false)} className="red-gradient mt-2 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold text-white shadow-md">
+              Download UtsavVerse App <span className="ml-2">→</span>
+            </Link>
           </div>
         </nav>
       )}

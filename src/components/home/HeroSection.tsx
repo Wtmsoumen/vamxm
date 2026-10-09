@@ -80,7 +80,7 @@ export default function HeroSection(data: any) {
 
   ]
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const banners = Array.isArray(data?.data) ? data.data : [];
+  let banners = Array.isArray(data?.data) ? data.data : [];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -88,6 +88,8 @@ export default function HeroSection(data: any) {
     }, 5000);
     return () => clearInterval(interval);
   }, [banners.length]);
+
+  console.log(banners, "banners__");
 
   return (
     <section className="relative pt-24 md:min-h-[900px] md:pt-[220px]">
@@ -140,10 +142,10 @@ export default function HeroSection(data: any) {
 
               <div className="mt-8 flex flex-nowrap items-center gap-3 hero-btns">
                 <Link
-                  href="#pandals"
+                  href={`${item?.button_url}`}
                   className="red-gradient inline-flex h-12 sm:h-[54px] items-center justify-center rounded-full px-6 sm:px-8 text-xs sm:text-sm font-semibold text-white shadow-md transition hover:brightness-110"
                 >
-                  Explore Pandals <span className="ml-3">→</span>
+                  {item?.button_text} <span className="ml-3">→</span>
                 </Link>
                 {/* <a
                   href="#guide"

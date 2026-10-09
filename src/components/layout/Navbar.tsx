@@ -1,8 +1,9 @@
 "use client";
 
-import { getPublicHome } from "@/lib/publicApi";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/store";
 
 const links = [
   { label: "Home", href: "/" },
@@ -10,13 +11,15 @@ const links = [
   { label: "Sponsors", href: "/sponsors" },
   { label: "Utsavverse", href: "/pandals" },
   { label: "Services", href: "/#services" },
-  { label: "Gallery", href: "/#gallery" },
+  { label: "Gallery", href: "/gallery" },
   { label: "Contact Us", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const settingsPayload = useSelector((state: RootState) => state.publicContent.settings.data) as any;
+  const siteLogo = settingsPayload?.data?.logo;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -34,7 +37,7 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-6 py-2 md:py-3">
 
         <Link href="/" className="shrink-0">
-          <img src="/logo/vamxm-horizontal-black.png" alt="UtsavVerse" className="h-auto w-[215px]" />
+          <img src={siteLogo || "/logo/vamxm-horizontal-black.png"} alt="UtsavVerse" className="h-auto w-[215px]" />
         </Link>
 
         <nav className="hidden items-center gap-7 text-[16px] font-medium lg:flex">

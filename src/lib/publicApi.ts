@@ -123,6 +123,18 @@ export async function getPublicHome(): Promise<unknown | null> {
   }
 }
 
+export async function getPublicServices(page = 1, perPage = 12): Promise<unknown | null> {
+  return getPublicJson(`/public/services?page=${page}&per_page=${perPage}`);
+}
+
+export async function getPublicService(slug: string): Promise<unknown | null> {
+  return getPublicJson(`/public/services/${encodeURIComponent(slug)}`);
+}
+
+export async function getPublicSettings(): Promise<unknown | null> {
+  return getPublicJson("/public/settings");
+}
+
 export async function getPublicPandals(page = 1, perPage = 12): Promise<{ pandals: UnknownRecord[]; }> {
   try {
     const payload: any = await getPublicJson(`/mobile/tours`);

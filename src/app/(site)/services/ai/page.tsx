@@ -1,6 +1,5 @@
-import ServiceDetailPage from "@/components/services/ServiceDetailPage";
-import { services } from "@/data/services";
+import { redirect } from "next/navigation";
 
 export default function AiServicesPage() {
-  return <ServiceDetailPage service={services[1]} />;
+  redirect("/services/mobile-app-development");
 }

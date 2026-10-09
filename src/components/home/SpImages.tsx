@@ -14,6 +14,7 @@ import REVOLUCION from "../../../public/logoSponsor/REVOLUCION.png"
 import SLICKCLICK from "../../../public/logoSponsor/SLICK & CLICK.png"
 import Sthaal from "../../../public/logoSponsor/Sthaal.png"
 import WTM from "../../../public/logoSponsor/WTM.png"
+import { ArrowRight } from "lucide-react";
 
 export default function SpImages() {
 
@@ -69,9 +70,15 @@ export default function SpImages() {
 
     return (
         <section className="mx-auto max-w-[1400px] px-4 pb-10 md:px-8 md:pb-14 flex flex-col items-center gap-8">
-            <div className="text-center sm:text-left">
+            <div className="text-center sm:text-left flex items-center gap-4 mt-4">
                 {/* <p className="section-kicker text-3xl!">Our partners</p> */}
-                <h2 className="section-title mt-4 text-[30px] sm:text-[52px] md:text-[72px]">Our <span className="text-utsav">Partners</span></h2>
+                <h2 className="section-title text-[30px] sm:text-[52px] md:text-[72px]">Our <span className="text-utsav">Sponsors</span></h2>
+                <Link
+                    href="/sponsors"
+                    className="group hover:scale-110 red-gradient hidden shrink-0 rounded-full p-3 text-sm font-semibold text-white shadow-md transition hover:brightness-110 md:inline-flex"
+                >
+                    <ArrowRight className="-rotate-45 group-hover:rotate-0 transition duration-300" />
+                </Link>
             </div>
             <div className="slider-container w-full">
 
@@ -83,12 +90,12 @@ export default function SpImages() {
                 </Slider>
 
             </div>
-            <Link
+            {/* <Link
                 href="/sponsors"
                 className="mt-8 red-gradient hidden shrink-0 rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110 md:inline-flex"
             >
                 View all sponsors <span className="ml-3">→</span>
-            </Link>
+            </Link> */}
         </section>
     )
 }

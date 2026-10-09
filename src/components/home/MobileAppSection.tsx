@@ -1,7 +1,21 @@
+"use client"
+
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/store";
 
-export default function MobileAppSection(data: any) {
+export default function MobileAppSection({ data }: { data?: any } = {}) {
+  const homeData = useSelector((state: RootState) => state.home.data) as any;
+  const settingsPayload = useSelector((state: RootState) => state.publicContent.settings.data) as any;
+  const settingsApps = settingsPayload?.data?.apps;
+  const appLinks = settingsApps
+    ? [
+      settingsApps.play_store && { platform: "Android", url: settingsApps.play_store },
+      settingsApps.app_store && { platform: "iOS", url: settingsApps.app_store },
+    ].filter(Boolean)
+    : data?.data ?? homeData?.data?.app_downloads;
+  console.log(appLinks, "appLinks");
   return (
     <section
       id="app"
@@ -28,10 +42,10 @@ export default function MobileAppSection(data: any) {
             <strong>Android and iOS.</strong>
           </p>
           <div className="mt-8 flex justify-center gap-3 flex-wrap">
-            {data?.data?.map((v: any, i: number) =>
+            {appLinks?.length ? appLinks.map((v: any, i: number) =>
               <Link key={i} target="_blank" href={v?.url} className="inline-flex items-center">
                 <img src={v?.platform === "Android" ? "/googlePlay.svg" : "/appStore.svg"} alt="Get it on Google Play" className="h-10 sm:h-12 w-auto" />
-              </Link>)}
+              </Link>) : null}
             {/* <Link href={data?.data?.[1]?.url} className="inline-flex items-center">
               <img src="/appStore.svg" alt="Download on the App Store" className="h-10 sm:h-12 w-auto" />
             </Link> */}

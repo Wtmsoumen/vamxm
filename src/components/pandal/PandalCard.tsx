@@ -1,69 +1,68 @@
 "use client";
 
 import Link from "next/link";
-import { Eye, Flame } from "lucide-react";
-import { Pandal } from "@/types";
+import { ArrowUpRight, Eye, MapPin } from "lucide-react";
 
 export default function PandalCard({ pandal, rank }: { pandal: any; rank?: number }) {
-  const isTop3 = rank != null && rank <= 3;
+  const linkedPandal = pandal.pandal ?? pandal.tour?.pandal ?? pandal;
+  const title = pandal.title ?? pandal.name ?? linkedPandal.name ?? "Durga Puja Pandal";
+  const slug = linkedPandal.slug ?? pandal.slug ?? pandal.tour?.slug ?? linkedPandal.id ?? pandal.id;
+  const image = pandal.thumbnail ?? pandal.image ?? linkedPandal.thumbnail ?? linkedPandal.image ?? "/pandals/pandal1.jpg";
+  const location = linkedPandal.location ?? linkedPandal.area ?? pandal.location ?? "Kolkata";
+  const views = pandal.views ?? linkedPandal.views ?? linkedPandal.visitor_count;
+  const tourUrl = pandal.index_url ?? pandal.tour_url;
 
   return (
     <Link
-      href={`/${pandal.pandal.slug}`}
-      onClick={() => localStorage.setItem("pandal_index_url", pandal.index_url)}
-      className="group block bg-white hover:bg-gray-50 transition-colors"
+      href={`/${slug}`}
+      onClick={() => {
+        if (tourUrl) localStorage.setItem("pandal_index_url", tourUrl);
+      }}
+      className="group block h-full overflow-hidden rounded-2xl border border-black/[0.07] bg-white shadow-[0_8px_28px_rgba(20,20,20,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_42px_rgba(20,20,20,0.14)]"
     >
-      {/* Image */}
-      <div className="relative aspect-video overflow-hidden bg-gray-100">
+      <div className="relative aspect-[1.5] overflow-hidden bg-[#eee9e2]">
         <img
-          src={pandal.thumbnail}
-          alt={pandal.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = `https://placehold.co/800x450/FF6B00/fff?text=${encodeURIComponent(pandal.name)}`;
+            (e.target as HTMLImageElement).src = "/pandals/pandal1.jpg";
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-
-        {/* Rank badge */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-black/10" />
         {rank != null && (
-          <div className={`absolute top-3 left-3 w-8 h-8 flex items-center justify-center text-sm font-black rounded bg-saffron text-white`}>
-            {rank}
-          </div>
-        )}
-
-        {isTop3 && (
-          <div className="absolute top-3 right-3 flex items-center gap-1 bg-saffron rounded-full px-2 py-1">
-            <Flame className="w-2.5 h-2.5 text-white" />
-            <span className="text-white text-[9px] font-black uppercase tracking-wide">Trending</span>
-          </div>
-        )}
-
-        {/* Hover overlay */}
-        <div className="absolute inset-0 bg-saffron/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-          <span className="text-white text-xs font-black uppercase tracking-widest border-2 border-white px-5 py-2">
-            View 360°
+          <span className="absolute left-4 top-4 rounded-full border border-white/25 bg-black/30 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md">
+            {String(rank).padStart(2, "0")}
           </span>
+        )}
+        <span className="absolute bottom-4 left-4 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-md">
+          360° virtual tour
+        </span>
+        <div className="absolute bottom-4 right-4 flex h-9 w-9 translate-y-2 items-center justify-center rounded-full bg-white text-black opacity-0 shadow-lg transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
         </div>
       </div>
 
-      {/* Info */}
-      <div className="px-5 py-4 border-t border-gray-100">
-        <div className="flex items-start justify-between gap-2">
-          <div className="flex-1 min-w-0">
-            <h3 className="font-black text-gray-900 text-sm leading-tight">{pandal.title}</h3>
-            {pandal.description && (
-              <p className="text-gray-400 text-xs mt-0.5">{pandal.description}</p>
-            )}
+      <div className="flex min-h-[142px] flex-col p-4 sm:p-5">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <h3 className="line-clamp-2 text-base font-bold leading-snug text-[#171717] transition-colors group-hover:text-[#b60017] sm:text-lg">{title}</h3>
+            <p className="mt-2 flex items-center gap-1.5 text-xs text-black/55">
+              <MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+              <span className="truncate">{location}</span>
+            </p>
           </div>
-          {pandal.views != null && (
-            <div className={`flex items-center gap-1 flex-shrink-0 ${isTop3 ? "text-saffron" : "text-white"}`}>
-              <Eye className="w-3 h-3" />
-              <span className="text-xs font-black">{pandal.views.toLocaleString()}</span>
+          {views != null && (
+            <div className="flex shrink-0 items-center gap-1.5 rounded-full bg-[#f7f4ef] px-2.5 py-1.5 text-xs font-semibold text-black/60">
+              <Eye className="h-3.5 w-3.5" aria-hidden="true" />
+              <span>{Number(views).toLocaleString()}</span>
             </div>
           )}
         </div>
-        {/* <p className="text-gray-800 text-xs mt-2 uppercase tracking-wide">{pandal.location}</p> */}
+        <div className="mt-auto flex items-center justify-between border-t border-black/[0.07] pt-3 mt-4 text-xs font-semibold text-black/65">
+          <span>Explore this pandal</span>
+          <span className="text-[#b60017] transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+        </div>
       </div>
     </Link>
   );

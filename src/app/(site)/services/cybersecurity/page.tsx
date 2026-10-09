@@ -1,6 +1,5 @@
-import ServiceDetailPage from "@/components/services/ServiceDetailPage";
-import { services } from "@/data/services";
+import { redirect } from "next/navigation";
 
 export default function CybersecurityServicesPage() {
-  return <ServiceDetailPage service={services[0]} />;
+  redirect("/services/cyber-security");
 }

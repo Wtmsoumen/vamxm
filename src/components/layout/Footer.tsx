@@ -3,23 +3,20 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getPublicHome } from "@/lib/publicApi";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/store";
 import { faFacebook, faFacebookF, faInstagram, faLinkedinIn, faXTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import Image from "next/image";
 
 export default function Footer() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [data, setData] = useState<any>(null);
+  const data = useSelector((state: RootState) => state.home.data) as any;
+  const settingsPayload = useSelector((state: RootState) => state.publicContent.settings.data) as any;
+  const settings = settingsPayload?.data ?? data?.data?.settings ?? {};
+  const socialLinks = settings.social_links ?? Object.entries(settings.social ?? {}).map(([platform, url]) => ({ platform, url, icon: platform }));
   const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    let active = true;
-    getPublicHome().then((home) => { if (active) setData(home); });
-    return () => { active = false; };
-  }, []);
-
-  console.log(data?.meta?.site_visitor_count, "data__data");
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -34,7 +31,7 @@ export default function Footer() {
     { label: "Sponsors", href: "/sponsors" },
     { label: "Pandal 360°", href: "/pandals" },
     { label: "Services", href: "/#services" },
-    { label: "Gallery", href: "/#gallery" },
+    { label: "Gallery", href: "/gallery" },
     { label: "Contact Us", href: "/contact" },
   ];
 
@@ -78,18 +75,18 @@ export default function Footer() {
           {/* Brand */}
           <div className="w-full">
             <img
-              src="/logo/vamxm-horizontal.png"
+              src={settings.logo || "/logo/vamxm-horizontal.png"}
               alt="Utsav Verse logo"
               width={1920}
               height={1080}
               className="mb-5 w-[260px]"
             />
             <p className=" text-sm leading-6 text-white">
-              {data?.data?.settings?.seo?.description}
+              {settings.seo?.description}
             </p>
 
             <div className="mt-6 flex gap-3">
-              {data?.data?.social_links?.length ? data?.data?.social_links.map((item: any, idx: number) =>
+              {socialLinks?.length ? socialLinks.map((item: any, idx: number) =>
                 <Link key={idx} href={item?.url} target="_blank" aria-label={item?.platform} className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-sm transition text-black hover:text-white bg-white hover:bg-utsav">
                   {item?.icon === "facebook" && <FontAwesomeIcon icon={faFacebookF} />}
                   {item?.icon === "instagram" && <FontAwesomeIcon icon={faInstagram} />}
@@ -127,9 +124,9 @@ export default function Footer() {
           <div className="w-full min-w-0">
             <h3 className="mb-5 text-lg font-semibold">Contact Us</h3>
             <form onSubmit={handleSubmit} className="flex flex-col gap-3 text-sm">
-              <p className="break-words transition hover:text-white">{data?.data?.settings?.address || "Kolkata, West Bengal, India"}</p>
-              <Link href={`mailto:${data?.data?.settings?.email}`} className="break-all transition hover:text-white">{data?.data?.settings?.email || "[EMAIL_ADDRESS]"}</Link>
-              <Link href={`tel:${data?.data?.settings?.phone}`} className="transition hover:text-white">{data?.data?.settings?.phone || "+91 98765 43210"}</Link>
+              <p className="break-words transition hover:text-white">{settings.address || "Kolkata, West Bengal, India"}</p>
+              <Link href={`mailto:${settings.email}`} className="break-all transition hover:text-white">{settings.email || "[EMAIL_ADDRESS]"}</Link>
+              <Link href={`tel:${settings.phone}`} className="transition hover:text-white">{settings.phone || "+91 98765 43210"}</Link>
               {/* <button
               type="submit"
               className="red-gradient w-full rounded-md px-5 py-3 text-sm font-semibold text-white transition hover:brightness-110 mt-8"
@@ -162,7 +159,7 @@ export default function Footer() {
       <div className="border-t border-[#484E54] px-6 md:px-10">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-4 text-center md:grid-cols-[1fr_auto_1fr] ">
           <div className="text-white md:text-left">
-            {data?.data?.settings?.copyright_text}
+            {settings.copyright_text || data?.data?.settings?.copyright_text}
           </div>
           <img src={"/durgaLotus.png"} alt="durgaLotus" width={1920} height={1080} className="mx-auto h-16 w-16 md:h-20 md:w-20 -mt-8" />
           <div className="text-center md:text-right">

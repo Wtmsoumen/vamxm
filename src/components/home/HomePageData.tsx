@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/store";
 import HeroSection from "@/components/home/HeroSection";
 import AboutSection from "@/components/home/AboutSection";
 import FeaturedPandals from "@/components/home/FeaturedPandals";
@@ -10,18 +11,11 @@ import GallerySection from "@/components/home/GallerySection";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import ContactSection from "@/components/home/ContactSection";
 import SpImages from "@/components/home/SpImages";
-import { getPublicHome } from "@/lib/publicApi";
 
 export default function HomePageData() {
-  const [homeData, setHomeData] = useState<any>(null);
+  const homeData = useSelector((state: RootState) => state.home.data) as any;
 
-  useEffect(() => {
-    let active = true;
-    getPublicHome().then((data) => {
-      if (active) setHomeData(data);
-    });
-    return () => { active = false; };
-  }, []);
+  console.log(homeData?.data, "homeData");
 
   return <>
     <HeroSection data={homeData?.data?.banners} />

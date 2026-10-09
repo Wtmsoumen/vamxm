@@ -9,32 +9,36 @@ import { Pandal } from "@/types";
 
 export default function PandalsList() {
   const [pandals, setPandals] = useState<Pandal[]>([]);
-  const [pandalsData, setPandalsData] = useState<any>([]);
 
   useEffect(() => {
     let active = true;
     getPublicPandals(1, 1000).then(({ pandals: items }) => {
       if (active) {
-        setPandalsData(items);
-        setPandals(items.map(normalizePandal).filter((pandal) => pandal.id && pandal.published))
+        const publishedItems = items.filter((item) => {
+          const normalized = normalizePandal(item);
+          return normalized.id && normalized.published;
+        });
+        setPandals(publishedItems.map(normalizePandal));
+        setVisibleItems(publishedItems);
       };
     });
     return () => { active = false; };
   }, []);
 
+  const [visibleItems, setVisibleItems] = useState<any[]>([]);
+
   return <>
-    <div className="max-w-7xl mx-auto px-6 pt-6">
-      <p className="text-xs text-black uppercase tracking-widest">Showing {pandals.length} pandals</p>
+    <div className="mx-auto flex max-w-7xl items-center justify-between px-5 pt-8 sm:px-6">
+      <p className="text-sm font-semibold text-black/65">Explore Kolkata’s Puja destinations</p>
+      <p className="rounded-full bg-[#f6f2ed] px-3 py-1.5 text-xs font-semibold text-black/60">{pandals.length} pandals</p>
     </div>
-    <div className="max-w-7xl mx-auto px-6 py-8 pb-20">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-        {pandalsData.map((pandal: any, index: number) => <div key={pandal.id} className="shadow-sm hover:shadow-lg rounded-xl overflow-hidden transition-all duration-300">
-          <PandalCard pandal={pandal} rank={index + 1} />
-        </div>)}
+    <div className="mx-auto max-w-7xl px-5 pb-20 pt-5 sm:px-6">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6">
+        {visibleItems.map((pandal: any, index: number) => <PandalCard key={pandal.id ?? pandal.slug ?? index} pandal={pandal} rank={index + 1} />)}
       </div>
-      {pandals.length === 0 && <div className="text-center py-24 border border-gray-200">
-        <Eye className="w-10 h-10 text-gray-200 mx-auto mb-3" />
-        <p className="text-gray-300 font-black uppercase tracking-widest text-sm">No pandals found</p>
+      {pandals.length === 0 && <div className="rounded-2xl border border-black/10 bg-white py-20 text-center">
+        <Eye className="mx-auto mb-3 h-10 w-10 text-black/20" />
+        <p className="text-sm font-semibold text-black/45">No pandals are available right now.</p>
       </div>}
     </div>
   </>;

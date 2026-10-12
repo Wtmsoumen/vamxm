@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, Check, Code2, Gauge, Globe, Layers, LockKeyhole, Megaphone, Rocket, Search, Server, Shield, Smartphone, Wrench, Bug, Share2, ChartColumn, LayoutDashboard } from "lucide-react";
-import type { ServiceDetail } from "@/data/services";
+import { services, type ServiceDetail, type ServiceFeature } from "@/data/services";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "@/store";
@@ -27,15 +27,46 @@ const featureIcons: Record<string, typeof Smartphone> = {
   code: Code2,
 };
 
-export default function ServiceDetailPage({ service: fallbackService }: { service: ServiceDetail }) {
+export default function ServiceDetailPage({ service: fallbackService, slug: propSlug }: { service?: ServiceDetail; slug?: string }) {
   const dispatch = useDispatch<AppDispatch>();
-  const detailState = useSelector((state: RootState) => state.publicContent.serviceDetails[fallbackService.slug]);
+
+  const targetSlug = propSlug || fallbackService?.slug || "";
+  const normalizedSlug = targetSlug === "web-development" ? "website-development" : targetSlug;
+
+  const localFallback = fallbackService ?? services.find(
+    (s) => s.slug === targetSlug || s.slug === normalizedSlug || (targetSlug === "website-development" && s.slug === "web-development")
+  );
+
+  const detailState = useSelector((state: RootState) => state.publicContent.serviceDetails[targetSlug] || state.publicContent.serviceDetails[normalizedSlug]);
+
   useEffect(() => {
-    dispatch(fetchPublicService(fallbackService.slug));
-  }, [dispatch, fallbackService.slug]);
+    if (targetSlug) {
+      dispatch(fetchPublicService(targetSlug));
+    }
+  }, [dispatch, targetSlug]);
 
   const payload = detailState?.data as { data?: ServiceDetail } | ServiceDetail | null;
-  const service = ((payload && "data" in payload ? payload.data : payload) as ServiceDetail | undefined) ?? fallbackService;
+  const fetchedService = (payload && "data" in payload ? payload.data : payload) as ServiceDetail | undefined;
+  const service = fetchedService || localFallback;
+
+  if (!service) {
+    return (
+      <main className="min-h-screen bg-white px-5 py-32 text-center sm:px-8 sm:py-40">
+        <div className="mx-auto max-w-xl">
+          <p className="section-kicker">VAMXM Technologies</p>
+          <h1 className="mt-4 text-3xl font-bold text-[#171717] sm:text-4xl">Service details loading...</h1>
+          <p className="mt-4 text-black/60">Fetching the latest service information.</p>
+          <div className="mt-8">
+            <Link href="/#services" className="red-gradient inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white">
+              ← Back to services
+            </Link>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  const features = Array.isArray(service.features) ? service.features : [];
 
   return (
     <main className="min-h-screen bg-white">
@@ -61,40 +92,46 @@ export default function ServiceDetailPage({ service: fallbackService }: { servic
         </div>
       </section>
 
-      {service.pathway && (
+      {service.pathway && service.pathway.length > 0 && (
         <section className="px-5 py-12 sm:px-8 md:px-10" aria-label="Learning pathway">
           <div className="mx-auto max-w-[1180px] rounded-2xl bg-[#171717] p-6 text-white sm:p-9">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/50">{service.title.startsWith("AI") ? "AI Learning Path" : "Cybersecurity Learning Path"}</p>
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/50">{service.title?.startsWith("AI") ? "AI Learning Path" : "Learning Path"}</p>
             <ol className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {service.pathway.map((step, index) => <li key={step} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-4"><span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#d80117] text-xs font-bold">{String(index + 1).padStart(2, "0")}</span><span className="font-semibold">{step}</span></li>)}
+              {service.pathway.map((step: string, index: number) => <li key={typeof step === "string" ? step : index} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-4"><span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#d80117] text-xs font-bold">{String(index + 1).padStart(2, "0")}</span><span className="font-semibold">{step}</span></li>)}
             </ol>
           </div>
         </section>
       )}
 
-      <section id="offerings" className="scroll-mt-24 px-5 pb-16 pt-4 sm:px-8 sm:pb-24 md:px-10" aria-label={`${service.title} offerings`}>
-        <div className="mx-auto max-w-[1180px]">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {service.features.map((feature) => {
-              const Icon = featureIcons[feature.icon?.toLowerCase()] ?? Check;
-              return (
-                <article key={feature.id} className="rounded-2xl border border-black/10 bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition hover:-translate-y-1 hover:shadow-[0_14px_38px_rgba(0,0,0,0.09)] sm:p-8">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#d80117]/[0.08] text-[#d80117]">
-                    <Icon className="h-6 w-6" aria-hidden="true" />
-                  </div>
-                  <h2 className="mt-5 text-xl font-bold leading-snug text-[#171717]">{feature.title}</h2>
-                  <p className="mt-3 text-sm leading-7 text-black/60">{feature.description}</p>
-                </article>
-              );
-            })}
+      {features.length > 0 && (
+        <section id="offerings" className="scroll-mt-24 px-5 pb-16 pt-4 sm:px-8 sm:pb-24 md:px-10" aria-label={`${service.title} offerings`}>
+          <div className="mx-auto max-w-[1180px]">
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {features.map((feature: ServiceFeature | string, idx: number) => {
+                const title = typeof feature === "string" ? feature : feature.title;
+                const desc = typeof feature === "string" ? "" : feature.description;
+                const iconName = typeof feature === "string" ? "check" : feature.icon?.toLowerCase();
+                const Icon = featureIcons[iconName || "check"] ?? Check;
+                const key = typeof feature === "string" ? idx : feature.id || idx;
+                return (
+                  <article key={key} className="rounded-2xl border border-black/10 bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition hover:-translate-y-1 hover:shadow-[0_14px_38px_rgba(0,0,0,0.09)] sm:p-8">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#d80117]/[0.08] text-[#d80117]">
+                      <Icon className="h-6 w-6" aria-hidden="true" />
+                    </div>
+                    <h2 className="mt-5 text-xl font-bold leading-snug text-[#171717]">{title}</h2>
+                    {desc && <p className="mt-3 text-sm leading-7 text-black/60">{desc}</p>}
+                  </article>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="bg-[#171717] px-5 py-14 text-center text-white sm:px-8 sm:py-20">
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#ff8585]">Let’s get started</p>
-          <h2 className="section-title mt-4 text-3xl sm:text-5xl">{service.primaryCta ?? `Let’s discuss ${service.title.toLowerCase()}`}</h2>
+          <h2 className="section-title mt-4 text-3xl sm:text-5xl">{service.primaryCta ?? `Let’s discuss ${service.title?.toLowerCase() ?? "our services"}`}</h2>
           <p className="mx-auto mt-5 max-w-2xl leading-7 text-white/65">Tell us what you’re looking to learn, protect, build or grow. Our team will help you find the right next step.</p>
           <Link href="/contact" className="red-gradient mt-8 inline-flex items-center gap-3 rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110">Talk to our team <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
         </div>

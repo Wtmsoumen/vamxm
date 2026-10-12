@@ -58,7 +58,7 @@ export default function FeaturedPandals({ data }: { data?: any }) {
                     className="h-full w-full object-cover rounded-xl group-hover:rounded-bl-[200px]! transition-all! duration-300!"
                   />
                   <Link
-                    href={`/pandals/${v?.slug}`}
+                    href={`/${v?.slug}`}
                     // href={v.link}
                     className="bg-[#FCEDEF] invisible group-hover:visible p-2 w-1 h-1 group-hover:w-28 group-hover:h-28 absolute bottom-0 left-0 transition-all duration-300 rounded-full"
                   >

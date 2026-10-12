@@ -29,6 +29,7 @@ export default function ServicesSection() {
   const payload = useSelector((state: RootState) => state.publicContent.services.data);
   const fetchedServices = serviceList(payload) as typeof services;
   const displayedServices = fetchedServices.length ? fetchedServices : services;
+  console.log(displayedServices, "displayedServices")
   return (
     <section id="services" className="scroll-mt-24 px-4 py-8 sm:px-6 sm:py-12 md:px-10 md:py-14">
       <div className="mx-auto max-w-[1400px]">
@@ -55,11 +56,11 @@ export default function ServicesSection() {
                       <Image src={visual.icon} alt="" aria-hidden="true" width={52} height={38} className="h-6 w-auto brightness-0 invert" />
                     </div>
                   </div>
-                  <div className="flex flex-1 flex-col p-5">
+                  <div className="flex flex-1 flex-col p-5 justify-between">
                     <h3 className="text-lg font-bold leading-tight text-[#171717] sm:text-xl">{service.title}</h3>
                     <p className="mt-2 text-sm leading-5 text-black/65">{(service as typeof service & { short_description?: string }).short_description || service.description}</p>
                     <ul className="mt-4 space-y-2 text-sm text-black/75">
-                      {service.features.slice(0, 3).map((feature) => <li key={feature.id} className="flex items-start gap-2"><BadgeCheck className="mt-0.5 shrink-0" fill={visual.color} stroke="#fff" size={16} aria-hidden="true" />{feature.title}</li>)}
+                      {service.features.map((feature) => <li key={feature.id} className="flex items-start gap-2"><BadgeCheck className="mt-0.5 shrink-0" fill={visual.color} stroke="#fff" size={16} aria-hidden="true" />{feature.title}</li>)}
                     </ul>
                     <Link href={serviceHref(service.slug)} className="mt-4 inline-flex items-center justify-between border-t border-black/10 pt-3 text-sm font-semibold text-[#171717] transition-colors hover:text-[#d80117]">
                       Explore service <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />

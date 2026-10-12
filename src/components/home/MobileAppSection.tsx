@@ -23,11 +23,11 @@ export default function MobileAppSection({ data }: { data?: any } = {}) {
     >
       <img src="/MobileAppBg.png" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
 
-      <div className="relative mx-auto max-w-[1400px] grid items-center gap-8 grid-cols-1 md:grid-cols-3">
+      <div className="mx-auto max-w-[1400px] flex items-center justify-center">
 
         {/* Phone mockup 1 — hidden on mobile */}
-        <AnimateOnScroll anim="left" className="order-2 justify-center md:order-1 hidden md:flex">
-          <img src="/MobileApp1.png" alt="Utsav Verse app splash screen" className="max-h-[480px] w-auto object-contain drop-shadow-2xl md:-mb-56" />
+        <AnimateOnScroll anim="left" className="order-2 justify-center md:order-1 hidden lg:flex absolute bottom-0 left-[5%] z-10">
+          <img src="/MobileApp1.png" alt="Utsav Verse app splash screen" className="max-h-[300px] sm:max-h-[380px] md:max-h-[420px] w-auto object-contain drop-shadow-2xl" />
         </AnimateOnScroll>
 
         {/* Center text */}
@@ -53,11 +53,11 @@ export default function MobileAppSection({ data }: { data?: any } = {}) {
         </AnimateOnScroll>
 
         {/* Phone mockup 2 */}
-        <AnimateOnScroll anim="right" className="order-3 hidden md:flex justify-center">
+        <AnimateOnScroll anim="right" className="order-3 hidden lg:flex justify-center absolute top-0 right-[5%] z-10">
           <img
             src="/MobileApp2.png"
             alt="Utsav Verse app home screen"
-            className="max-h-[300px] w-auto object-contain drop-shadow-2xl sm:max-h-[380px] md:max-h-[480px] md:-mt-[124px]"
+            className="w-auto object-contain drop-shadow-2xl max-h-[300px] sm:max-h-[380px] md:max-h-[420px]"
           />
         </AnimateOnScroll>
 

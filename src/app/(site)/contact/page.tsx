@@ -4,24 +4,32 @@ import { useState } from "react";
 import { MapPin, Send } from "lucide-react";
 import Link from "next/link";
 import MobileAppSection from "@/components/home/MobileAppSection";
-import { contactServices, submitContact } from "@/lib/contact";
+import { submitContact } from "@/lib/contact";
+import { validateContactForm, type ContactFormErrors } from "@/lib/contactValidation";
+import { toast } from "react-toastify";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", service_id: "", subject: "", message: "" });
-  const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState<ContactFormErrors>({});
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError("");
+    const validationErrors = validateContactForm(form);
+    setErrors(validationErrors);
+    if (Object.keys(validationErrors).length) {
+      toast.error("Please check the highlighted fields.");
+      return;
+    }
+
     setSubmitting(true);
     try {
-      await submitContact({ ...form, service_id: form.service_id || null, name: form.name.trim(), email: form.email.trim(), phone: form.phone.trim(), subject: "", message: form.message.trim() });
+      await submitContact({ ...form, service_id: form.service_id || null, name: form.name.trim(), email: form.email.trim(), phone: form.phone.trim(), subject: form.subject.trim(), message: form.message.trim() });
       setForm({ name: "", email: "", phone: "", service_id: "", subject: "", message: "" });
-      // setSent(true);
+      setErrors({});
+      toast.success("Thanks for reaching out. We’ll get back to you soon.");
     } catch (error) {
-      setError(error instanceof Error ? error.message : "We could not send your message. Please try again.");
+      toast.error(error instanceof Error ? error.message : "We could not send your message. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -62,7 +70,7 @@ export default function ContactPage() {
           <div className="">
             <p className="text-black text-xs font-bold uppercase tracking-[0.3em] mb-2">Questions?</p>
             <h1 className="text-4xl sm:text-5xl font-black text-black leading-tight">
-              Let's Get In Touch
+              Let&apos;s Get In Touch
             </h1>
           </div>
           <div className="relative z-10 flex flex-col lg:flex-row lg:gap-8 gap-0">
@@ -83,27 +91,41 @@ export default function ContactPage() {
                     <input
                       type="text"
                       required
+                      minLength={2}
+                      maxLength={100}
                       value={form.name}
-                      onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                      aria-invalid={!!errors.name}
+                      aria-describedby={errors.name ? "contact-name-error" : undefined}
+                      onChange={e => { setForm(f => ({ ...f, name: e.target.value })); setErrors(v => ({ ...v, name: undefined })); }}
                       className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
                       placeholder="Your Name"
                     />
+                    {errors.name && <p id="contact-name-error" className="text-xs text-red-600">{errors.name}</p>}
                     <input
                       type="email"
                       required
+                      maxLength={254}
                       value={form.email}
-                      onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                      aria-invalid={!!errors.email}
+                      aria-describedby={errors.email ? "contact-email-error" : undefined}
+                      onChange={e => { setForm(f => ({ ...f, email: e.target.value })); setErrors(v => ({ ...v, email: undefined })); }}
                       className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
                       placeholder="Email Address *"
                     />
+                    {errors.email && <p id="contact-email-error" className="text-xs text-red-600">{errors.email}</p>}
                     <input
                       type="tel"
                       required
+                      inputMode="tel"
+                      maxLength={30}
                       value={form.phone}
-                      onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
+                      aria-invalid={!!errors.phone}
+                      aria-describedby={errors.phone ? "contact-phone-error" : undefined}
+                      onChange={e => { setForm(f => ({ ...f, phone: e.target.value })); setErrors(v => ({ ...v, phone: undefined })); }}
                       className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
                       placeholder="Phone Number *"
                     />
+                    {errors.phone && <p id="contact-phone-error" className="text-xs text-red-600">{errors.phone}</p>}
                     {/* <select
                     value={form.service_id}
                     onChange={e => setForm(f => ({ ...f, service_id: e.target.value }))}
@@ -114,6 +136,7 @@ export default function ContactPage() {
                   </select> */}
                     <input
                       type="text"
+                      maxLength={150}
                       value={form.subject}
                       onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
                       className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors"
@@ -125,20 +148,23 @@ export default function ContactPage() {
                   <textarea
                     required
                     rows={6}
+                    minLength={10}
+                    maxLength={5000}
                     value={form.message}
-                    onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                    aria-invalid={!!errors.message}
+                    aria-describedby={errors.message ? "contact-message-error" : undefined}
+                    onChange={e => { setForm(f => ({ ...f, message: e.target.value })); setErrors(v => ({ ...v, message: undefined })); }}
                     className="border rounded border-black/80 px-5 py-4 text-gray-900 placeholder:text-black/40 text-sm focus:outline-none focus:border-black/80 transition-colors resize-none"
                     placeholder="Your Message"
                   />
                 </div>
 
-                {error && <p role="alert" className="w-full text-sm text-red-600">{error}</p>}
-                {sent ? <p className="text-green-500 text-sm">Thank you for contacting us. We will get back to you soon.</p> : null}
+                {errors.message && <p id="contact-message-error" className="w-full text-xs text-red-600">{errors.message}</p>}
 
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-1/2! red-gradient rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110"
+                  className="w-full sm:w-1/2 red-gradient rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {submitting ? "Sending…" : "Send Message"}
                 </button>

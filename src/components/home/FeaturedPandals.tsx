@@ -48,10 +48,10 @@ export default function FeaturedPandals({ data }: { data?: any }) {
                   </div>
                 </div>
                 <div className="relative h-[220px] sm:h-[260px] md:h-[300px] lg:h-[340px] p-2">
-                  <span className="absolute right-3.5 top-3.5 rounded-full bg-utsav shadow-md px-2 py-1 text-sm font-semibold text-white flex items-center gap-2 z-10">
+                  {v?.visitor_count ? <span className="absolute right-3.5 top-3.5 rounded-full bg-utsav shadow-md px-2 py-1 text-sm font-semibold text-white flex items-center gap-2 z-10">
                     <span className="bg-white/45 rounded-full p-1"><Eye size={14} /></span>
                     {v?.visitor_count}
-                  </span>
+                  </span> : null}
                   <img
                     src={v?.featured_image}
                     alt={v?.name}

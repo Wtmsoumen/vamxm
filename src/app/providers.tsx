@@ -6,6 +6,7 @@ import type { AppDispatch } from "@/store";
 import { store } from "@/store";
 import { fetchPublicHome } from "@/store/homeSlice";
 import { fetchPublicServices, fetchPublicSettings } from "@/store/publicContentSlice";
+import { ToastContainer } from "react-toastify";
 
 function HomeDataLoader() {
   const dispatch = useDispatch<AppDispatch>();
@@ -24,6 +25,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <Provider store={store}>
       <HomeDataLoader />
       {children}
+      <ToastContainer position="top-right" autoClose={5000} newestOnTop closeOnClick pauseOnFocusLoss draggable pauseOnHover theme="light" />
     </Provider>
   );
 }

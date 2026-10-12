@@ -2,40 +2,36 @@
 
 import { useState } from "react";
 import { Send } from "lucide-react";
-import { contactServices, submitContact } from "@/lib/contact";
+import { submitContact } from "@/lib/contact";
+import { validateContactForm, type ContactFormErrors } from "@/lib/contactValidation";
+import { toast } from "react-toastify";
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", service_id: "", subject: "", message: "" });
-  const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState<ContactFormErrors>({});
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError("");
+    const validationErrors = validateContactForm(form);
+    setErrors(validationErrors);
+    if (Object.keys(validationErrors).length) {
+      toast.error("Please check the highlighted fields.");
+      return;
+    }
+
     setSubmitting(true);
     try {
       await submitContact({ ...form, service_id: form.service_id || null, name: form.name.trim(), email: form.email.trim(), phone: form.phone.trim(), subject: form.subject.trim(), message: form.message.trim() });
       setForm({ name: "", email: "", phone: "", service_id: "", subject: "", message: "" });
-      // setSent(true);
+      setErrors({});
+      toast.success("Thanks for reaching out. We’ll get back to you soon.");
     } catch (error) {
-      setError(error instanceof Error ? error.message : "We could not send your message. Please try again.");
+      toast.error(error instanceof Error ? error.message : "We could not send your message. Please try again.");
     } finally {
       setSubmitting(false);
     }
   };
-
-  // if (sent) {
-  //   return (
-  //     <div className="flex flex-col items-center justify-center py-16 text-center">
-  //       <div className="w-14 h-14 bg-saffron flex items-center justify-center mb-5">
-  //         <Send className="w-6 h-6 text-white" />
-  //       </div>
-  //       <h3 className="text-2xl font-black text-gray-900 mb-2">Message Sent!</h3>
-  //       <p className="text-black text-sm">We'll get back to you within 24 hours.</p>
-  //     </div>
-  //   );
-  // }
 
   return (
     <form onSubmit={handleSubmit} className="flex items-end flex-col gap-2">
@@ -45,27 +41,41 @@ export default function ContactForm() {
         <input
           type="text"
           required
+          minLength={2}
+          maxLength={100}
           value={form.name}
-          onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+          aria-invalid={!!errors.name}
+          aria-describedby={errors.name ? "home-name-error" : undefined}
+          onChange={e => { setForm(f => ({ ...f, name: e.target.value })); setErrors(v => ({ ...v, name: undefined })); }}
           className="border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 placeholder:text-gray-600 text-sm focus:outline-none focus:border-saffron transition-colors"
           placeholder="Your Name"
         />
+        {errors.name && <p id="home-name-error" className="text-xs text-red-600 sm:col-span-2">{errors.name}</p>}
         <input
           type="email"
           required
+          maxLength={254}
           value={form.email}
-          onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+          aria-invalid={!!errors.email}
+          aria-describedby={errors.email ? "home-email-error" : undefined}
+          onChange={e => { setForm(f => ({ ...f, email: e.target.value })); setErrors(v => ({ ...v, email: undefined })); }}
           className="border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 placeholder:text-gray-600 text-sm focus:outline-none focus:border-saffron transition-colors"
           placeholder="Email Address *"
         />
+        {errors.email && <p id="home-email-error" className="text-xs text-red-600 sm:col-span-2">{errors.email}</p>}
         <input
           type="tel"
           required
+          inputMode="tel"
+          maxLength={30}
           value={form.phone}
-          onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
+          aria-invalid={!!errors.phone}
+          aria-describedby={errors.phone ? "home-phone-error" : undefined}
+          onChange={e => { setForm(f => ({ ...f, phone: e.target.value })); setErrors(v => ({ ...v, phone: undefined })); }}
           className="border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 placeholder:text-gray-600 text-sm focus:outline-none focus:border-saffron transition-colors"
           placeholder="Phone Number *"
         />
+        {errors.phone && <p id="home-phone-error" className="text-xs text-red-600 sm:col-span-2">{errors.phone}</p>}
         {/* <select
           value={form.service_id}
           onChange={e => setForm(f => ({ ...f, service_id: e.target.value }))}
@@ -76,6 +86,7 @@ export default function ContactForm() {
         </select> */}
         <input
           type="text"
+          maxLength={150}
           value={form.subject}
           onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
           className="w-full border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 placeholder:text-gray-600 text-sm focus:outline-none focus:border-saffron transition-colors"
@@ -84,23 +95,25 @@ export default function ContactForm() {
       </div>
 
 
-      {/* {error && <p role="alert" className="text-sm text-red-600">{error}</p>} */}
-
       <textarea
         required
+        minLength={10}
+        maxLength={5000}
         rows={2}
         value={form.message}
-        onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+        aria-invalid={!!errors.message}
+        aria-describedby={errors.message ? "home-message-error" : undefined}
+        onChange={e => { setForm(f => ({ ...f, message: e.target.value })); setErrors(v => ({ ...v, message: undefined })); }}
         className="w-full border border-gray-400 rounded-xl px-4 py-3.5 text-gray-900 placeholder:text-gray-600 text-sm focus:outline-none focus:border-saffron transition-colors resize-none"
         placeholder="Your Message"
       />
 
-      {sent ? <div className="text-green-500 text-sm">Thank you for contacting us. We will get back to you soon. <button className="text-green-500 text-sm" onClick={() => setSent(false)}>X</button></div> : null}
+      {errors.message && <p id="home-message-error" className="w-full text-xs text-red-600">{errors.message}</p>}
 
       <button
         type="submit"
         disabled={submitting}
-        className="w-fit red-gradient hidden shrink-0 rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110 md:inline-flex gap-2 items-center"
+        className="w-fit red-gradient shrink-0 rounded-full px-7 py-4 text-sm font-semibold text-white shadow-md transition hover:brightness-110 inline-flex gap-2 items-center"
       >
         <Send className="w-4 h-4" /> {submitting ? "Sending…" : "Send Message"}
       </button>

@@ -15,6 +15,8 @@ import type { AboutContent } from "@/components/home/AboutSection";
 import type { HomePromos } from "@/components/home/ExperienceSection";
 import type { HeroBanner } from "@/components/home/HeroSection";
 
+type SectionHeading = { eyebrow?: string | null; title?: string | null; highlight?: string | null; subtitle?: string | null };
+
 type HomePagePayload = {
   data?: {
     banners?: HeroBanner[];
@@ -22,6 +24,11 @@ type HomePagePayload = {
     home_promos?: HomePromos | null;
     gallery?: unknown[];
     app_downloads?: unknown[];
+    section_headings?: {
+      featured_pandals?: SectionHeading | null;
+      services?: SectionHeading | null;
+      gallery?: SectionHeading | null;
+    };
   };
 };
 
@@ -33,10 +40,10 @@ export default function HomePageData() {
   return <>
     <HeroSection data={homeData?.data?.banners} />
     <AboutSection content={homeData?.data?.about_section} />
-    <FeaturedPandals data={homeData} />
-    <ServicesSection />
+    <FeaturedPandals data={homeData} heading={homeData?.data?.section_headings?.featured_pandals} />
+    <ServicesSection heading={homeData?.data?.section_headings?.services} />
     <ExperienceSection promos={homeData?.data?.home_promos} />
-    <GallerySection data={homeData?.data?.gallery} />
+    <GallerySection data={homeData?.data?.gallery} heading={homeData?.data?.section_headings?.gallery} />
     <SpImages />
     <MobileAppSection data={homeData?.data?.app_downloads} />
     <ContactSection />

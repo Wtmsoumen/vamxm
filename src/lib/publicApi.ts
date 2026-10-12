@@ -123,6 +123,10 @@ export async function getPublicHome(): Promise<unknown | null> {
   }
 }
 
+export async function getPublicGallery(): Promise<unknown | null> {
+  return getPublicJson("/public/gallery");
+}
+
 export async function getPublicServices(page = 1, perPage = 12): Promise<unknown | null> {
   return getPublicJson(`/public/services?page=${page}&per_page=${perPage}`);
 }

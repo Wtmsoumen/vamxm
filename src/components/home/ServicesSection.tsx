@@ -25,7 +25,9 @@ const serviceVisuals = [
   { icon: "/digitalmarketing.svg", color: "#00a0a8", image: "/service-digital-marketing.png", label: "Growth" },
 ];
 
-export default function ServicesSection() {
+type SectionHeading = { eyebrow?: string | null; title?: string | null; highlight?: string | null; subtitle?: string | null };
+
+export default function ServicesSection({ heading }: { heading?: SectionHeading | null }) {
   const payload = useSelector((state: RootState) => state.publicContent.services.data);
   const fetchedServices = serviceList(payload) as typeof services;
   const displayedServices = fetchedServices.length ? fetchedServices : services;
@@ -35,10 +37,11 @@ export default function ServicesSection() {
       <div className="mx-auto max-w-[1400px]">
         <AnimateOnScroll anim="up">
           <div className="text-center">
-            <p className="section-kicker">Our Core Services</p>
+            <p className="section-kicker">{heading?.eyebrow || "Our Core Services"}</p>
             <h2 className="section-title mt-4 text-[30px] sm:text-[52px] md:text-[72px]">
-              Building a Brighter <span className="display-gradient block">Tomorrow</span>
+              {heading?.title || "Building a Brighter"} <span className="display-gradient block">{heading?.highlight || "Tomorrow"}</span>
             </h2>
+            {heading?.subtitle && <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-black/65">{heading.subtitle}</p>}
           </div>
         </AnimateOnScroll>
 

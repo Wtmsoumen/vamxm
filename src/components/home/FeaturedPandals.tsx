@@ -5,7 +5,9 @@ import CountdownSection from "./CountdownSection";
 import { ArrowUpRight, Eye, MapPin } from "lucide-react";
 import { getHomePandalItems } from "@/lib/publicApi";
 
-export default function FeaturedPandals({ data }: { data?: any }) {
+type SectionHeading = { eyebrow?: string | null; title?: string | null; highlight?: string | null; subtitle?: string | null };
+
+export default function FeaturedPandals({ data, heading }: { data?: any; heading?: SectionHeading | null }) {
   const apiPandals = getHomePandalItems(data);
   const featuredPandals = apiPandals.slice(0, 3).map((pandal) => ({
     id: pandal.id,
@@ -27,10 +29,11 @@ export default function FeaturedPandals({ data }: { data?: any }) {
 
         <AnimateOnScroll anim="up">
           <div className="text-center">
-            <p className="section-kicker">Explore Kolkata</p>
+            <p className="section-kicker">{heading?.eyebrow || "Explore Kolkata"}</p>
             <h2 className="section-title mt-4 text-[36px] sm:text-[52px] md:text-[72px] lg:text-[80px]">
-              Famous <span className="text-utsav">Pandals</span>
+              {heading?.title || "Famous"} <span className="text-utsav">{heading?.highlight || "Pandals"}</span>
             </h2>
+            {heading?.subtitle && <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-black/65">{heading.subtitle}</p>}
           </div>
         </AnimateOnScroll>
 

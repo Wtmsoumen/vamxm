@@ -6,7 +6,9 @@ import { galleryTiles as tiles } from "@/data/gallery";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
-export default function GallerySection({ data, fullPage = false }: { data?: any[]; fullPage?: boolean }) {
+type SectionHeading = { eyebrow?: string | null; title?: string | null; highlight?: string | null; subtitle?: string | null };
+
+export default function GallerySection({ data, fullPage = false, heading }: { data?: any[]; fullPage?: boolean; heading?: SectionHeading | null }) {
   const [lightbox, setLightbox] = useState<number | null>(null);
   const items = Array.isArray(data) && data.length > 0
     ? data
@@ -38,13 +40,13 @@ export default function GallerySection({ data, fullPage = false }: { data?: any[
 
           <AnimateOnScroll anim="up">
             <div className="text-center">
-              <p className="section-kicker">Our Collections</p>
+              <p className="section-kicker">{heading?.eyebrow || "Our Collections"}</p>
               {fullPage ? (
-                <h1 className="section-title mt-4 text-[30px] sm:text-[52px] md:text-[72px]">Explore Our <span className="text-utsav">Gallery</span></h1>
+                <h1 className="section-title mt-4 text-[30px] sm:text-[52px] md:text-[72px]">{heading?.title || "Explore Our"} <span className="text-utsav">{heading?.highlight || "Gallery"}</span></h1>
               ) : (
-                <h2 className="section-title mt-4 text-[30px] sm:text-[52px] md:text-[72px]">Explore Our <span className="text-utsav">Gallery</span></h2>
+                <h2 className="section-title mt-4 text-[30px] sm:text-[52px] md:text-[72px]">{heading?.title || "Explore Our"} <span className="text-utsav">{heading?.highlight || "Gallery"}</span></h2>
               )}
-              {fullPage && <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-black/60">A collection of moments, places and experiences from VAMXM.</p>}
+              {(heading?.subtitle || fullPage) && <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-black/60">{heading?.subtitle || "A collection of moments, places and experiences from VAMXM."}</p>}
             </div>
           </AnimateOnScroll>
 

@@ -18,7 +18,7 @@ export default function FeaturedPandals({ data, heading }: { data?: any; heading
     // link: `/pandals/${pandal.id}`,
     link: `/${pandal.id}`,
   }));
-  console.log(data?.data?.featured_pandals, "apiPandals");
+  console.log(data?.data?.festival, "apiPandals");
   return (
     <section
       id="pandals"

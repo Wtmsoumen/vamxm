@@ -66,7 +66,6 @@ export default function GalleryPage() {
   const gallery = apiGallery?.length ? apiGallery : homepageGallery;
   const heading = homeData?.data?.section_headings?.gallery;
 
-  console.log(apiGallery, "apiGallery__");
 
   return <GallerySection data={gallery} heading={heading} fullPage />;
 }

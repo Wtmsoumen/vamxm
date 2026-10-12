@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import MobileAppSection from "@/components/home/MobileAppSection";
@@ -12,6 +14,7 @@ import REVOLUCION from "../../../../public/logoSponsor/REVOLUCION.png"
 import SLICKCLICK from "../../../../public/logoSponsor/SLICK & CLICK.png"
 import Sthaal from "../../../../public/logoSponsor/Sthaal.png"
 import WTM from "../../../../public/logoSponsor/WTM.png"
+import usePublicSponsors from "@/hooks/usePublicSponsors";
 
 const sponsors = [
   { name: "Durable", logo: DURABLE },
@@ -27,6 +30,12 @@ const sponsors = [
 ];
 
 export default function SponsorsPage() {
+  const apiSponsors = usePublicSponsors();
+  const displayedSponsors = apiSponsors.length
+    ? apiSponsors
+    : [];
+  // sponsors.map((sponsor, index) => ({ id: `fallback-${index}`, name: sponsor.name, logo: sponsor.logo, website: "#", tier: undefined }))
+
   return (
     <>
       <div className="min-h-screen bg-white px-4 py-24">
@@ -40,18 +49,19 @@ export default function SponsorsPage() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 mb-16">
-            {sponsors.map((sponsor) => (
-              <div key={sponsor.name} className="group flex min-h-40 flex-col items-center justify-center rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-saffron/40 hover:shadow-lg">
+            {displayedSponsors.map((sponsor) => (
+              <div key={sponsor.id} className="group flex min-h-40 flex-col items-center justify-center rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-saffron/40 hover:shadow-lg">
                 <div className="relative h-20 w-full">
-                  <Image
+                  {sponsor.logo ? <Image
                     src={sponsor.logo}
                     alt={`${sponsor.name} logo`}
                     fill
                     sizes="(max-width: 640px) 45vw, (max-width: 1024px) 28vw, 18vw"
                     className="object-contain"
-                  />
+                  /> : <span className="flex h-full items-center justify-center rounded-lg bg-black/5 text-2xl font-bold text-black/50">{sponsor.name.charAt(0)}</span>}
                 </div>
-                <h2 className="mt-4 text-center text-sm font-semibold text-black/80 group-hover:text-saffron transition-colors">{sponsor.name}</h2>
+                <h2 className="mt-4 text-center text-sm font-semibold text-black/80 transition-colors group-hover:text-saffron">{sponsor.name}</h2>
+                {sponsor.tier && <p className="mt-1 text-xs capitalize text-black/45">{sponsor.tier}</p>}
               </div>
             ))}
           </div>

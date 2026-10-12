@@ -15,10 +15,13 @@ import SLICKCLICK from "../../../public/logoSponsor/SLICK & CLICK.png"
 import Sthaal from "../../../public/logoSponsor/Sthaal.png"
 import WTM from "../../../public/logoSponsor/WTM.png"
 import { ArrowRight } from "lucide-react";
+import usePublicSponsors from "@/hooks/usePublicSponsors";
 
 export default function SpImages() {
+    const apiSponsors = usePublicSponsors();
+    const sponsorsWithLogos = apiSponsors.filter((sponsor) => sponsor.logo);
 
-    let sponsersImages = [
+    const sponsersImages = [
         { img: CHAANGHANI, name: "CHAANGHANI" },
         { img: CORPORATENEST, name: "CORPORATE NEST" },
         { img: DURABLE, name: "DURABLE" },
@@ -83,9 +86,17 @@ export default function SpImages() {
             <div className="slider-container w-full">
 
                 <Slider {...settings}>
-                    {sponsersImages.map((_, i) =>
-                        <div key={i} className="mx-2 flex! items-center justify-center">
-                            <Image src={_.img} alt={_.name} width={400} height={200} className="h-auto w-2/3" />
+                    {(sponsorsWithLogos.length ? sponsorsWithLogos : sponsersImages).map((sponsor) =>
+                        <div key={"id" in sponsor ? sponsor.id : sponsor.name} className="mx-2 flex! items-center justify-center">
+                            <a
+                                href={"website" in sponsor ? sponsor.website : "/sponsors"}
+                                target={"website" in sponsor && sponsor.website !== "#" ? "_blank" : undefined}
+                                rel={"website" in sponsor && sponsor.website !== "#" ? "noopener noreferrer" : undefined}
+                                aria-label={sponsor.name}
+                                className="flex w-full items-center justify-center"
+                            >
+                                <Image src={"logo" in sponsor ? sponsor.logo : sponsor.img} alt={sponsor.name} width={400} height={200} className="h-auto w-2/3 object-contain" />
+                            </a>
                         </div>)}
                 </Slider>
 

@@ -14,7 +14,7 @@ export const fetchPublicHome = createAsyncThunk(
   {
     condition: (_, { getState }) => {
       const status = (getState() as { home: HomeState }).home.status;
-      return status === "idle";
+      return status !== "loading";
     },
   },
 );

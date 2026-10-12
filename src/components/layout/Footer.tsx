@@ -68,6 +68,8 @@ export default function Footer() {
     requestAnimationFrame(animate);
   }, [data?.meta?.site_visitor_count]);
 
+  console.log(data?.data?.services[0]?.slug, "data-_-_-");
+
   return (
     <footer id="footer" className="bg-[#0a1014] text-white">
       <div className="px-5 sm:px-6 md:px-10">
@@ -113,7 +115,7 @@ export default function Footer() {
           <div className="w-full">
             <h3 className="mb-5 text-lg font-semibold">Our Services</h3>
             <ul className="space-y-3 text-sm text-white">
-              {ourServices.map((link, idx) => <li key={idx}><Link href={link.href} className="transition hover:text-white">{link.label}</Link></li>)}
+              {data?.data?.services?.length ? data?.data?.services?.map((link: any, idx: number) => <li key={idx}><Link href={`/services/${link.slug}`} className="transition hover:text-white">{link.title}</Link></li>) : null}
               {/* <li><Link href="#app" className="transition hover:text-white">Mobile App</Link></li>
             <li><Link href="#pandals" className="transition hover:text-white">Pandal 360°</Link></li>
             <li><Link href="#services" className="transition hover:text-white">Our Services</Link></li> */}

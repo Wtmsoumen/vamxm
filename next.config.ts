@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "picsum.photos" },
       { protocol: "https", hostname: "fastly.picsum.photos" },
       { protocol: "https", hostname: "www.figma.com" },
+      { protocol: "https", hostname: "vamxm.webtechnomind.in" },
     ],
   },
 };

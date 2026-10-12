@@ -9,7 +9,7 @@ const links = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Sponsors", href: "/sponsors" },
-  { label: "Utsavverse", href: "/pandals" },
+  { label: "UtsavVerse", href: "/pandals" },
   { label: "Services", href: "/#services" },
   { label: "Gallery", href: "/gallery" },
   { label: "Contact Us", href: "/contact" },

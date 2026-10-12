@@ -67,6 +67,12 @@ export default function ServiceDetailPage({ service: fallbackService, slug: prop
   }
 
   const features = Array.isArray(service.features) ? service.features : [];
+  const serviceDescriptionHtml = service.description?.replace(
+    /<(p|h2)(?:\s[^>]*)?>\s*(?:&nbsp;|&#160;|\u00a0|\s)*<\/\1>/gi,
+    "<br />",
+  );
+
+  console.log(service.description, "service.description");
 
   return (
     <main className="min-h-screen bg-white">
@@ -78,7 +84,7 @@ export default function ServiceDetailPage({ service: fallbackService, slug: prop
           <h1 className="section-title mt-4 max-w-4xl text-[42px] sm:text-[58px] md:text-[72px]">{service.title}</h1>
           {service.tagline && <p className="mt-5 text-xl font-semibold text-[#d80117] sm:text-2xl">{service.tagline}</p>}
           {service.description?.includes("<") ? (
-            <div className="mt-5 max-w-3xl text-base leading-8 text-black/70 sm:text-lg" dangerouslySetInnerHTML={{ __html: service.description }} />
+            <div className="mt-5" dangerouslySetInnerHTML={{ __html: serviceDescriptionHtml || "" }} />
           ) : (
             <p className="mt-5 max-w-3xl text-base leading-8 text-black/70 sm:text-lg">{service.description || (service as ServiceDetail & { short_description?: string }).short_description}</p>
           )}
@@ -102,7 +108,7 @@ export default function ServiceDetailPage({ service: fallbackService, slug: prop
           </div>
         </section>
       )}
-
+      {/*
       {features.length > 0 && (
         <section id="offerings" className="scroll-mt-24 px-5 pb-16 pt-4 sm:px-8 sm:pb-24 md:px-10" aria-label={`${service.title} offerings`}>
           <div className="mx-auto max-w-[1180px]">
@@ -126,7 +132,7 @@ export default function ServiceDetailPage({ service: fallbackService, slug: prop
             </div>
           </div>
         </section>
-      )}
+      )} */}
 
       <section className="bg-[#171717] px-5 py-14 text-center text-white sm:px-8 sm:py-20">
         <div className="mx-auto max-w-3xl">

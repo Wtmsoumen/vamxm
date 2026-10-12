@@ -15,6 +15,12 @@ function HomeDataLoader() {
     dispatch(fetchPublicHome());
     dispatch(fetchPublicServices());
     dispatch(fetchPublicSettings());
+
+    const homeRefreshInterval = window.setInterval(() => {
+      dispatch(fetchPublicHome());
+    }, 60_000);
+
+    return () => window.clearInterval(homeRefreshInterval);
   }, [dispatch]);
 
   return null;

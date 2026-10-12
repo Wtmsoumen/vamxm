@@ -35,11 +35,11 @@ export default function MobileAppSection({ data }: { data?: any } = {}) {
           <p className="section-kicker">Mobile App</p>
           <h2 className="section-title mt-5 text-[34px] sm:text-[44px] md:text-[52px]">
             Download
-            <span className="display-gradient block uppercase">Utsavverse</span>
+            <span className="display-gradient block">UtsavVerse</span>
           </h2>
           <p className="mx-auto mt-3 max-w-[360px] text-[15px] leading-7 text-black/75">
             Live crowd updates, favorites, reviews and photo uploads — free on{" "}
-            <strong>Android and iOS.</strong>
+            <strong>{appLinks?.length ? appLinks.map((v: any, i: number) => v?.platform === "Android" ? "Android." : "Android and iOS.") : null}</strong>
           </p>
           <div className="mt-8 flex justify-center gap-3 flex-wrap">
             {appLinks?.length ? appLinks.map((v: any, i: number) =>

@@ -39,11 +39,11 @@ function firstBoolean(source: UnknownRecord, ...keys: string[]): boolean {
 function listFrom(value: unknown): unknown[] {
   if (Array.isArray(value)) return value;
   const envelope = record(value);
-  for (const key of ["data", "items", "results", "pandals", "tours"]) {
+  for (const key of ["data", "items", "results", "pandals", "tours", "sponsors"]) {
     if (Array.isArray(envelope[key])) return envelope[key] as unknown[];
   }
   const data = record(envelope.data);
-  for (const key of ["items", "results", "pandals", "tours"]) {
+  for (const key of ["items", "results", "pandals", "tours", "sponsors"]) {
     if (Array.isArray(data[key])) return data[key] as unknown[];
   }
   return [];
@@ -59,8 +59,9 @@ function normalizeSponsor(value: unknown): Sponsor {
     id: firstString(source, "id", "_id", "uuid", "slug"),
     name: firstString(source, "name", "title") || "Sponsor",
     logo: firstString(source, "logo", "logo_url", "image", "image_url"),
-    website: firstString(source, "website", "url", "link") || "#",
+    website: firstString(source, "website", "website_url", "url", "link") || "#",
     bannerImage: firstString(source, "bannerImage", "banner_image", "banner_url") || undefined,
+    tier: firstString(source, "tier") || undefined,
   };
 }
 
@@ -123,8 +124,17 @@ export async function getPublicHome(): Promise<unknown | null> {
   }
 }
 
+export async function getPublicAboutUs(): Promise<unknown | null> {
+  return getPublicJson("/public/about-us");
+}
+
 export async function getPublicGallery(): Promise<unknown | null> {
   return getPublicJson("/public/gallery");
+}
+
+export async function getPublicSponsors(): Promise<Sponsor[]> {
+  const payload = await getPublicJson("/public/sponsors");
+  return listFrom(payload).map(normalizeSponsor).filter((sponsor) => sponsor.name !== "Sponsor" || !!sponsor.logo);
 }
 
 export async function getPublicServices(page = 1, perPage = 12): Promise<unknown | null> {

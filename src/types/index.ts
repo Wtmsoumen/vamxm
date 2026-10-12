@@ -22,6 +22,7 @@ export interface Sponsor {
   logo: string;
   website: string;
   bannerImage?: string;
+  tier?: string;
 }
 
 export interface Hotspot {

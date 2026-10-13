@@ -7,7 +7,8 @@ import { Pandal } from "@/types";
 import { getPublicJson, normalizePandal } from "@/lib/publicApi";
 
 export default function PandalDetailRoute() {
-  const { id } = useParams<{ id: string }>();
+  const params = useParams<{ id: string | string[] }>();
+  const id = Array.isArray(params.id) ? params.id.join("/") : params.id;
   const [pandal, setPandal] = useState<Pandal | null>(null);
   const [loading, setLoading] = useState(true);
   const [pandelDetails, setPandelDetails] = useState<Record<string, unknown>>({});

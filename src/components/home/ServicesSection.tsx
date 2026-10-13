@@ -52,7 +52,7 @@ export default function ServicesSection({ heading }: { heading?: SectionHeading 
               <AnimateOnScroll key={service.slug} anim="up" delay={index * 120}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.08] bg-white shadow-[0_12px_40px_rgba(20,20,20,0.07)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_55px_rgba(20,20,20,0.14)]">
                   <div className="relative h-36 overflow-hidden sm:h-40">
-                    <Image src={visual.image} alt={`${visual.label} service`} fill sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <Image src={service?.image || visual.image} alt={`${visual.label} service`} fill sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-black/5" />
                     <span className="absolute left-4 top-4 rounded-full border border-white/30 bg-black/20 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-white backdrop-blur-sm">0{index + 1} / 04</span>
                     <div className="absolute bottom-4 left-4 flex h-10 w-10 items-center justify-center rounded-lg border border-white/20 bg-white/15 backdrop-blur-md">

@@ -28,7 +28,7 @@ export default function PandalDetailClient({ pandal, pandelDetails }: { pandal: 
     <div className="min-h-screen bg-black">
       <div className="bg-white w-full h-22" />
       {/* Hero */}
-      <Link target={pandelDetails.virtual_tour ? "_blank" : "_parent"} href={`${pandelDetails.virtual_tour ? pandelDetails.virtual_tour.index_url : "#"}`} className="relative h-[50vh] sm:h-[60vh] overflow-hidden bg-zinc-900 flex items-center justify-center">
+      <div className="relative h-[50vh] sm:h-[60vh] overflow-hidden bg-zinc-900 flex items-center justify-center">
         <Image
           src={pandal.thumbnail}
           alt={pandal.name}
@@ -42,7 +42,17 @@ export default function PandalDetailClient({ pandal, pandelDetails }: { pandal: 
         {pandelDetails.virtual_tour ? <Image src={_360degr} alt="_360degr" width={400} height={400} className="w-60 h-60 absolute z-10 rounded-full shadow-2xl shadow-white bg-white/60" /> : null}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
 
-        <div className="absolute top-10 left-6">
+        {/* 360° tour overlay link */}
+        {pandelDetails.virtual_tour && (
+          <Link
+            target="_blank"
+            href={pandelDetails.virtual_tour.index_url}
+            className="absolute inset-0 z-20"
+            aria-label="Open 360° tour"
+          />
+        )}
+
+        <div className="absolute top-10 left-6 z-30">
           <Link
             href="/pandals"
             className="flex items-center justify-center w-9 h-9 bg-black/50 border border-white/20 rounded-xl text-white hover:bg-white/10 transition-all"
@@ -73,7 +83,7 @@ export default function PandalDetailClient({ pandal, pandelDetails }: { pandal: 
             <span>{pandelDetails.address}</span>
           </div>
         </div>
-      </Link>
+      </div>
 
       {/* Image Gallery */}
       {pandelDetails?.images?.length > 0 && (

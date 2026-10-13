@@ -20,6 +20,6 @@ export default async function PandalDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  if (!id) notFound();
+  // if (!id) notFound();
   return <PandalDetailRoute />;
 }

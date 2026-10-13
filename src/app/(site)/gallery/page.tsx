@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import GallerySection from "@/components/home/GallerySection";
 import type { RootState } from "@/store";
 import { getPublicGallery } from "@/lib/publicApi";
+import MobileAppSection from "@/components/home/MobileAppSection";
 
 type GalleryItem = { id: string | number; url: string; alt_text: string };
 type GalleryHomeData = {
@@ -49,7 +50,7 @@ function normalizeGallery(payload: unknown): GalleryItem[] {
 }
 
 export default function GalleryPage() {
-  const homeData = useSelector((state: RootState) => state.home.data) as GalleryHomeData | null;
+  const homeData = useSelector((state: RootState) => state.home.data) as any | null;
   const [apiGallery, setApiGallery] = useState<GalleryItem[] | null>(null);
 
   useEffect(() => {
@@ -67,5 +68,8 @@ export default function GalleryPage() {
   const heading = homeData?.data?.section_headings?.gallery;
 
 
-  return <GallerySection data={gallery} heading={heading} fullPage />;
+  return (<>
+    <GallerySection data={gallery} heading={heading} fullPage />
+    <MobileAppSection data={homeData?.data?.app_downloads} />
+  </>)
 }

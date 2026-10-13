@@ -10,7 +10,7 @@ export default function PandalDetailRoute() {
   const { id } = useParams<{ id: string }>();
   const [pandal, setPandal] = useState<Pandal | null>(null);
   const [loading, setLoading] = useState(true);
-  const [pandelDetails, setPandelDetails] = useState("");
+  const [pandelDetails, setPandelDetails] = useState<Record<string, unknown>>({});
 
   useEffect(() => {
     const controller = new AbortController();

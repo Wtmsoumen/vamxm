@@ -12,7 +12,7 @@ export default function PandalsList() {
 
   useEffect(() => {
     let active = true;
-    getPublicPandals(1, 1000).then(({ pandals: items }) => {
+    getPublicPandals(1, 100).then(({ pandals: items }) => {
       if (active) {
         const publishedItems = items.filter((item) => {
           const normalized = normalizePandal(item);

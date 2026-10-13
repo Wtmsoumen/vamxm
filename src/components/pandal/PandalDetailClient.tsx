@@ -1,25 +1,35 @@
 "use client";
 
 import Link from "next/link";
-import { MapPin, Eye, ArrowLeft, Star, Image as ImageIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { MapPin, Eye, ArrowLeft, Star, Image as ImageIcon, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Pandal } from "@/types";
+import Image from "next/image";
+import _360degr from '../../../public/360degr.png'
 
 export default function PandalDetailClient({ pandal, pandelDetails }: { pandal: Pandal, pandelDetails?: any }) {
   const [pandalUrl, setPandalUrl] = useState(`{/view/${pandal.id}}`);
+  const [previewIndex, setPreviewIndex] = useState<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return;
+    const amount = 220;
+    scrollRef.current.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
+  };
 
   useEffect(() => {
     const storedUrl = window.localStorage.getItem("pandal_index_url");
     if (storedUrl) setPandalUrl(storedUrl);
   }, []);
 
-
+  console.log(pandelDetails, "pandelDetails__");
   return (
     <div className="min-h-screen bg-black">
       <div className="bg-white w-full h-22" />
       {/* Hero */}
-      <div className="relative h-[50vh] sm:h-[60vh] overflow-hidden bg-zinc-900">
-        <img
+      <Link target={pandelDetails.virtual_tour ? "_blank" : "_parent"} href={`${pandelDetails.virtual_tour ? pandelDetails.virtual_tour.index_url : "#"}`} className="relative h-[50vh] sm:h-[60vh] overflow-hidden bg-zinc-900 flex items-center justify-center">
+        <Image
           src={pandal.thumbnail}
           alt={pandal.name}
           width={1920}
@@ -29,7 +39,8 @@ export default function PandalDetailClient({ pandal, pandelDetails }: { pandal: 
             (e.target as HTMLImageElement).style.display = "none";
           }}
         />
-        {/* <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10" /> */}
+        {pandelDetails.virtual_tour ? <Image src={_360degr} alt="_360degr" width={400} height={400} className="w-60 h-60 absolute z-10 rounded-full shadow-2xl shadow-white bg-white/60" /> : null}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
 
         <div className="absolute top-10 left-6">
           <Link
@@ -59,16 +70,113 @@ export default function PandalDetailClient({ pandal, pandelDetails }: { pandal: 
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">{pandal.name}</h1>
           <div className="flex items-center gap-2 text-white">
             <MapPin className="w-4 h-4 text-saffron" />
-            <span>{pandal.location}</span>
+            <span>{pandelDetails.address}</span>
           </div>
         </div>
-      </div>
+      </Link>
 
-      {/* Content */}
+      {/* Image Gallery */}
+      {pandelDetails?.images?.length > 0 && (
+        <div className="relative group">
+          {/* Left scroll button */}
+          <button
+            onClick={() => scroll("left")}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 bg-black/60 border border-white/20 rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          {/* Scrollable container */}
+          <div
+            ref={scrollRef}
+            className="flex gap-3 overflow-x-auto snap-x snap-mandatory py-4 px-4"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {pandelDetails.images.map((v: any, i: number) => (
+              <button
+                key={i}
+                onClick={() => setPreviewIndex(i)}
+                className="flex-shrink-0 snap-start rounded-xl overflow-hidden focus:outline-none focus:ring-2 focus:ring-saffron transition-transform hover:scale-105"
+              >
+                <Image
+                  src={v.image}
+                  alt={v?.alt_text || "image of pandal"}
+                  width={400}
+                  height={400}
+                  className="w-[200px] h-[200px] object-cover"
+                />
+              </button>
+            ))}
+          </div>
+
+          {/* Right scroll button */}
+          <button
+            onClick={() => scroll("right")}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 bg-black/60 border border-white/20 rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      )}
+
+      {/* Lightbox Preview */}
+      {previewIndex !== null && pandelDetails?.images?.[previewIndex] && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
+          onClick={() => setPreviewIndex(null)}
+        >
+          {/* Close */}
+          <button
+            onClick={() => setPreviewIndex(null)}
+            className="absolute top-5 right-5 w-10 h-10 bg-white/10 border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+
+          {/* Prev */}
+          {previewIndex > 0 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); setPreviewIndex(previewIndex - 1); }}
+              className="absolute left-4 w-10 h-10 bg-white/10 border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+          )}
+
+          {/* Image */}
+          <div onClick={(e) => e.stopPropagation()} className="max-w-[90vw] max-h-[85vh]">
+            <Image
+              src={pandelDetails.images[previewIndex].image}
+              alt={pandelDetails.images[previewIndex]?.alt_text || "image of pandal"}
+              width={1200}
+              height={1200}
+              className="max-w-full max-h-[85vh] object-contain rounded-xl"
+            />
+            <p className="text-white/60 text-sm text-center mt-3">
+              {previewIndex + 1} / {pandelDetails.images.length}
+            </p>
+          </div>
+
+          {/* Next */}
+          {previewIndex < pandelDetails.images.length - 1 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); setPreviewIndex(previewIndex + 1); }}
+              className="absolute right-4 w-10 h-10 bg-white/10 border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          )}
+        </div>
+      )}
       <div className="max-w-5xl mx-auto px-6 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
-            <h2 className="text-xl font-bold text-white mb-4">About this Pandal</h2>
+            <div className="flex items-center gap-2 mb-4">
+              <h2 className="text-xl font-bold text-white">About this Pandal</h2>
+              <Link href={`${pandelDetails?.map?.google_map_url}`} target="_blank">
+                <MapPin className="w-5 h-5 text-saffron" />
+              </Link>
+            </div>
             <div className="text-white leading-relaxed mb-8" dangerouslySetInnerHTML={{ __html: pandal.description || "" }} />
 
             {/* 360° CTA */}
@@ -112,7 +220,7 @@ export default function PandalDetailClient({ pandal, pandelDetails }: { pandal: 
                 {[
                   { label: "Location", value: pandal.location },
                   { label: "360° Views", value: pandal.idolPanoramaUrl ? "Pandal + Idol" : "Pandal" },
-                  { label: "Sponsors", value: String(pandal.sponsors.length) },
+                  // { label: "Sponsors", value: String(pandal.sponsors.length) },
                 ].map((row) => (
                   <div key={row.label} className="flex justify-between gap-4">
                     <span className="text-white">{row.label}</span>

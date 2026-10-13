@@ -152,7 +152,7 @@ export async function getPublicSettings(): Promise<unknown | null> {
 
 export async function getPublicPandals(page = 1, perPage = 12): Promise<{ pandals: UnknownRecord[]; }> {
   try {
-    const payload = await getPublicJson(`/public/pandals?page=${page}&per_page=${perPage}`);
+    const payload = await getPublicJson("/public/pandals");
     return { pandals: listFrom(payload).map((item) => record(item)) };
   } catch (error) {
     console.error("Unable to load public pandals", error);

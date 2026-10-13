@@ -163,7 +163,6 @@ export default function GallerySection({ data, fullPage = false, heading }: { da
           </div>
         </div>
       )}
-      <MobileAppSection data={homeData?.data?.app_downloads} />
 
     </>
   );

@@ -1,9 +1,13 @@
 import Link from "next/link";
-import { tours } from "@/data/tours";
+import { tours as fallbackTours } from "@/data/tours";
+import { getPublicTours } from "@/lib/publicApi";
 import MobileAppSection from "@/components/home/MobileAppSection";
 import ContactSection from "@/components/home/ContactSection";
 
-export default function TourListPage() {
+export default async function TourListPage() {
+  const apiTours = await getPublicTours();
+  const tours = apiTours.length ? apiTours : fallbackTours;
+
   return (
     <>
       <main className="mx-auto max-w-[1400px] py-24">

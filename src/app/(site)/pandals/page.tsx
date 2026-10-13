@@ -1,6 +1,33 @@
+"use client";
+
+import { AboutContent } from "@/components/home/AboutSection";
+import { HomePromos } from "@/components/home/ExperienceSection";
+import { HeroBanner } from "@/components/home/HeroSection";
+import MobileAppSection from "@/components/home/MobileAppSection";
 import PandalsList from "@/components/pandal/PandalsList";
+import { RootState } from "@/store";
+import { useSelector } from "react-redux";
+
+type HomePagePayload = {
+  data?: {
+    banners?: HeroBanner[];
+    about_section?: AboutContent | null;
+    home_promos?: HomePromos | null;
+    gallery?: unknown[];
+    app_downloads?: unknown[];
+    section_headings?: {
+      featured_pandals?: SectionHeading | null;
+      services?: SectionHeading | null;
+      gallery?: SectionHeading | null;
+    };
+  };
+};
+
+type SectionHeading = { eyebrow?: string | null; title?: string | null; highlight?: string | null; subtitle?: string | null };
 
 export default function PandalsPage() {
+  const homeData = useSelector((state: RootState) => state.home.data) as HomePagePayload | null;
+
   return (
     <div className="min-h-screen bg-white">
       {/* Saffron header block */}
@@ -16,6 +43,7 @@ export default function PandalsPage() {
       </div>
 
       <PandalsList />
+      <MobileAppSection data={homeData?.data?.app_downloads} />
     </div>
   );
 }

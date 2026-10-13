@@ -11,6 +11,7 @@ export interface Pandal {
   featured: boolean;
   published: boolean;
   sponsors: Sponsor[];
+  website_url?: string;
   hotspots: Hotspot[];
   createdAt: string;
   visitor_count?: number | string;

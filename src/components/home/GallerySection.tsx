@@ -5,11 +5,34 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import { galleryTiles as tiles } from "@/data/gallery";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
+import { HeroBanner } from "./HeroSection";
+import { AboutContent } from "./AboutSection";
+import { HomePromos } from "./ExperienceSection";
+import MobileAppSection from "./MobileAppSection";
+
+type HomePagePayload = {
+  data?: {
+    banners?: HeroBanner[];
+    about_section?: AboutContent | null;
+    home_promos?: HomePromos | null;
+    gallery?: unknown[];
+    app_downloads?: unknown[];
+    section_headings?: {
+      featured_pandals?: SectionHeading | null;
+      services?: SectionHeading | null;
+      gallery?: SectionHeading | null;
+    };
+  };
+};
 
 type SectionHeading = { eyebrow?: string | null; title?: string | null; highlight?: string | null; subtitle?: string | null };
 
 export default function GallerySection({ data, fullPage = false, heading }: { data?: any[]; fullPage?: boolean; heading?: SectionHeading | null }) {
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const homeData = useSelector((state: RootState) => state.home.data) as HomePagePayload | null;
+
   const items = Array.isArray(data) && data.length > 0
     ? data
     : tiles.map((tile) => ({ id: tile.id, url: tile.src, alt_text: tile.alt }));
@@ -140,6 +163,8 @@ export default function GallerySection({ data, fullPage = false, heading }: { da
           </div>
         </div>
       )}
+      <MobileAppSection data={homeData?.data?.app_downloads} />
+
     </>
   );
 }

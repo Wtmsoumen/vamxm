@@ -35,6 +35,7 @@ export default function SponsorsPage() {
     ? apiSponsors
     : [];
   // sponsors.map((sponsor, index) => ({ id: `fallback-${index}`, name: sponsor.name, logo: sponsor.logo, website: "#", tier: undefined }))
+  console.log(displayedSponsors, "displayedSponsors");
 
   return (
     <>
@@ -49,8 +50,8 @@ export default function SponsorsPage() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 mb-16">
-            {displayedSponsors.map((sponsor) => (
-              <div key={sponsor.id} className="group flex min-h-40 flex-col items-center justify-center rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-saffron/40 hover:shadow-lg">
+            {displayedSponsors?.length ? displayedSponsors.map((sponsor: any, i: any) => (
+              <Link target={sponsor?.website === "#" ? "_parent" : "_blank"} href={`${sponsor?.website}`} key={i} className="group flex min-h-40 flex-col items-center justify-center rounded-2xl border border-black/10 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-saffron/40 hover:shadow-lg">
                 <div className="relative h-20 w-full">
                   {sponsor.logo ? <Image
                     src={sponsor.logo}
@@ -62,8 +63,8 @@ export default function SponsorsPage() {
                 </div>
                 <h2 className="mt-4 text-center text-sm font-semibold text-black/80 transition-colors group-hover:text-saffron">{sponsor.name}</h2>
                 {sponsor.tier && <p className="mt-1 text-xs capitalize text-black/45">{sponsor.tier}</p>}
-              </div>
-            ))}
+              </Link>
+            )) : null}
           </div>
 
           <div className="text-center bg-black/5 border border-black/10 rounded-3xl p-10">

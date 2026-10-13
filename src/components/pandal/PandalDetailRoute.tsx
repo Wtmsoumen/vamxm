@@ -2,10 +2,9 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import PandalDetailClient from "@/components/pandal/PandalDetailClient";
 import { Pandal } from "@/types";
-import { normalizePandal } from "@/lib/publicApi";
+import { getPublicJson, normalizePandal } from "@/lib/publicApi";
 
 export default function PandalDetailRoute() {
   const { id } = useParams<{ id: string }>();
@@ -21,13 +20,8 @@ export default function PandalDetailRoute() {
       setPandal(null);
 
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
-        if (!baseUrl) throw new Error("Public API URL is not configured");
-
-        const response: any = await axios.get(`${baseUrl}/mobile/pandals/${encodeURIComponent(id)}`, {
-          signal: controller.signal,
-        });
-        const payload: unknown = response.data;
+        const payload: unknown = await getPublicJson(`/public/pandals/${encodeURIComponent(id)}`);
+        if (controller.signal.aborted) return;
         const root = payload && typeof payload === "object" ? payload as Record<string, unknown> : {};
         const data = root.data && typeof root.data === "object" ? root.data as Record<string, unknown> : {};
         const item = [data.pandal, data.tour, root.pandal, root.tour, root.data, payload]
@@ -38,7 +32,7 @@ export default function PandalDetailRoute() {
         if (!normalized.id || !normalized.published) {
           throw new Error("Pandal not found");
         }
-        setPandelDetails(response.data.data)
+        setPandelDetails(data)
         setPandal(normalized);
       } catch (error) {
         if (!controller.signal.aborted) setPandal(null);

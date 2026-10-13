@@ -1,4 +1,5 @@
 import { Pandal, Sponsor, Hotspot } from "@/types";
+import type { Tour } from "@/data/tours";
 import axios from "axios";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
@@ -151,12 +152,32 @@ export async function getPublicSettings(): Promise<unknown | null> {
 
 export async function getPublicPandals(page = 1, perPage = 12): Promise<{ pandals: UnknownRecord[]; }> {
   try {
-    const payload: any = await getPublicJson(`/mobile/tours`);
-    return { pandals: payload.data };
+    const payload = await getPublicJson(`/public/pandals?page=${page}&per_page=${perPage}`);
+    return { pandals: listFrom(payload).map((item) => record(item)) };
   } catch (error) {
     console.error("Unable to load public pandals", error);
     return { pandals: [] };
   }
+}
+
+export async function getPublicTours(): Promise<Tour[]> {
+  const payload = await getPublicJson("/public/tours");
+  return listFrom(payload).map((item) => {
+    const source = record(item);
+    return {
+      id: firstString(source, "slug", "tour_slug", "id", "_id", "uuid"),
+      title: firstString(source, "title", "name") || "Untitled Tour",
+      location: firstString(source, "location", "address", "area"),
+      description: firstString(source, "description", "about"),
+      nodes: firstNumber(source, "nodes", "node_count", "views_count") ?? 0,
+      preview: firstString(source, "preview", "thumbnail", "thumbnail_url", "image", "image_url"),
+      path: firstString(source, "path", "index_url", "url", "virtual_tour_url"),
+      published: source.published === undefined && source.is_published === undefined
+        ? true
+        : firstBoolean(source, "published", "is_published"),
+      featured: firstBoolean(source, "featured", "is_featured"),
+    };
+  }).filter((tour) => tour.id && tour.published);
 }
 
 export async function getPublicPandal(slug: string): Promise<Pandal | null> {

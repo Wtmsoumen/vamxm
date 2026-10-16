@@ -56,7 +56,7 @@ export default function FeaturedPandals({ data, heading }: { data?: any; heading
                     {v?.visitor_count}
                   </span> : null}
                   <img
-                    src={v?.featured_image}
+                    src={v?.featured_image || "/mayerMukh.png"}
                     alt={v?.name}
                     className="h-full w-full object-cover rounded-xl group-hover:rounded-bl-[200px]! transition-all! duration-300!"
                   />

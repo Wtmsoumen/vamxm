@@ -38,7 +38,7 @@ export default function FeaturedPandals({ data, heading }: { data?: any; heading
         </AnimateOnScroll>
 
         <div className="mt-10 grid gap-5 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {data?.data?.featured_pandals.map((v: any, i: number) => (
+          {data?.data?.featured_pandals?.slice(0, 3).map((v: any, i: number) => (
             <AnimateOnScroll key={i} anim="up" delay={i * 100}>
               <article className="pandal-card group hover:rounded-bl-[200px]! transition-all! duration-300! bg-white hover:bg-linear-to-b! from-[#F88C21]! to-[#D3111D]!">
                 <div className="p-5 sm:p-6">
